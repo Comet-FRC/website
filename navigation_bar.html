@@ -9,7 +9,7 @@
         
         <div class="dropdown">
             <div href="javascript:void(0)" class="dropdown-button">
-                Dropdown
+                Contact
                 <span class="dropdown-icon"><i class="fa-solid fa-caret-down"></i></span>
             </div>
             <div class="dropdown-content">
@@ -19,11 +19,14 @@
             </div>
         </div>
     </div>
+
+    <span id="bg"></span>
 </div>
+
 
 <script>
     window.addEventListener('scroll', function() {
-        const nav_bar = document.getElementById("nav_bar");
+        const nav_bar = document.querySelector("#nav_bar #bg");
 
         if (window.scrollY > 0) {
             nav_bar.style.backdropFilter = "blur(10px) brightness(10%)";

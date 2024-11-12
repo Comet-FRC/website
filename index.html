@@ -2,7 +2,9 @@
 <html>
 <head>
     <!-- Link to the external CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navigation_bar.css">
+    <link rel="stylesheet" href="css/footer.css">
     
     <!-- Load jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -36,10 +38,16 @@
     <img id="bg" src="images/about_bg.avif">
 </div>
 
+<div id="footer-placeholder"></div>
+
 <script>
   // Using jQuery to load the navigation bar from navigation.html
   $.get("navigation_bar.html", function(data) {
       $("#nav-placeholder").replaceWith(data);
+  });
+
+  $.get("footer.html", function(data) {
+      $("#footer-placeholder").replaceWith(data);
   });
 </script>
 

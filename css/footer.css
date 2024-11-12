@@ -1,0 +1,21 @@
+#footer {
+    height: 10ex;
+    display: grid;
+    color: white;
+}
+
+#footer #text {
+    grid-column: 1;
+}
+
+#footer h2 {
+    font-family: "Oswald", sans-serif;
+    font-weight: bold;
+    font-size: 3ex;
+    color: var(--primary);
+}
+
+#footer #socials {
+    grid-column: 2;
+    display: flex;
+}
