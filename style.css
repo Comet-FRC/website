@@ -54,7 +54,7 @@ body {
 
 #nav_bar .button:hover, .dropdown:hover .dropdown-button {
     background-color: var(--primary);
-        color: black;
+    color: black;
 }
 
 #nav_bar .dropdown-button {
@@ -174,4 +174,26 @@ body {
     grid-row: 1;
     margin-left: 1ex;
     border-radius: 5ex;
+}
+
+#about button {
+    margin: 8rem 0 0 0;
+    padding: 0.7rem;
+    border: var(--primary) solid 0.14rem;
+    border-radius: 8%;
+
+    background: none;
+
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-family: "Oswald", sans-serif;
+    font-weight: bold;
+
+    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+#about button:hover {
+    background-color: var(--primary);
+    color: black;
 }
