@@ -1,0 +1,34 @@
+<div id="nav_bar">
+    <span id="logo">
+        <a href="#home"><img src="images/comet_cat.svg"></a>
+    </span>
+
+    <div class="button-wrapper">
+        <a href="#home" class="button">Home</a>
+        <a href="#about" class="button">About</a>
+        
+        <div class="dropdown">
+            <div href="javascript:void(0)" class="dropdown-button">
+                Dropdown
+                <span class="dropdown-icon"><i class="fa-solid fa-caret-down"></i></span>
+            </div>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const nav_bar = document.getElementById("nav_bar");
+
+        if (window.scrollY > 0) {
+            nav_bar.style.backdropFilter = "blur(10px) brightness(10%)";
+        } else {
+            nav_bar.style.backdropFilter = null;
+        }
+    });
+</script>

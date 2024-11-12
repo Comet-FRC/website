@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Placeholder for the navigation bar -->
+<div id="nav-placeholder"></div>
+
+<div id="hero">
+    <h1>1885 COMET ROBOTICS</h1>
+    <img src="images/hero_bg.avif">
+</div>
+
+<div id="about">
+    <div id="content">
+        <div id="text">
+            <h2>ABOUT US</h2>
+            <p>Centered in Battlefield High School in Haymarket, Virginia, 1885 Comet Robotics is a competitive FIRST Robotics team known for both their on-field success and extensive community outreach since 2023.</p>    
+        </div>
+        <img id="image" src="images/about_image.avif">
+    </div>
+    <img id="bg" src="images/about_bg.avif">
+</div>
+
+<script>
+  // Using jQuery to load the navigation bar from navigation.html
+  $.get("navigation_bar.html", function(data) {
+      $("#nav-placeholder").replaceWith(data);
+  });
+</script>
+
+</body>
+</html>
