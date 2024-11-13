@@ -1,5 +1,6 @@
 :root {
     --primary: #dd9dff;
+    --heading-font: "Oswald", sans-serif;
 }
 
 
@@ -12,6 +13,21 @@ body {
     font-family: 'Open Sans', sans-serif;
     
     background-color: black;
+}
+
+h1 {
+    font-family: var(--heading-font);
+    font-weight:bold;
+}
+
+h2 {
+    font-family: var(--heading-font);
+    font-weight:bold;
+}
+
+h3 {
+    font-family: var(--heading-font);
+    font-weight:bold;
 }
 
 /* HERO */
@@ -84,8 +100,6 @@ body {
 }
 
 #about h2 {
-    font-family: "Oswald", sans-serif;
-    font-weight:bold;
     font-size: 5ex;
     color: var(--primary);
 }
