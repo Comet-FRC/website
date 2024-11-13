@@ -1,21 +1,51 @@
 #footer {
-    height: 10ex;
-    display: grid;
+    height: auto;
+    width: 100%;
     color: white;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2ex;
+    margin-bottom: 2ex;
 }
 
-#footer #text {
-    grid-column: 1;
+#footer #logo {
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#footer h2 {
-    font-family: "Oswald", sans-serif;
-    font-weight: bold;
-    font-size: 3ex;
-    color: var(--primary);
+#footer #logo img{
+    width: 10ex;
+    padding-top: 0.5ex;
+    filter: invert();
+    font-size: 4ex;
 }
 
 #footer #socials {
-    grid-column: 2;
+    margin: auto;
     display: flex;
+}
+
+#footer #socials a {
+    color: white;
+    margin: 0 1ex;
+    font-size: 4ex;
+}
+
+#footer #text {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2ex;
+    margin-bottom: 2ex;
+}
+
+#footer #text a {
+    color: white;
+    text-decoration: none;
+    font-size: 2ex;
+    margin: 1ex 1ex;
+    transition: all 0.4s;
+}
+
+#footer #text a:hover, #footer #socials a:hover {
+    color: var(--primary);
 }
