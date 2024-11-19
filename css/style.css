@@ -155,19 +155,43 @@ button:hover {
     text-align: center;
 }
 
-#img-container {
-    padding: 1rem 0 0 0;
+.img-container {
+    padding: 1rem 0 1rem 0;
+    width: 100%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
 
-    height: 10rem;
+    height: 13rem;
+}
+
+.margin-up-sponsor {
+    margin-top: 2rem;
+}
+
+.img {
+    width: fit-content;
+    height: 8rem;
+    margin: 0 1rem;
+    object-fit: cover;
+    object-position: center;
 }
 
 @media screen and (max-width: 720px) {
-    #img-container {
+    .img-container {
         flex-direction: column;
+        justify-content: space-evenly;
+        flex-wrap: nowrap;
+        padding: 0;
+
+        align-items: center;
+        height: fit-content;
+    }
+
+    .img {
+        margin: 1rem 0;
+        width: 90%;
         height: fit-content;
     }
 }
