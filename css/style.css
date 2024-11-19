@@ -146,3 +146,30 @@ button:hover {
     margin-left: 1ex;
     border-radius: 5ex;
 }
+
+#sponsors {
+    padding: 5rem 1rem;
+
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+#img-container {
+    padding: 1rem 0 0 0;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    height: 10rem;
+}
+
+@media screen and (max-width: 720px) {
+    #img-container {
+        flex-direction: column;
+        height: fit-content;
+    }
+}
+
+
