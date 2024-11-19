@@ -46,18 +46,17 @@
     <img id="bg" src="images/about_bg.avif">
 </div>
 
+<section id="sponsors">
+    <h2>OUR SPONSORS</h2>
+    <div id="img-container">
+        <img src="">
+    </div>
+</section>
+
 <div id="footer-placeholder"></div>
 
-<script>
-  // Using jQuery to load the navigation bar from navigation.html
-  $.get("navigation_bar.html", function(data) {
-      $("#nav-placeholder").replaceWith(data);
-  });
-
-  $.get("footer.html", function(data) {
-      $("#footer-placeholder").replaceWith(data);
-  });
-</script>
+<!--Can link the JS instead of repeating it-->
+<script src="js/repeated_components.js"></script>
 
 </body>
 </html>
