@@ -46,18 +46,30 @@
     <img id="bg" src="images/about_bg.avif">
 </div>
 
+
+<section id="sponsors">
+    <h2>OUR SPONSORS</h2>
+    <div class="img-container margin-up-sponsor">
+        <a href="https://battlefieldhs.pwcs.edu" target="_blank" rel="noopener noreferrer">
+            <img src="images/logos/bobcat.svg" class="image">
+        </a>
+        <a href="https://www.pwcs.edu" target="_blank" rel="noopener noreferrer">
+            <img src="images/logos/PWCS.svg" class='image'>
+        </a>
+        <a href="https://www.techstellar.com" target="_blank" rel="noopener noreferrer">
+            <img src="images/logos/TechStellar.svg" class="tech">
+        </a>
+        <a href="https://www.lockheedmartin.com" target="_blank" rel="noopener noreferrer">
+            <img src="images/logos/lockheed_martin.svg" class="image">
+        </a>
+    </div>
+</section>
+
+
 <div id="footer-placeholder"></div>
 
-<script>
-  // Using jQuery to load the navigation bar from navigation.html
-  $.get("navigation_bar.html", function(data) {
-      $("#nav-placeholder").replaceWith(data);
-  });
-
-  $.get("footer.html", function(data) {
-      $("#footer-placeholder").replaceWith(data);
-  });
-</script>
+<!--Can link the JS instead of repeating it-->
+<script src="js/repeat.js"></script>
 
 </body>
 </html>

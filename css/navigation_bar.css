@@ -89,3 +89,8 @@
 #nav_bar .dropdown-content a:hover {
     background-color: #888787;
 }
+
+.dropdown-button a {
+    color: white;
+    text-decoration: none;
+}
