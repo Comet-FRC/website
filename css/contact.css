@@ -5,6 +5,10 @@
     border-radius: 30%;
 }
 
+#form 
+{
+    margin: 4rem 2rem;
+}
 
 .form-container {
     margin: 3rem 1rem 5rem;
@@ -14,4 +18,32 @@
 .form-container p {
     text-align: center;
     font-size: 1.2rem;
+}
+
+.first-forms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 3rem; 
+    row-gap: 0.8rem;
+}
+.second-form
+{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 0.8rem;
+}
+.second-form .message
+{
+    margin: 1rem 0;
+    height: 10rem;
+    font: var(--body-font);
+    font-size: 1.1rem;
+}
+
+.message-2
+{
+    font: var(--body-font);
+    font-size: 1.1rem;
+    height: 1.5rem;
 }

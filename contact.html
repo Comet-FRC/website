@@ -40,8 +40,29 @@
     <!--Contact Form-->
     <section class="form-container">
         <p><b>Interested in volunteering, mentoring, or sponsoring? Fill out the form below to contact us!</b></p>
-        <form id="form">
+        <form id="form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="fd276b79-9936-4fd0-9516-77a5454a0b70"><!--doesn't matter if hardcoded-->
+            
+            <!-- Form Inputs. Each input must have a name="" attribute -->
+            <div class="first-forms">
+                <h4>Full Name</h4>
+                <h4>Email</h4>
+                <input class="message-2" type="text" name="name" required>
+                <input class="message-2" type="email" name="email" required>
+            </div>
+            <div class="second-form">
+                <h4>Message</h4>
+                <textarea class="message" name="message" required></textarea>
+            </div>
 
+            <!-- Honeypot Spam Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+        
+            <!-- Custom Confirmation / Success Page -->
+            <input type="hidden" name="redirect" value="/">
+        
+            <button type="submit">SUBMIT FORM</button>
+        
         </form>
     </section>
 
