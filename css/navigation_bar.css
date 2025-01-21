@@ -48,12 +48,12 @@
     text-decoration: none;
     transition: all 0.4s;
 
-    cursor: default;
+    cursor: pointer;
 }
 
 #nav_bar .button:hover, .dropdown:hover .dropdown-button {
     background-color: var(--color-primary);
-    color: black;
+    color: var(--color-bg-primary);
 }
 
 #nav_bar .dropdown-button {
@@ -79,7 +79,7 @@
 }
 
 #nav_bar .dropdown-content a {
-    color: black;
+    color: var(--color-bg-primary);
     padding: 2ex 2ex;
     text-decoration: none;
     display: block;

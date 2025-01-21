@@ -1,0 +1,64 @@
+.transition {
+    height: 2rem;
+    background-color: black;
+    border-bottom: solid 1rem var(--color-primary);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+#form 
+{
+    margin: 4rem 2rem;
+}
+
+.form-container {
+    margin: 3rem 1rem 5rem;
+    color: white;
+}
+
+.form-container p {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.first-forms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 3rem; 
+    row-gap: 0.8rem;
+}
+.second-form
+{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 0.8rem;
+}
+.second-form .message
+{
+    margin: 1rem 0;
+    height: 10rem;
+    font: var(--body-font);
+    font-size: 1.1rem;
+}
+
+.message-2
+{
+    font: var(--body-font);
+    font-size: 1.1rem;
+    height: 1.8rem;
+}
+
+.message, .message-2
+{
+    border: solid 3.5px var(--color-primary);
+    border-radius: 9px;
+    padding: 0.1rem;
+}
+
+h4
+{
+    padding: 0 0 0 0.2rem;
+    font-style: bold;
+    font-size: 1.3rem;
+}

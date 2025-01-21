@@ -3,6 +3,9 @@
     --color-primary-dark: #3e006d;
     --heading-font: tahoma, sans-serif;
     --body-font: 'Open Sans', sans-serif;
+
+    --color-bg-primary: #171717;
+    --color-bg-second: white;
 }
 
 * {
@@ -13,7 +16,7 @@
 body {
     font-family: var(--body-font);
     
-    background-color: black;
+    background-color: var(--color-bg-primary);
 }
 
 h1 {
@@ -46,11 +49,12 @@ button {
     font-weight: bold;
 
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 button:hover {
     background-color: var(--color-primary);
-    color: black;
+    color: var(--color-bg-primary);
 }
 
 /* HERO */
@@ -150,7 +154,7 @@ button:hover {
 #sponsors {
     padding: 5rem 1rem;
 
-    background-color: black;
+    background-color: var(--color-bg-primary);
     color: white;
     text-align: center;
 }
@@ -209,5 +213,3 @@ button:hover {
         height: fit-content;
     }
 }
-
-
