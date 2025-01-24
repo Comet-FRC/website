@@ -31,14 +31,22 @@
             </canvas>
             <script>
                 let canvas = document.getElementById("can");
+                canvas.width = document.documentElement.clientWidth;
+                canvas.height = window.innerHeight;
                 let ctx = canvas.getContext("2d");
                 ctx.beginPath();
                 ctx.fillStyle = "#3e006d";
                 ctx.moveTo(0, 0);
                 ctx.lineTo(0, window.innerHeight);
-                ctx.lineTo(window.innerWidth, window.innerHeight);
+                ctx.lineTo(document.documentElement.clientWidth, window.innerHeight/1.5);
                 ctx.fill();
             </script>
+            <div></div>
+            <div class="right-top slide-in">
+                <h1 class="boom">Community</h1>
+                <p>Robotics isn't just a competition</p>
+                <p>It's a home</p>
+            </div>
         </div>
     </section>
 

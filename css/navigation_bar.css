@@ -52,7 +52,7 @@
 }
 
 #nav_bar .button:hover, .dropdown:hover .dropdown-button {
-    background-color: var(--color-primary);
+    background-color: var(--color-accent);
     color: var(--color-bg-primary);
 }
 
