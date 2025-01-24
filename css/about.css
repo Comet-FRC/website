@@ -15,7 +15,7 @@
 
         .text {
             position: absolute;
-            top: 7.5%;
+            top: 4.5%;
             left: 25%;
             transform: translate(-50%, -50%);
             font-size: 155px;
@@ -27,7 +27,7 @@
 
         .text2 {
             position: absolute;
-            top: 30%;
+            top: 23%;
             left: 5%;
             right: 5%;
             font-size: 30px;
@@ -39,7 +39,7 @@
 
         .text3 {
             position: absolute;
-            top: 45%;
+            top: 40%;
             left: 5%;
             right: 5%;
             font-size: 30px;
@@ -51,8 +51,8 @@
 
         .Comet-cat {
             position: absolute; 
-            top: 60%; 
-            left: 39%; 
+            top: 55%; 
+            left: 38%; 
             width: 400px; 
             height: auto; 
             color: hsl(270, 100%, 10%);
@@ -87,7 +87,7 @@
 
         .text4 {
             position: absolute;
-            top: -150px;
+            top: -170px;
             left: 23.10%;
             font-size: 135px;
             font-weight: bold;
@@ -98,7 +98,7 @@
      
         .pic1 { 
             position: absolute;
-            top: 130%;  
+            top: 135%;  
             left: 5%; 
             width: 525px; 
             height: auto; 
@@ -109,7 +109,7 @@
         
         .text5 {
             position: absolute;
-            top: 135%;  
+            top: 140%;  
             left: 37%;
             right: 3%;
             color: white;
@@ -124,7 +124,7 @@
 
         .pic2 { 
             position: absolute;
-            top: 170%; 
+            top: 175%; 
             left: 70%;
             width: 525px; 
             height: auto; 
@@ -134,7 +134,7 @@
 
         .text6 {
             position: absolute;
-            top: 175%;  
+            top: 180%;  
             left: 3%;
             right: 33%;
             color: white;
@@ -147,17 +147,17 @@
 
         .pic3 { 
             position: absolute;
-            top: 210%;
+            top: 225%;
             width: 525px; 
             height: auto; 
             border-radius: 20%;
-            left: 3%;
+            left: 6%;
             animation: fadeIn 2s forwards;
         }
 
         .text7 {
             position: absolute;
-            top: 220%;  
+            top: 230%;  
             left: 34%;
             right: 8%;
             color: white;
