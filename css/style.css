@@ -6,6 +6,8 @@
 
     --color-bg-primary: #171717;
     --color-bg-second: white;
+
+    --color-accent: rgb(1, 168, 140);
 }
 
 * {

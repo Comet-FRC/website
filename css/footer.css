@@ -1,5 +1,4 @@
 #footer {
-    margin: auto;
     width: auto;
     display: grid;
     margin: 2ex 0;
@@ -36,6 +35,21 @@
     padding-top: 0.5ex;
     filter: invert();
     font-size: 2ex;
+}
+
+@media screen and (max-width: 800px) {
+    #footer #logo img {
+        width: 7ex;
+    }
+
+    #footer .section {
+        margin: 0 1ex;
+    }
+
+    #footer {
+        margin: 3ex 2.5ex;
+        font-size: 1.4ex;
+    }
 }
 
 #footer #info {

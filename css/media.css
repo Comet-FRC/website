@@ -6,27 +6,38 @@
   
 #community
 {
-    background-color: var(--color-bg-primary);
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 5rem 50rem 1fr 1fr;
 }
 
 .triangle
 {
-    grid-column: 1/2;
-    grid-row: 2/3;
-    width: 0;
-    height: 0;
-    border-left: 50% solid var(--color-primary);
-    border-bottom: 50% solid var(--color-primary);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 130vh;  
 }
 .triangle canvas 
 {
-    height: 100vh;
-    width: 100vw;
+    position: absolute;
+    z-index: -1;
+    background-color: var(--color-accent);
 }
+
+.right-top {
+    grid-column: 3/4;
+    grid-row: 1/2;
+    padding: 7rem 3rem;
+    color: white;
+    text-align: right;
+}
+.right-top p {
+    margin: 1.3rem 1rem 0 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+
 
 .image-container
 {
@@ -56,13 +67,15 @@
     border-bottom-left-radius: 20%;
     border-bottom-right-radius: 20%;
     */
-    box-shadow: 0 5px 8px var(--color-bg-second);
+    box-shadow: 0 3px 5px var(--color-bg-second);
+    border-top-right-radius: 20%; 
+    border-bottom-right-radius: 20%;
 }
 .flashy 
 {
     /*font-family: "Lavishly Yours";*/
     font-size: 7rem;
-    color: var(--color-primary-dark);
+    color: var(--color-accent);
 }
 
 .text

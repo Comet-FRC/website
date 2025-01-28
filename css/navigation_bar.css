@@ -23,6 +23,21 @@
     grid-row: 1;
 }
 
+@media screen and (max-width: 800px) {
+    #nav_bar #logo {
+        margin-left: 3ex;
+    }
+
+    #nav_bar .button-wrapper .button, .dropdown-button {
+        padding-left: 1ex;
+        padding-right: 1ex;
+    }
+
+    #nav_bar #logo img {
+        width: 5ex;
+    }
+}
+
 #nav_bar #logo img{
     width: 10ex;
     padding-top: 0.5ex;
@@ -52,7 +67,7 @@
 }
 
 #nav_bar .button:hover, .dropdown:hover .dropdown-button {
-    background-color: var(--color-primary);
+    background-color: var(--color-accent);
     color: var(--color-bg-primary);
 }
 

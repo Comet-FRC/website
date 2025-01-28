@@ -28,6 +28,13 @@
     column-gap: 3rem; 
     row-gap: 0.8rem;
 }
+
+@media screen and (max-width: 800px) {
+    .first-forms {
+        
+    }
+}
+
 .second-form
 {
     display: flex;
