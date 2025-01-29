@@ -31,15 +31,24 @@
             </canvas>
             <script>
                 let canvas = document.getElementById("can");
-                canvas.width = document.documentElement.clientWidth;
-                canvas.height = window.innerHeight;
-                let ctx = canvas.getContext("2d");
-                ctx.beginPath();
-                ctx.fillStyle = "#3e006d";
-                ctx.moveTo(0, 0);
-                ctx.lineTo(0, window.innerHeight);
-                ctx.lineTo(document.documentElement.clientWidth, window.innerHeight/1.5);
-                ctx.fill();
+
+                function resizeCanvas() {
+                    canvas.width = document.documentElement.clientWidth;
+                    canvas.height = window.innerHeight;
+                    drawCanvas();
+                }
+                function drawCanvas() {
+                    let ctx = canvas.getContext("2d");
+                    ctx.beginPath();
+                    ctx.fillStyle = "#3e006d";
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(0, window.innerHeight);
+                    ctx.lineTo(document.documentElement.clientWidth, window.innerHeight/1.5);
+                    ctx.fill();
+                }
+                
+                window.addEventListener("resize", resizeCanvas);
+                window.addEventListener("load", resizeCanvas);
             </script>
             <div></div>
             <div class="right-top slide-in">
