@@ -8,6 +8,9 @@
     --color-bg-second: white;
 
     --color-accent: rgb(1, 168, 140);
+
+    --h1-responsive: min(15vh, 12vw);
+    --h2-responsive: min(5vh, 4vw);
 }
 
 * {
@@ -59,47 +62,84 @@ button:hover {
     color: var(--color-bg-primary);
 }
 
+/* NAV BAR */
+
 /* HERO */
 
 #hero {
+    display: flex;
+
+    height: min(50vw, 30rem);
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero::before {
+    position: absolute;
     width: 100%;
-    height: 70ex;
-    overflow: hidden;
-    background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 1));
-    display: grid;
-}
-
-#hero img {
-    margin-top: -20ex;
-    width: 120%;
-    overflow: hidden;
-    z-index: -1;
+    height: 100%;
+    
+    content: "";
+    
     filter: brightness(50%) blur(3px);
-    grid-column: 1;
-    grid-row: 1;
+    
+    background-image: url("../images/hero_bg.avif");
+    background-size: 100%;
+    background-blend-mode: multiply;
+    background-position: center;
+    background-repeat: no-repeat;    
 }
 
-#hero #content {
-    margin-left: 10ex;
-    margin-right: 10ex;
-    grid-column: 1;
-    grid-row: 1;
+#hero .gradient {
+    position: absolute;
+    height: 110%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 1));
 }
 
-#hero #text-wrapper {
-    margin-top: 20ex;
-    text-align: center;
+#hero .soft-gradient {
+    position: absolute;
+    height: 110%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+}
+
+#hero .content {
+    position: relative;
+
+    height: 100%;
+
+    align-content: center;
+    
+}
+
+#hero .divider {
+    height: 3.5rem;
+}
+
+#hero br {
+    height: 10rem;
+}
+
+#hero .text-wrapper {    
+    margin-top: 3.5rem;
+
+    justify-items: center;
 }
 
 #hero h1 {
+    font-size: var(--h1-responsive);
     font-family: "Oswald", sans-serif;
-    font-weight:bold;
+    font-weight: bold;
     color: white;
 }
 
 #hero h2 {
-    margin: 0.5ex 16ex;
     color: var(--color-primary);
+    
+    font-size: var(--h2-responsive);
+    width: 75%;
 }
 
 /* ABOUT */
@@ -124,7 +164,7 @@ button:hover {
     overflow: hidden;
 }
 
-#about #content {
+#about .content {
     grid-column: 1;
     grid-row: 1;
     display: grid;
@@ -132,7 +172,7 @@ button:hover {
     z-index: 1;
 }
 
-#about #text {
+#about .text {
     width: 80%;
     margin-left: auto;
     margin-right: 1ex;
@@ -145,7 +185,7 @@ button:hover {
     color: var(--color-primary);
 }
 
-#about #image {
+#about img {
     width: 75%;
     grid-column: 2;
     grid-row: 1;
