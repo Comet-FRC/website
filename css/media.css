@@ -23,13 +23,16 @@
 .right-top {
     grid-column: 3/4;
     grid-row: 1/2;
-    padding: 7rem 3rem;
+    padding: 5rem 3rem 7rem;
     color: white;
     text-align: right;
 }
+.right-top h1 {
+    font-size: 8.2vw;
+}
 .right-top p {
     margin: 1.3rem 1rem 0 0;
-    font-size: 1.4rem;
+    font-size: 1.7vw;
     font-weight: bold;
 }
 
@@ -41,11 +44,9 @@
     justify-content: space-evenly;
 }
 .stats-container div {
-    font-size: 1.4rem;
+    font-size: 1.7vw;
     color: white;
 }
-
-
 
 .image-container
 {
@@ -85,7 +86,7 @@
 .flashy 
 {
     /*font-family: "Lavishly Yours";*/
-    font-size: 7rem;
+    font-size: 7vw;
     color: var(--color-accent);
 }
 
@@ -102,13 +103,14 @@
 
 @media screen and (max-width: 800px)
 {
-    .container 
+    .image-container 
     {
         display: flex;
         flex-direction: column;
     }
     .text
     {
+        display: none;
         visibility: hidden;
         opacity: 0;
     }
