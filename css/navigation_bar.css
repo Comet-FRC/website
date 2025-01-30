@@ -24,17 +24,16 @@
 }
 
 @media screen and (max-width: 800px) {
-    #nav_bar #logo {
+    /* #nav_bar #logo {
         margin-left: 3ex;
-    }
+    } */
 
-    #nav_bar .button-wrapper .button, .dropdown-button {
-        padding-left: 1ex;
-        padding-right: 1ex;
-    }
-
-    #nav_bar #logo img {
+    /* #nav_bar #logo img {
         width: 5ex;
+    } */
+
+    #logo {
+        visibility: hidden;
     }
 }
 
@@ -54,14 +53,16 @@
 }
 
 #nav_bar .button-wrapper .button, .dropdown-button {
-    padding-top: 2.5ex;
-    padding-bottom: 2.5ex;
-    padding-left: 2.5ex;
-    padding-right: 2.5ex;
+    
+    padding: 1.5rem min(1.5rem, 2.5vw) 1.5rem min(1.5rem, 2.5vw);
+    max-width: 25vw;
+
     color: white;
     text-align: center;
     text-decoration: none;
     transition: all 0.4s;
+
+    align-content: center;
 
     cursor: pointer;
 }
