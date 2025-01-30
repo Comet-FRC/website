@@ -1,3 +1,4 @@
+@import url("fontawesome-all.min.css");
 .lavishly-yours-regular {
     font-family: "Lavishly Yours", serif;
     font-weight: 400;
@@ -11,7 +12,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: 130vh;  
+    height: 100vh;
+    margin-bottom: 5rem;  
 }
 .triangle canvas 
 {
@@ -23,7 +25,7 @@
 .right-top {
     grid-column: 3/4;
     grid-row: 1/2;
-    padding: 5rem 3rem 7rem;
+    padding: 5rem 3rem 1rem;
     color: white;
     text-align: right;
 }
@@ -44,8 +46,42 @@
     justify-content: space-evenly;
 }
 .stats-container div {
-    font-size: 1.7vw;
+    padding: 0 5vw;
+    font-size: 4vw;
     color: white;
+    text-align: center;
+}
+.stats-container div h4 {
+    font-size: 2.3vw;
+    font-weight: bold;
+    color: white;
+}
+@media screen and (max-width: 700px) {
+    .triangle {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .right-top {
+        padding-right: 1rem;
+        padding-bottom: 3vh;
+    }
+    .right-top h1 {
+        font-size: 10vw;
+    }
+    .right-top p {
+        margin: 1.3rem 0 1.3rem 0;
+        font-size: 4vw;
+    }
+
+    .stats-container {
+        width: 60%;
+        flex-direction: column;
+    }
+    .stats-container div {
+        font-size: 4vw;
+        padding: 0 7vw 8vh;
+    }
 }
 
 .image-container
@@ -54,9 +90,6 @@
     display: grid;
     grid-template-columns: 30% 1fr;
     width: 100%;
-}
-@media screen and (max-width: 800px) {
-    
 }
 
 .left
@@ -80,8 +113,7 @@
     border-bottom-right-radius: 20%;
     */
     box-shadow: 0 3px 5px var(--color-bg-second);
-    border-top-right-radius: 20%; 
-    border-bottom-right-radius: 20%;
+    border-radius: 2rem; 
 }
 .flashy 
 {
@@ -101,12 +133,15 @@
     margin: 2rem 0;
 }
 
-@media screen and (max-width: 800px)
+@media screen and (max-width: 700px)
 {
     .image-container 
     {
         display: flex;
         flex-direction: column;
+    }
+    .landing {
+        border-radius: 2rem; 
     }
     .text
     {
