@@ -229,7 +229,7 @@ button:hover {
     color: var(--color-primary);
 }
 
-#about h2, p {
+#about h2, #about p {
     text-align: center;
     overflow: visible;
 }   
