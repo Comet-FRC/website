@@ -38,7 +38,7 @@
     flex-direction: column;
     margin: 2rem 0 0.8rem;
 }
-.second-form .message
+.message
 {
     margin: 1rem 0;
     height: 10rem;
@@ -65,4 +65,13 @@ h4
     padding: 0 0 0 0.2rem;
     font-style: bold;
     font-size: 1.3rem;
+}
+
+@media screen and (max-width: 700px) {
+    .message {
+        font-size: 0.8rem;
+    }
+    .message-2 {
+        font-size: 0.63rem;
+    }
 }
