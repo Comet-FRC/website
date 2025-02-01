@@ -206,10 +206,10 @@
 
 .purple {
     background-color: var(--color-primary-dark);
-    border: inset 0.55rem var(--color-primary);
+    border: inset 0.45rem var(--color-primary);
     color: white;
 }
-.purple img {
+.purple img {       
     border: solid 0.3rem var(--color-primary);
 }
 .purple h2 {
