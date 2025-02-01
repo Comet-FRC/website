@@ -256,7 +256,7 @@
         .textName {
             position: absolute;
             top:327.5%;  
-            left: 16%;
+            left: 14.5%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -306,7 +306,7 @@
         .textName1 {
             position: absolute;
             top:327.5%;  
-            left: 46%;
+            left: 46.75%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -354,7 +354,7 @@
         .textName2 {
             position: absolute;
             top:327.5%;  
-            left: 76%;
+            left: 76.5%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -402,7 +402,7 @@
         .textName3 {
             position: absolute;
             top:397.5%;  
-            left: 16%;
+            left: 16.5%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -450,7 +450,7 @@
         .textName4 {
             position: absolute;
             top:397.5%;  
-            left: 46%;
+            left: 44%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -499,7 +499,7 @@
         .textName5 {
             position: absolute;
             top:397.5%;  
-            left: 76%;
+            left: 74.25%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -595,7 +595,7 @@
         .textName7 {
             position: absolute;
             top: 467.5%;  
-            left: 76%;
+            left: 75.5%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -643,7 +643,7 @@
         .textName8 {
             position: absolute;
             top: 467.5%;  
-            left: 46%;
+            left: 44.50%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -691,7 +691,7 @@
         .textName9 {
             position: absolute;
             top: 537.5%;  
-            left: 16%;
+            left: 14.25%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -739,7 +739,7 @@
         .textName10 {
             position: absolute;
             top: 537.5%;  
-            left: 46%;
+            left: 45.5%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -787,7 +787,7 @@
         .textName11 {
             position: absolute;
             top: 537.5%;  
-            left: 76%;
+            left: 77.5%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -835,7 +835,7 @@
         .textName12 {
             position: absolute;
             top: 607.5%;  
-            left: 46%;
+            left: 44.5%;
             color: white;
             font-size: 45px;
             line-height: 60px;
@@ -848,7 +848,7 @@
         .textBio12 {
             position: absolute;
             top: 613.5%;  
-            left: 46%;
+            left: 46.5%;
             color: white;
             font-size: 20px;
             line-height: 60px;
@@ -889,6 +889,7 @@
                 top:5%;
                 right:10%;
                 left: 10%;
+                max-width: 100%;
                 font-size: 20vw;
                 font-weight: bold;
                 color: #be82d9;
