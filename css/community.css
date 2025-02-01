@@ -60,6 +60,7 @@
     .triangle {
         display: flex;
         flex-direction: column;
+        height: 100vh;
     }
 
     .right-top {
@@ -79,7 +80,7 @@
         flex-direction: column;
     }
     .stats-container div {
-        font-size: 4vw;
+        font-size: 10vw;
         padding: 0 7vw 8vh;
     }
 }
