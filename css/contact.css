@@ -55,8 +55,8 @@
 
 .message, .message-2
 {
-    border: solid 3.5px var(--color-primary);
-    border-radius: 9px;
+    border: solid 2px var(--color-primary);
+    border-radius: 4px;
     padding: 0.1rem;
 }
 
