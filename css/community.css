@@ -250,7 +250,7 @@
     color: white;
 }
 .purple img {
-    border: solid 0.3rem var(--color-primary);
+    border: solid 0.3rem var(--color-primary-dark);
 }
 .purple h2 {
     color: white;
@@ -265,7 +265,7 @@
     border-radius: 5%;
 }
 .white img {
-    border: solid 0.3rem var(--color-primary-dark);
+    border: solid 0.3rem var(--color-accent);
 }
 .white h2 {
     color: var(--color-primary-dark);
