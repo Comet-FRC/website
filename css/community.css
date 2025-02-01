@@ -1,4 +1,5 @@
 @import url("fontawesome-all.min.css");
+
 .lavishly-yours-regular {
     font-family: "Lavishly Yours", serif;
     font-weight: 400;
@@ -172,7 +173,7 @@
 }
 #events h1 {
     color: var(--color-accent);
-    padding: 1rem 0.4rem 0.2rem;
+    padding: 1.5    rem 0.4rem 0.2rem;
 }
 
 .event {
@@ -184,6 +185,7 @@
     height: fit-content;
     
     font-weight: 600;
+    margin: 1rem 0;
 }
 .event img {
     width: 30%;
@@ -223,6 +225,9 @@
     border-top: none;
     border-bottom: none;
     border-radius: 2.5rem;
+
+    margin-right: 1rem;
+    margin-left: 0.5rem;
 }
 .white img {
     border: solid 0.3rem var(--color-accent);
