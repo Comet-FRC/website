@@ -262,6 +262,12 @@ body{
     }
 }
 
+@media screen and (max-width: 880px) {
+    #hero {
+        max-height: 100000vw;
+    }
+}
+
 .pic1 { 
     position: absolute;
     top: 135%;  
