@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media - Comet Robotics Team 1885</title>
+    <title>Community - Comet Robotics Team 1885</title>
     
     <!-- Link to the external CSS file -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/community.css">
     
     <!-- Load jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -30,10 +30,13 @@
         </canvas>
         <script>
             let canvas = document.getElementById("can");
-            
+            let largerHeight = window.innerHeight*1.25;
             function resizeCanvas() {
                 canvas.width = document.documentElement.clientWidth;
                 canvas.height = window.innerHeight;
+                if (canvas.width < 700 && canvas.width > 450) {
+                    canvas.height = largerHeight;
+                }
                 drawCanvas();
             }
             function drawCanvas() {
@@ -41,28 +44,30 @@
                 ctx.beginPath();
                 ctx.fillStyle = "#3e006d";
                 ctx.moveTo(0, 0);
-                ctx.lineTo(0, window.innerHeight);
-                ctx.lineTo(document.documentElement.clientWidth, window.innerHeight/1.5);
+                ctx.lineTo(0, largerHeight);
+                ctx.lineTo(document.documentElement.clientWidth, window.innerHeight*2/3);
                 ctx.fill();
             }
-            
             window.addEventListener("resize", resizeCanvas);
             window.addEventListener("load", resizeCanvas);
         </script>
         <div class="right-top slide-in">
-            <h1 class="boom">Community</h1>
+            <h1>Community</h1>
             <p>Robotics isn't just a competition</p>
             <p>It's a home</p>
         </div>
-        <div class="stats-container">
+        <div id="stats" class="stats-container">
             <div>
-                <p>Stat 1</p>
+                <i class="fa-solid fa-users"></i>
+                <h4>2500+ Impacted</h4>
             </div>
             <div>
-                <p>Stat 2</p>
+                <i class="fa-solid fa-calendar-day"></i>
+                <h4>15+ Events</h4>
             </div>
             <div>
-                <p>Stat 3</p>
+                <i class="fa-solid fa-handshake"></i>
+                <h4>8+ Collaborations</h4>
             </div>
         </div>
     </section>
@@ -72,6 +77,8 @@
     <!--IDEA: Button or sidebar to access past years events-->
     <section id="events"></section>
     
+    <!--
+    Other pictures section, not part of specific events - could possibly use for direct event page media
     <section id="images" class="image-container">
         <section class="left">
             <div class="landing">
@@ -84,14 +91,15 @@
             </div>
         </section>
         <section class="right">
-            <img src="images/media/1.jpg">
-            <img src="images/media/2.jpg">
-            <img src="images/media/3.jpg">
-            <img src="images/media/4.jpg">
-            <img src="images/media/5.jpg">
-            <img src="images/media/6.jpg">
+            <img src="/images/media/1.jpg">
+            <img src="/images/media/2.jpg">
+            <img src="/images/media/3.jpg">
+            <img src="/images/media/4.jpg">
+            <img src="/images/media/5.jpg">
+            <img src="/images/media/6.jpg">
         </section>
     </section>
+    -->
     
     <section id="videos" class="video-container"></section>
     
@@ -99,5 +107,5 @@
     <div id="footer-placeholder"></div>
 </body>
 <!--Instantiate components-->
-<script src="js/repeat.js"></script> 
+<script src="/js/repeat.js"></script> 
 </html>
