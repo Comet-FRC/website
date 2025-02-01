@@ -95,25 +95,57 @@ button:hover {
     background-repeat: no-repeat;    
 }
 
-#hero .hard-gradient {
+.hard-gradient {
     position: absolute;
     height: 100%;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, .4),rgba(0, 0, 0, 1));
 }
 
-#hero .gradient {
+.gradient {
     position: absolute;
     height: 105%;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 1));
 }
 
-#hero .soft-gradient {
+.soft-gradient {
     position: absolute;
     height: 110%;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+}
+
+.gradients {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    scale: 110%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+}
+
+.half-gradient {
+    height: 55%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.half2-gradient {
+    height: 55%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
+
+.gradient-out {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
 
 #hero .content {
