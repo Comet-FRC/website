@@ -217,7 +217,7 @@
     top: 1rem;
     left: 1rem;
 }
-.event p {
+.event div p {
     font-size: 1.3vw;
     padding: 1.25rem 3rem;
 }
@@ -228,19 +228,20 @@
     }
     .event div p {
         font-size: 4vw;
-        margin: 2rem;
+        margin: 0rem;
+        margin-bottom: 1rem;
     }
     .event img {
-        width: 75%;
-        margin: 3rem 2rem 1rem;
+        width: 90%;
+        margin: 2rem 1rem 1rem;
     }
-    .event h2, .d-green {
+    .event h2 {
         position: static;
-        padding: 0.6rem;
+        padding: 0.6rem 0;
         padding-bottom: 0.5rem;
     }
     .d-green {
-        text-align: center;
+        position: relative;
     }
 }
 
@@ -250,7 +251,7 @@
     color: white;
 }
 .purple img {
-    border: solid 0.3rem var(--color-primary-dark);
+    border: solid 0.3rem var(--color-primary);
 }
 .purple h2 {
     color: white;
@@ -274,5 +275,5 @@
     color: var(--color-accent);
     position: absolute;
     top: 1rem;
-    right: 0;
+    right: 1rem;
 }
