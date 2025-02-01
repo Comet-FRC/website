@@ -222,7 +222,7 @@
     border: solid 0.5rem var(--color-primary-dark);
     border-top: none;
     border-bottom: none;
-    border-radius: 5%;
+    border-radius: 2.5rem;
 }
 .white img {
     border: solid 0.3rem var(--color-accent);
@@ -230,12 +230,19 @@
 .white h2 {
     color: var(--color-primary-dark);
 }
+
 .d-green {
-    color: var(--color-accent);
     position: absolute;
     top: 1rem;
     right: 1rem;
 }
+.white .d-green {
+    color: var(--color-accent);
+}
+.purple .d-green {
+    color: var(--color-primary);
+}
+
 @media screen and (max-width: 700px)
 {
     .event {
@@ -257,6 +264,7 @@
     }
     .d-green {
         position: relative;
+
     }
     
 }
