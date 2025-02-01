@@ -1,13 +1,13 @@
 :root {
     --color-primary: #dd9dff;
-    --color-primary-dark: #3e006d;
+    --color-primary-dark: #380063;
     --heading-font: tahoma, sans-serif;
     --body-font: 'Open Sans', sans-serif;
 
     --color-bg-primary: #171717;
     --color-bg-second: white;
 
-    --color-accent: rgb(1, 168, 140);
+    --color-accent: rgb(1, 193, 161);
 
     --h1-responsive: min(15vh, 16vw);
     --h2-responsive: min(5vh, 6vw);
