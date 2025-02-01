@@ -34,9 +34,12 @@
             function resizeCanvas() {
                 canvas.width = document.documentElement.clientWidth;
                 canvas.height = window.innerHeight;
-                if (canvas.width < 700 && canvas.width > 450) {
+                if (canvas.width < 650 && canvas.width > 450) {
                     canvas.height = largerHeight;
                 }
+                if (canvas.width > 650 && canvas.width < 950) {
+                    canvas.height = window.innerHeight* 2/3;
+                } 
                 drawCanvas();
             }
             function drawCanvas() {
@@ -70,12 +73,14 @@
                 <h4>8+ Collaborations</h4>
             </div>
         </div>
+        <p class="date">In the 2023-2024 Season</p>
     </section>
     
     <!--Blocks of events-->
     <!--This year events: Gravely night and onwards-->
     <!--IDEA: Button or sidebar to access past years events-->
     <section id="events">
+        <h1>Events</h1>
         <div class="event purple">
             <h2>Gravely STEAM Night</h2>
             <img src="/images/IMG_0982.jpg">
