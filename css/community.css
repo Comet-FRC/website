@@ -221,7 +221,7 @@
 .white {
     background-color: rgb(255, 255, 255);
     color: var(--color-primary-dark);
-    border: solid 0.5rem var(--color-primary-dark);
+    border: solid 0.5rem var(--color-accent);
     border-top: none;
     border-bottom: none;
     border-radius: 2.5rem;
@@ -230,7 +230,7 @@
     margin-left: 0.5rem;
 }
 .white img {
-    border: solid 0.3rem var(--color-accent);
+    border: solid 0.3rem var(--color-primary-dark);
 }
 .white h2 {
     color: var(--color-primary-dark);
@@ -242,7 +242,7 @@
     right: 1rem;
 }
 .white .d-green {
-    color: var(--color-accent);
+    color: var(--color-primary-dark);
 }
 .purple .d-green {
     color: var(--color-primary);
