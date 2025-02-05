@@ -185,7 +185,7 @@
     height: fit-content;
     
     font-weight: 600;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 .event img {
     width: 30%;
@@ -203,7 +203,7 @@
 }
 .event div p {
     font-size: 1.3vw;
-    padding: 1.25rem 3rem;
+    padding: 1.25rem 2rem;
 }
 
 .purple {
@@ -227,7 +227,7 @@
     border-radius: 2.5rem;
 
     margin-right: 1rem;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
 }
 .white img {
     border: solid 0.3rem var(--color-primary-dark);
@@ -289,5 +289,16 @@
         display: none;
         visibility: hidden;
         opacity: 0;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .purple {
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+    }
+    .white {
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
     }
 }
