@@ -335,22 +335,28 @@ button:hover {
 @media screen and (max-width: 700px) {
     .img-container {
         flex-direction: column;
-        justify-content: space-evenly;
-        flex-wrap: nowrap;
-        padding: 0;
-
         align-items: center;
-        height: fit-content;
+        margin: 1rem 0; /* Reduce margin for better spacing */
+        padding: 0;
     }
 
-    .image {
+    .img-container a {
+        display: block; /* Make anchor tags full width */
+        width: 80%; /* Consistent width for all sponsor links */
         margin: 1rem 0;
-        width: 90%;
-        height: fit-content;
+        text-align: center;
     }
 
+    .image, .tech {
+        width: 100%; /* Images fill their container */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: contain; /* Prevent cropping */
+        max-width: 250px; /* Limit maximum size */
+    }
+
+    /* Remove specific tech class adjustments if not needed */
     .tech {
-        width: 40%;
-        height: fit-content;
+        width: 100%;
+        max-width: 200px; /* Slightly smaller if needed */
     }
 }
