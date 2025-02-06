@@ -274,9 +274,19 @@ button:hover {
 
 #about .text {
     width: 30%; 
+
+    display: flex;
+
     margin: 0 6rem 0 2em;
     color: white;
     justify-items: center;
+}
+
+#about a {
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
 }
 
 #about h2 {
