@@ -167,9 +167,13 @@ button:hover {
 
 #hero .text-wrapper {    
     /* margin-top: 3.5rem; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
 
     justify-items: center;
+    align-items: center;
 }
 
 #hero h1 {
@@ -192,6 +196,17 @@ button:hover {
     text-align: center;
     overflow: visible;
     width: 75%;
+}
+
+#hero a {
+    /* width: 100%; */
+
+    text-align: center;
+
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 /* @media screen and (max-width: 660px) {
@@ -328,6 +343,7 @@ button:hover {
 .tech { 
     width: fit-content;
     height: 10rem;
+
     object-fit: cover;
     object-position: center;
 }
