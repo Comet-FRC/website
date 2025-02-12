@@ -95,25 +95,57 @@ button:hover {
     background-repeat: no-repeat;    
 }
 
-#hero .hard-gradient {
+.hard-gradient {
     position: absolute;
     height: 100%;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, .4),rgba(0, 0, 0, 1));
 }
 
-#hero .gradient {
+.gradient {
     position: absolute;
     height: 105%;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 1));
 }
 
-#hero .soft-gradient {
+.soft-gradient {
     position: absolute;
     height: 110%;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+}
+
+.gradients {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    scale: 110%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+}
+
+.half-gradient {
+    height: 55%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.half2-gradient {
+    height: 55%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
+
+.gradient-out {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
 
 #hero .content {
@@ -135,9 +167,13 @@ button:hover {
 
 #hero .text-wrapper {    
     /* margin-top: 3.5rem; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
 
     justify-items: center;
+    align-items: center;
 }
 
 #hero h1 {
@@ -160,6 +196,17 @@ button:hover {
     text-align: center;
     overflow: visible;
     width: 75%;
+}
+
+#hero a {
+    /* width: 100%; */
+
+    text-align: center;
+
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 /* @media screen and (max-width: 660px) {
@@ -227,9 +274,23 @@ button:hover {
 
 #about .text {
     width: 30%; 
+
+    display: flex;
+    flex-direction: column;
+
     margin: 0 6rem 0 2em;
     color: white;
     justify-items: center;
+}
+
+#about a {
+    text-align: center;
+
+    /* please please please please */
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
 }
 
 #about h2 {
@@ -263,65 +324,55 @@ button:hover {
 }
 
 #sponsors {
-    padding: 5rem 1rem;
-
+    padding: 5vh 5vw;
     background-color: var(--color-bg-primary);
-    color: white;
     text-align: center;
 }
 
+#sponsors h2 {
+    margin-bottom: 5vh;
+    color: var(--color-primary);
+}
+
 .img-container {
-    padding: 1rem 0 1rem 0;
-    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
     flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
-
-    height: fit-content;
+    margin: 5vh 0;
 }
 
-.margin-up-sponsor {
-    margin-top: 2rem;
-}
-
-.image {
-    width: fit-content;
-    height: 8rem;
-    margin: 0 1rem;
-    object-fit: cover;
-    object-position: center;
-}
-
-/*same as img but for techstellar sizing*/
-.tech { 
-    width: fit-content;
-    height: 10rem;
-    margin: 0 1rem;
-    object-fit: cover;
-    object-position: center;
+/* Default image sizing */
+.image, .tech {
+    width: 25vw;
+    height: auto;
+    max-width: 250px;
+    min-width: 120px;
+    object-fit: contain;
 }
 
 @media screen and (max-width: 700px) {
+    #sponsors {
+        padding: 5vh 0;
+    }
+
     .img-container {
         flex-direction: column;
-        justify-content: space-evenly;
-        flex-wrap: nowrap;
-        padding: 0;
-
-        align-items: center;
-        height: fit-content;
+        gap: 8vh;
+        margin: 0;
     }
 
-    .image {
-        margin: 1rem 0;
-        width: 90%;
-        height: fit-content;
+    .image, .tech {
+        width: 60vw;
+        max-width: 180px;
+        height: auto;
     }
 
+
+    /* Specific adjustment for TechStellar if needed */
     .tech {
-        margin: 1rem 0;
-        width: 40%;
-        height: fit-content;
+        width: 50vw;
+        max-width: 160px;
     }
 }

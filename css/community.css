@@ -173,7 +173,7 @@
 }
 #events h1 {
     color: var(--color-accent);
-    padding: 1.5    rem 0.4rem 0.2rem;
+    padding: 1.5rem 0.4rem 0.2rem;
 }
 
 .event {
@@ -185,7 +185,7 @@
     height: fit-content;
     
     font-weight: 600;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 .event img {
     width: 30%;
@@ -203,7 +203,7 @@
 }
 .event div p {
     font-size: 1.3vw;
-    padding: 1.25rem 3rem;
+    padding: 1.25rem 2rem;
 }
 
 .purple {
@@ -221,16 +221,16 @@
 .white {
     background-color: rgb(255, 255, 255);
     color: var(--color-primary-dark);
-    border: solid 0.5rem var(--color-primary-dark);
+    border: solid 0.5rem var(--color-accent);
     border-top: none;
     border-bottom: none;
     border-radius: 2.5rem;
 
     margin-right: 1rem;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
 }
 .white img {
-    border: solid 0.3rem var(--color-accent);
+    border: solid 0.3rem var(--color-primary-dark);
 }
 .white h2 {
     color: var(--color-primary-dark);
@@ -242,7 +242,7 @@
     right: 1rem;
 }
 .white .d-green {
-    color: var(--color-accent);
+    color: var(--color-primary-dark);
 }
 .purple .d-green {
     color: var(--color-primary);
@@ -289,5 +289,16 @@
         display: none;
         visibility: hidden;
         opacity: 0;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .purple {
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
+    }
+    .white {
+        margin-right: 1.5rem;
+        margin-left: 1.5rem;
     }
 }
