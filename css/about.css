@@ -415,8 +415,9 @@ body{
     border-radius: 10px;
     align-content:center;
     text-align: center;
+    columns: 1;
 
-    margin: 2.27rem;
+    margin: 2rem 1rem 1rem 3rem;
     align-items: center;  
  
 }
@@ -438,6 +439,10 @@ body{
 
 }
 
+@media screen and (max-width: 450px) {
+    .lead-display {
+        
+    }
 
 
 
