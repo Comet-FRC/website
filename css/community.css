@@ -20,7 +20,7 @@
 {
     position: absolute;
     z-index: -1;
-    background-color: var(--color-accent);
+    background-color: var(--color-bg-primary);
 }
 
 .right-top {
@@ -51,7 +51,7 @@
 .stats-container div {
     padding: 0 5vw;
     font-size: 4vw;
-    color: white;
+    color: var(--color-accent);
     text-align: center;
 }
 .stats-container div h4 {
@@ -172,7 +172,7 @@
     margin: 5rem 0;
 }
 #events h1 {
-    color: var(--color-accent);
+    color: var(--color-bg-second);
     padding: 1.5rem 0.4rem 0.2rem;
 }
 
