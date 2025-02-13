@@ -20,7 +20,7 @@
 {
     position: absolute;
     z-index: -1;
-    background-color: var(--color-accent);
+    background-color: var(--color-bg-primary);
 }
 
 .right-top {
@@ -50,14 +50,14 @@
 }
 .stats-container div {
     padding: 0 5vw;
-    font-size: 4vw;
-    color: white;
+    font-size: 5vw;
+    color: var(--color-accent);
     text-align: center;
 }
 .stats-container div h4 {
-    font-size: 2.3vw;
+    font-size: 2.2vw;
     font-weight: bold;
-    color: white;
+    color: var(--color-bg-second);
 }
 .date {
     position: absolute;
@@ -172,7 +172,7 @@
     margin: 5rem 0;
 }
 #events h1 {
-    color: var(--color-accent);
+    color: var(--color-bg-second);
     padding: 1.5rem 0.4rem 0.2rem;
 }
 
@@ -185,7 +185,7 @@
     height: fit-content;
     
     font-weight: 600;
-    margin: 1.5rem 0;
+    margin: 2.25rem 0;
 }
 .event img {
     width: 30%;
