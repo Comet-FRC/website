@@ -1,13 +1,13 @@
 #footer {
-    width: auto;
+    width: 100%;
     display: grid;
     grid-template-columns: 25vw 25vw 25vw;
-
-    margin: 2rem 0;
     
     color: white;
+    background-color: rgb(10, 10, 10);
+    padding-top: 2rem;
 
-    margin: 5ex 20ex;
+    justify-content: center;
 }
 
 #footer section {
@@ -89,7 +89,7 @@
     }
 
     #footer {
-        margin: 0 10vw 0 10vw;
+        /* margin: 0 10vw 0 10vw; */
 
         display: grid;
         grid-template-columns: 40vw 40vw 0;
