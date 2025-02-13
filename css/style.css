@@ -352,6 +352,18 @@ button:hover {
     object-fit: contain;
 }
 
+
+.sponsor-request p {
+    color: white;
+
+    text-align: center;
+    font-size: 2rem;
+    font-family: var(--heading-font);
+    font-weight: bold;
+
+    margin: 1.2rem;
+}
+
 @media screen and (max-width: 700px) {
     #sponsors {
         padding: 5vh 0;
