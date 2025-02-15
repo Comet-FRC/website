@@ -344,12 +344,24 @@ button:hover {
 }
 
 /* Default image sizing */
-.image, .tech {
+.image, .tech, .booz {
     width: 25vw;
     height: auto;
     max-width: 250px;
     min-width: 120px;
     object-fit: contain;
+}
+
+
+.sponsor-request p {
+    color: white;
+
+    text-align: center;
+    font-size: 2rem;
+    font-family: var(--heading-font);
+    font-weight: bold;
+
+    margin: 1.2rem;
 }
 
 @media screen and (max-width: 700px) {
@@ -363,7 +375,7 @@ button:hover {
         margin: 0;
     }
 
-    .image, .tech {
+    .image, .tech, .booz {
         width: 60vw;
         max-width: 180px;
         height: auto;
@@ -375,4 +387,9 @@ button:hover {
         width: 50vw;
         max-width: 160px;
     }
+
+}
+
+.booz {
+    background-color: white;
 }
