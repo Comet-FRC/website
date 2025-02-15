@@ -1,3 +1,5 @@
+
+
 .blurred-image3 
 {
     position: absolute;
@@ -59,6 +61,7 @@
 #lead-display  {
     display: flex;
     flex-wrap: wrap;
+    background-color: black;
 }
 
 
