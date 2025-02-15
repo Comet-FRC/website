@@ -388,7 +388,7 @@ body{
      text-align: center; }*/
 
 
-
+/*  
 .filler-backround
 {
     filter: blur(6px) brightness(0.5);
@@ -405,9 +405,9 @@ body{
 
 
 .purple-box {
-    display: flex;
+    display: grid;
     flex-direction: column;
-    /* max-width: 16vw; */
+    max-width: 16vw; 
     min-width: 29%;
     height: clamp(20vh,44vh,50vh);
     background-color: #6a0dad; 
@@ -415,22 +415,21 @@ body{
     border-radius: 10px;
     align-content:center;
     text-align: center;
-    columns: 1;
-
-    margin: 2rem 1rem 1rem 3rem;
+    flex-wrap: wrap;
     align-items: center;  
- 
+    justify-content: center;
+    margin: 1rem 1rem 1rem 3rem;
 }
 
 .purple-box img {
     display:flex;
-    width: 14.25vw;
+    width: 15.25vw;
     justify-content: center;
     align-items: center;
     height: auto;
     border-radius: 20%;
     margin-top: 2rem;
-    /* margin: 3rem; */
+    margin: 3rem; 
 }
 
 .textName {
@@ -439,14 +438,194 @@ body{
 
 }
 
-@media screen and (max-width: 450px) {
-    .lead-display {
-        
+@media screen and (max-width: 730px){
+    .purple-box {
+        display: flex;
+    flex-direction: column;
+    min-width: 10vw;
+    height: clamp(20vh,47vh,50vh);
+    background-color: #6a0dad; 
+    color: white;
+    border-radius: 10px;
+    align-content:center;
+    text-align: center;
+
+    margin: 1rem 1rem 1rem 1rem;
+    align-items: center; 
     }
 
+    
+.purple-box img {
+    display:absolute;
+    min-width: 40vw;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    border-radius: 20%;
+    margin-top: 2rem;
+    text-align: center;
+    margin-left: 10rem;
+    padding-left: 20%;
+}
+
+.textName {
+    font-weight: bold;
+    font-size: 10vw;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 5rem;
+}
+.textBio {
+    font-weight: bold;
+    font-size: 5vw;
+    margin-left: 5rem;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+}
+
+}
 
 
-/* .purple-box1 { 
+@media screen and (max-width: 1200px){
+    .purple-box {
+        display: flex;
+    flex-direction: column;
+    min-width: 87%;
+    height: clamp(20vh,44vh,50vh);
+    background-color: #6a0dad; 
+    color: white;
+    border-radius: 10px;
+    align-content:center;
+    text-align: center;
+    margin-left: 6rem;
+
+    margin: 3rem 1rem 1rem 3rem;
+    align-items: center; 
+    }
+
+    
+.purple-box img {
+    display:grid;
+    width: 40.25vw;
+    margin: 3rem 1rem 1rem 3rem;
+    height: auto;
+    border-radius: 20%;
+    margin: 1rem 3rem 1rem 1rem;
+     margin: 3rem; 
+}
+
+.textName {
+    font-weight: bold;
+    font-size: 10vw;
+    margin-right: 6rem;
+    align-items:right;
+    justify-content: right;
+}
+.textBio {
+    font-weight: bold;
+    font-size: 5vw;
+    margin-right: 6rem;
+    align-items:center;
+    justify-content: center;
+}
+}
+
+
+@media screen and (max-width: 1400px){ 
+    .purple-box {
+        display: flex;
+    flex-direction: column;
+    min-width: 90vw;
+    height: clamp(20vh,47vh,50vh);
+    background-color: #6a0dad; 
+    color: white;
+    border-radius: 10px;
+    align-content:center;
+    text-align: center;
+
+    margin: 3rem 1rem 1rem 2.5rem;
+    align-items: center; 
+    }
+
+    
+.purple-box img {
+    display:flex;
+    width: 30.25vw;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    border-radius: 20%;
+    margin-top: 2rem;
+    margin-right: 6rem;
+    /* margin: 3rem; */
+}
+
+.textName {
+    font-weight: bold;
+    font-size: 4rem;
+    align-items:center;
+    justify-content: center;
+}
+
+.textBio {
+    font-weight: bold;
+    font-size: 5vw;
+    margin-right: 6rem;
+    align-items:center;
+    justify-content: center;
+}
+}
+
+
+@media screen and (max-width: 1500px){ 
+    .purple-box {
+        display: flex;
+    flex-direction: column;
+    min-width: 90vw;
+    height: clamp(20vh,47vh,50vh);
+    background-color: #6a0dad; 
+    color: white;
+    border-radius: 10px;
+    align-content:center;
+    text-align: center;
+
+    margin: 3rem 1rem 1rem 2.5rem;
+    align-items: center; 
+    }
+
+    
+.purple-box img {
+    display:flex;
+    width: 30.25vw;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    border-radius: 20%;
+    margin-top: 2rem;
+    margin-right: 6rem;
+    margin-bottom: 2rem;
+    /* margin: 3rem; */
+}
+
+.textName {
+    font-weight: bold;
+    font-size: 4rem;
+    align-items:right;
+    justify-content: right;
+}
+
+.textBio {
+    font-weight: bold;
+    font-size: 5vw;
+    margin-right: 6rem;
+    align-items:right;
+    justify-content: right;
+}
+}
+ /*
+/*.purple-box1 { 
     position: absolute;
     top: 290%;
     width: 350px;
