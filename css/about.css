@@ -6,7 +6,7 @@ body{
 }
 
 #hero::before {
-    background-image: url("../images/IMG_1081.JPG");
+    background-image: url("../images/IMG_1081.avif");
     
     background-position-x: center;
     background-position-y: top;
@@ -59,7 +59,7 @@ body{
 
     content: "";
 
-    background-image: url("../images/IMG_1031.JPG");
+    background-image: url("../images/IMG_1031.avif");
     background-size: 100%;
     background-position: center;
     z-index: -1;
@@ -559,7 +559,7 @@ body{
     border-radius: 20%;
     margin-top: 2rem;
     margin-right: 6rem;
-    /* margin: 3rem; */
+    margin: 3rem;
 }
 
 .textName {
@@ -606,7 +606,7 @@ body{
     margin-top: 2rem;
     margin-right: 6rem;
     margin-bottom: 2rem;
-    /* margin: 3rem; */
+    margin: 3rem;
 }
 
 .textName {
