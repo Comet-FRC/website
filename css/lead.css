@@ -1,4 +1,6 @@
-
+#hero.lead::before {
+    background-image: url("../images/IMG_1081.JPG");
+}
 
 .blurred-image3 
 {
