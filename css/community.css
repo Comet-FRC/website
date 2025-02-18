@@ -184,11 +184,15 @@
     margin: 3rem;
     margin-top: 6rem;
 }
-.event h2 {
+.event a, .event a:visited, .event a:hover {
     position: absolute;
     color: black;
     top: 1rem;
     left: 1rem;
+
+    font-family: var(--heading-font);
+    font-weight:bold;
+    font-size: 4ex;
 }
 .event div p {
     font-size: 1.3vw;
@@ -203,7 +207,7 @@
 .purple img {       
     border: solid 0.3rem var(--color-primary);
 }
-.purple h2 {
+.purple a {
     color: white;
 }
 
@@ -221,7 +225,7 @@
 .white img {
     border: solid 0.3rem var(--color-primary-dark);
 }
-.white h2 {
+.white a {
     color: var(--color-primary-dark);
 }
 
@@ -251,7 +255,7 @@
         width: 90%;
         margin: 2rem 1rem 1rem;
     }
-    .event h2 {
+    .event a, .event a:visited, .event a:hover {
         position: static;
         padding: 0.6rem 0;
         padding-bottom: 0.5rem;
