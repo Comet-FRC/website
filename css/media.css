@@ -1,0 +1,68 @@
+.image-container
+{
+    padding: 8ex 0 0 0;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    width: 100%;
+}
+
+.left
+{
+    background-color: var(--color-bg-primary);
+    color: var(--color-bg-second);
+    grid-column: 1/2;
+}
+
+.landing
+{
+    background-color: var(--color-bg-second);
+    /*
+    padding: 5rem 0 1rem 0rem;
+    */
+    padding: 1.5rem;
+    margin: 2rem;
+    text-align: center;
+    /*
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    */
+    box-shadow: 0 3px 5px var(--color-bg-second);
+    border-radius: 2rem; 
+}
+.flashy 
+{
+    /*font-family: "Lavishly Yours";*/
+    font-size: 7vw;
+    color: var(--color-accent);
+}
+
+.right
+{
+    width: 100%;
+    background-color: var(--color-bg-primary);
+    columns: 300px;
+}
+
+.right img
+{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 700px)
+{
+    .image-container 
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .landing {
+        border-radius: 2rem; 
+    }
+    .text
+    {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+    }
+}
