@@ -5,6 +5,16 @@
     background-color: black;
 }
 */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: black;
+    margin:0;
+}
+
 .blurred-image3 
 {
     position: absolute;
@@ -83,12 +93,12 @@
     flex-wrap: wrap;
     align-items: center;  
     justify-content: center;
-    margin: 1rem 1rem 1rem 3rem;
+    margin: 1rem 2rem 1rem 3rem;
 }
 
 .purple-box img {
     display:flex;
-    width: 15.25vw;
+    width: 14.25vw;
     justify-content: center;
     align-items: center;
     height: auto;
@@ -97,12 +107,12 @@
     /* margin: 3rem; */
 }
 
-.textName {
+.textName { 
     font-weight: bold;
-    font-size: 3vw;
+     font-size: 3vw; 
 }
 
-@media screen and (max-width: 755px){
+@media screen and (max-width: 480px){
     .purple-box {
         display: flex;
     flex-direction: column;
@@ -114,21 +124,20 @@
     align-content:center;
     text-align: center;
 
-    margin: 1rem 2rem 1rem 1rem;
+    margin: 2rem 3rem 2rem 3rem;
     align-items: center;
-    margin-right: 5rem; 
     }
 
     
 .purple-box img {
-    display:flex-end;
-    min-width: 25vw;
+    display:block;
+    min-width: 30vw;
     height: auto;
     border-radius: 20%;
-    vertical-align: middle;
     align-items:center;
     justify-content: center;
     text-align: center;
+    margin: 2rem 2rem 2rem 2rem;
 }
 
 .textName {
@@ -137,7 +146,50 @@
     align-items:center;
     justify-content: center;
     text-align: center;
-    margin-left: 5rem;
+}
+.textBio {
+    font-weight: bold;
+    font-size: 5vw;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+}
+
+}
+
+@media screen and (max-width: 755px){
+    .purple-box {
+        display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: clamp(20vh,47vh,50vh);
+    background-color: #6a0dad; 
+    color: white;
+    border-radius: 10px;
+    align-content:center;
+    text-align: center;
+
+    /* margin: 2rem 1rem 2rem 1.5rem; */
+    align-items: center; 
+    }
+    
+.purple-box img {
+    display:flex;
+    width:30%;
+    height: auto;
+    border-radius: 20%;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+    /* margin: 2rem 2rem 2rem 6rem; */
+}
+
+.textName {
+    font-weight: bold;
+    font-size: 15vw;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
 }
 .textBio {
     font-weight: bold;
@@ -151,11 +203,11 @@
 }
 
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px){ 
     .purple-box {
         display: flex;
     flex-direction: column;
-    min-width: 87%;
+    width: 90vw;
     height: clamp(20vh,44vh,50vh);
     background-color: #6a0dad; 
     color: white;
@@ -164,36 +216,36 @@
     text-align: center;
     margin-left: 6rem;
 
-    margin: 3rem 1rem 1rem 3rem;
+    margin: 1rem 3rem 1rem 1rem;
     align-items: center; 
     }
 
     
 .purple-box img {
     display:grid;
-    width: 40.25vw;
+    width: 40%;
     margin: 3rem 1rem 1rem 3rem;
     height: auto;
     border-radius: 20%;
     margin: 1rem 3rem 1rem 1rem;
-    /* margin: 3rem; */
+     /* margin: 3rem; */
 }
 
 .textName {
     font-weight: bold;
     font-size: 10vw;
-    margin-right: 6rem;
-    align-items:right;
-    justify-content: right;
+    /* margin */
+    align-items:middle;
+    justify-content: middle;
 }
 .textBio {
     font-weight: bold;
     font-size: 5vw;
-    margin-right: 6rem;
+    margin: 1rem 1rem 1rem 6rem;
     align-items:center;
     justify-content: center;
 }
-}
+} 
 
 
 @media screen and (max-width: 1400px){ 
@@ -215,14 +267,12 @@
     
 .purple-box img {
     display:flex;
-    width: 30.25vw;
+    width: 60%;
     justify-content: center;
     align-items: center;
     height: auto;
     border-radius: 20%;
-    margin-top: 2rem;
-    margin-right: 6rem;
-    /* margin: 3rem; */
+     margin: 1rem 2rem 1rem 1rem; 
 }
 
 .textName {
@@ -235,7 +285,7 @@
 .textBio {
     font-weight: bold;
     font-size: 5vw;
-    margin-right: 6rem;
+    margin:0rem 1rem 0rem 1rem;
     align-items:center;
     justify-content: center;
 }
@@ -246,44 +296,85 @@
     .purple-box {
         display: flex;
     flex-direction: column;
-    min-width: 90vw;
     height: clamp(20vh,47vh,50vh);
     background-color: #6a0dad; 
     color: white;
     border-radius: 10px;
     align-content:center;
     text-align: center;
-
-    margin: 3rem 1rem 1rem 2.5rem;
+    width: 90vw;
+    margin: 2rem 1rem 1rem 1rem;
     align-items: center; 
     }
 
     
 .purple-box img {
     display:flex;
-    width: 30.25vw;
+    width: 40%;
     justify-content: center;
     align-items: center;
     height: auto;
     border-radius: 20%;
-    margin-top: 2rem;
-    margin-right: 6rem;
-    margin-bottom: 2rem;
+    margin:2rem 1rem 2rem 1rem;
     /* margin: 3rem; */
 }
 
 .textName {
     font-weight: bold;
     font-size: 4rem;
-    align-items:right;
-    justify-content: right;
+    align-items:center;
+    justify-content: center;
 }
 
 .textBio {
     font-weight: bold;
     font-size: 5vw;
-    margin-right: 6rem;
-    align-items:right;
-    justify-content: right;
+    
+    align-items:center;
+    justify-content: center;
+}
+}
+
+
+@media screen and (max-width: 1750px){ 
+    .purple-box {
+        display: flex;
+    flex-direction: column;
+    height: clamp(20vh,47vh,50vh);
+    background-color: #6a0dad; 
+    color: white;
+    border-radius: 10px;
+    align-content:center;
+    text-align: center;
+    width: 90vw;
+    margin: 2rem 1rem 1rem 1rem;
+    align-items: center; 
+    }
+
+    
+.purple-box img {
+    display:flex;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    border-radius: 20%;
+    margin:2rem 1rem 2rem 1rem;
+    /* margin: 3rem; */
+}
+
+.textName {
+    font-weight: bold;
+    font-size: 4rem;
+    align-items:center;
+    justify-content: center;
+}
+
+.textBio {
+    font-weight: bold;
+    font-size: 5vw;
+    
+    align-items:center;
+    justify-content: center;
 }
 }
