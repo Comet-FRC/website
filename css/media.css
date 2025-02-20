@@ -1,0 +1,88 @@
+.image-container
+{
+    padding: 8ex 0 0 0;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    width: 100%;
+}
+
+.text {
+    padding: 1rem;
+}
+.text h3 {
+    padding: 0.7rem 0;
+}
+
+.norm, .it {
+    padding: 0.7rem 0;
+}
+.it {
+    font-style: italic;
+    font-size: 1rem;
+
+    color: var(--color-primary);
+}
+.norm {
+    font-size: 1.2rem;
+}
+
+.left
+{
+    background-color: var(--color-bg-primary);
+    color: var(--color-bg-second);
+    grid-column: 1/2;
+}
+
+.landing
+{
+    background-color: var(--color-bg-second);
+    /*
+    padding: 5rem 0 1rem 0rem;
+    */
+    padding: 1.5rem;
+    margin: 2rem;
+    text-align: center;
+    /*
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    */
+    box-shadow: 0 3px 5px var(--color-bg-second);
+    border-radius: 2rem; 
+}
+.flashy 
+{
+    /*font-family: "Lavishly Yours";*/
+    font-size: 4vw;
+    color: var(--color-accent);
+}
+
+.right
+{
+    width: 100%;
+    background-color: var(--color-bg-primary);
+    columns: 300px;
+}
+
+.right img
+{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 700px)
+{
+    .image-container 
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .landing {
+        border-radius: 2rem; 
+    }
+    .it {
+        font-size: 1.15rem;
+    }
+    .norm {
+        font-size: 1.4rem;
+    }
+}
