@@ -6,6 +6,26 @@
     width: 100%;
 }
 
+.text {
+    padding: 1rem;
+}
+.text h3 {
+    padding: 0.7rem 0;
+}
+
+.norm, .it {
+    padding: 0.7rem 0;
+}
+.it {
+    font-style: italic;
+    font-size: 1rem;
+
+    color: var(--color-primary);
+}
+.norm {
+    font-size: 1.2rem;
+}
+
 .left
 {
     background-color: var(--color-bg-primary);
@@ -32,7 +52,7 @@
 .flashy 
 {
     /*font-family: "Lavishly Yours";*/
-    font-size: 7vw;
+    font-size: 4vw;
     color: var(--color-accent);
 }
 
@@ -59,10 +79,10 @@
     .landing {
         border-radius: 2rem; 
     }
-    .text
-    {
-        display: none;
-        visibility: hidden;
-        opacity: 0;
+    .it {
+        font-size: 1.15rem;
+    }
+    .norm {
+        font-size: 1.4rem;
     }
 }
