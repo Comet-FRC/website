@@ -6,13 +6,6 @@
 }
 */
 
-.h1{ 
-    text-align:center;
-    width: 10vw;
-    color: yellow;
-    font-size: 30rem; 
-    margin:1rem 1rem 1rem 1rem;
-}
 /*
 body {
     display: flex;
@@ -72,6 +65,7 @@ body {
 
 
 
+
 .filler-backround
 {
     filter: blur(6px) brightness(0.5);
@@ -86,12 +80,21 @@ body {
     flex-wrap: wrap;
 }
 
+.lead-title{ 
+    text-align:center;
+    width: 100vw;
+    color: white;
+    font-size: 2rem; 
+    margin:1rem 0.1rem 5rem 0.1rem;
+    align-self: center;
+    justify-content: center;
+}
 
 .purple-box {
     display: grid;
     flex-direction: column;
     /* max-width: 16vw; */
-    min-width: 29%;
+    width: 29.5vw;
     height: clamp(20vh,44vh,50vh);
     background-color: #6a0dad; 
     color: white;
@@ -101,7 +104,7 @@ body {
     flex-wrap: wrap;
     align-items: center;  
     justify-content: center;
-    margin: 1rem 2rem 1rem 3rem;
+    margin: 1rem 2rem 1rem 2rem;
 }
 
 .purple-box img {
@@ -121,31 +124,42 @@ body {
 }
 
 @media screen and (max-width: 480px){
+
+    .lead-title{ 
+        text-align:center;
+        color: white;
+        font-size:0.5rem; 
+        margin:1rem 0rem 1rem 0rem;
+        align-self: center;
+        width: 100vw;
+        justify-content: center;
+    }
+
     .purple-box {
         display: flex;
     flex-direction: column;
-    min-width: 10vw;
+    min-width: 80vw;
     height: clamp(20vh,47vh,50vh);
     background-color: #6a0dad; 
-    color: white;
+    color: #ffffff;
     border-radius: 10px;
-    align-content:center;
+    /* align-content:center;
     text-align: center;
 
-    margin: 2rem 3rem 2rem 3rem;
-    align-items: center;
+    margin: 2rem 1rem 2rem 1rem; 
+    align-items: center; */
     }
 
     
 .purple-box img {
     display:block;
-    min-width: 30vw;
+    min-width: 45vw;
     height: auto;
     border-radius: 20%;
     align-items:center;
     justify-content: center;
     text-align: center;
-    margin: 2rem 2rem 2rem 2rem;
+    margin: 2rem 2rem 1rem 2rem;
 }
 
 .textName {
@@ -166,10 +180,21 @@ body {
 }
 
 @media screen and (max-width: 755px){
+
+    .lead-title{ 
+        text-align:center;
+        color: white;
+        font-size:1rem; 
+        margin:1rem 0rem 1rem 0rem;
+        align-self: center;
+        width: 100vw;
+        justify-content: center;
+    }
+
     .purple-box {
         display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: 80vw;
     height: clamp(20vh,47vh,50vh);
     background-color: #6a0dad; 
     color: white;
@@ -177,13 +202,13 @@ body {
     align-content:center;
     text-align: center;
 
-    /* margin: 2rem 1rem 2rem 1.5rem; */
+    margin: 0rem 2rem 1rem 0rem;
     align-items: center; 
     }
     
 .purple-box img {
     display:flex;
-    width:30%;
+    width: 75vw;
     height: auto;
     border-radius: 20%;
     align-items:center;
@@ -212,30 +237,39 @@ body {
 
 
 @media screen and (max-width: 1200px){ 
+
+    .lead-title{ 
+        text-align:center;
+        color: white;
+        font-size:0.5rem; 
+        margin:1rem 0rem 1rem 0rem;
+        align-self: center;
+        width: 100vw;
+        justify-content: center;
+    }
+
     .purple-box {
         display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: 80vw;
     height: clamp(20vh,44vh,50vh);
     background-color: #6a0dad; 
     color: white;
     border-radius: 10px;
     align-content:center;
     text-align: center;
-    margin-left: 6rem;
-
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 1rem 3rem 1.5rem 1rem;
     align-items: center; 
     }
 
     
 .purple-box img {
     display:grid;
-    width: 40%;
+    width: 2vw;
     margin: 3rem 1rem 1rem 3rem;
     height: auto;
     border-radius: 20%;
-    margin: 1rem 3rem 1rem 1rem;
+    margin: .5rem 2rem 1.5rem 1rem;
      /* margin: 3rem; */
 }
 
@@ -257,10 +291,21 @@ body {
 
 
 @media screen and (max-width: 1400px){ 
+
+    .lead-title{ 
+        text-align:center;
+        color: white;
+        font-size:1rem; 
+        margin:1rem 0rem 1rem 0rem;
+        align-self: center;
+        width: 100vw;
+        justify-content: center;
+    }
+
     .purple-box {
         display: flex;
     flex-direction: column;
-    min-width: 90vw;
+    min-width: 80vw;
     height: clamp(20vh,47vh,50vh);
     background-color: #6a0dad; 
     color: white;
@@ -268,19 +313,19 @@ body {
     align-content:center;
     text-align: center;
 
-    margin: 3rem 1rem 1rem 2.5rem;
+    margin: 3rem 1rem 1rem 1rem;
     align-items: center; 
     }
 
     
 .purple-box img {
     display:flex;
-    width: 60%;
+    width: 50vw;
     justify-content: center;
     align-items: center;
     height: auto;
     border-radius: 20%;
-     margin: 1rem 2rem 1rem 1rem; 
+     margin: 1rem 2rem 1.5rem 1rem; 
 }
 
 .textName {
@@ -310,7 +355,7 @@ body {
     border-radius: 10px;
     align-content:center;
     text-align: center;
-    width: 90vw;
+    width: 100vw;
     margin: 2rem 1rem 1rem 1rem;
     align-items: center; 
     }
@@ -323,7 +368,7 @@ body {
     align-items: center;
     height: auto;
     border-radius: 20%;
-    margin:2rem 1rem 2rem 1rem;
+    margin:2rem 1rem 1.5rem 1rem;
     /* margin: 3rem; */
 }
 
@@ -354,7 +399,7 @@ body {
     border-radius: 10px;
     align-content:center;
     text-align: center;
-    width: 90vw;
+    width: 100vw;
     margin: 2rem 1rem 1rem 1rem;
     align-items: center; 
     }
@@ -362,12 +407,12 @@ body {
     
 .purple-box img {
     display:flex;
-    width: 30%;
+    width: 30vw;
     justify-content: center;
     align-items: center;
     height: auto;
     border-radius: 20%;
-    margin:2rem 1rem 2rem 1rem;
+    margin:2rem 1rem 0.5rem 1rem;
     /* margin: 3rem; */
 }
 
