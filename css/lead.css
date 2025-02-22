@@ -116,6 +116,7 @@ body {
     border-radius: 20%;
     margin-top: 2rem;
     /* margin: 3rem; */
+
 }
 
 .textName { 
@@ -128,7 +129,7 @@ body {
     .lead-title{ 
         text-align:center;
         color: white;
-        font-size:0.5rem; 
+        font-size:0.4rem; 
         margin:1rem 0rem 1rem 0rem;
         align-self: center;
         width: 100vw;
@@ -170,7 +171,6 @@ body {
     text-align: center;
 }
 .textBio {
-    font-weight: bold;
     font-size: 5vw;
     align-items:center;
     justify-content: center;
@@ -184,7 +184,7 @@ body {
     .lead-title{ 
         text-align:center;
         color: white;
-        font-size:1rem; 
+        font-size:0.4rem; 
         margin:1rem 0rem 1rem 0rem;
         align-self: center;
         width: 100vw;
@@ -201,7 +201,6 @@ body {
     border-radius: 10px;
     align-content:center;
     text-align: center;
-
     margin: 0rem 2rem 1rem 0rem;
     align-items: center; 
     }
@@ -225,7 +224,6 @@ body {
     text-align: center;
 }
 .textBio {
-    font-weight: bold;
     font-size: 5vw;
     margin-left: 5rem;
     align-items:center;
@@ -251,25 +249,27 @@ body {
     .purple-box {
         display: flex;
     flex-direction: column;
-    width: 80vw;
+    width: 30vw;
     height: clamp(20vh,44vh,50vh);
     background-color: #6a0dad; 
     color: white;
     border-radius: 10px;
-    align-content:center;
-    text-align: center;
+    align-content:left;
+    text-align: right;
     margin: 1rem 3rem 1.5rem 1rem;
-    align-items: center; 
+    align-items: left;
     }
 
     
 .purple-box img {
     display:grid;
     width: 2vw;
-    margin: 3rem 1rem 1rem 3rem;
+    margin: 3rem 1rem 1rem 1rem;
     height: auto;
+    align-items:left;
+    justify-content: left;
     border-radius: 20%;
-    margin: .5rem 2rem 1.5rem 1rem;
+    flex-direction: column;
      /* margin: 3rem; */
 }
 
@@ -281,8 +281,7 @@ body {
     justify-content: middle;
 }
 .textBio {
-    font-weight: bold;
-    font-size: 5vw;
+    font-size: 2vw;
     margin: 1rem 1rem 1rem 6rem;
     align-items:center;
     justify-content: center;
@@ -295,7 +294,7 @@ body {
     .lead-title{ 
         text-align:center;
         color: white;
-        font-size:1rem; 
+        font-size:0.5rem; 
         margin:1rem 0rem 1rem 0rem;
         align-self: center;
         width: 100vw;
@@ -310,9 +309,8 @@ body {
     background-color: #6a0dad; 
     color: white;
     border-radius: 10px;
-    align-content:center;
-    text-align: center;
-
+    align-content:left;
+    text-align: right;
     margin: 3rem 1rem 1rem 1rem;
     align-items: center; 
     }
@@ -321,23 +319,24 @@ body {
 .purple-box img {
     display:flex;
     width: 50vw;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     height: auto;
     border-radius: 20%;
-     margin: 1rem 2rem 1.5rem 1rem; 
-}
+    margin: 1rem 2rem 1.5rem 1rem; 
+    flex-direction: column;
+    }
 
 .textName {
     font-weight: bold;
     font-size: 4rem;
     align-items:center;
     justify-content: center;
+    /* margin: left 5rem; */
 }
 
 .textBio {
-    font-weight: bold;
-    font-size: 5vw;
+    font-size: 1vw;
     margin:0rem 1rem 0rem 1rem;
     align-items:center;
     justify-content: center;
@@ -346,6 +345,17 @@ body {
 
 
 @media screen and (max-width: 1500px){ 
+
+    .lead-title{ 
+        text-align:center;
+        color: white;
+        font-size:0.5rem; 
+        margin:1rem 0rem 1rem 0rem;
+        align-self: center;
+        width: 100vw;
+        justify-content: center;
+    }
+
     .purple-box {
         display: flex;
     flex-direction: column;
@@ -353,22 +363,23 @@ body {
     background-color: #6a0dad; 
     color: white;
     border-radius: 10px;
-    align-content:center;
-    text-align: center;
+    align-content:left;
+    text-align: right;
     width: 100vw;
     margin: 2rem 1rem 1rem 1rem;
-    align-items: center; 
+    align-items: center;
     }
 
     
 .purple-box img {
     display:flex;
     width: 40%;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     height: auto;
     border-radius: 20%;
     margin:2rem 1rem 1.5rem 1rem;
+    flex-direction: column;
     /* margin: 3rem; */
 }
 
@@ -377,12 +388,11 @@ body {
     font-size: 4rem;
     align-items:center;
     justify-content: center;
+    /* margin: left 5rem; */
 }
 
 .textBio {
-    font-weight: bold;
-    font-size: 5vw;
-    
+    font-size: 1rem;
     align-items:center;
     justify-content: center;
 }
@@ -390,6 +400,17 @@ body {
 
 
 @media screen and (max-width: 1750px){ 
+
+    .lead-title{ 
+        text-align:center;
+        color: white;
+        font-size:0.5rem; 
+        margin:1rem 0rem 1rem 0rem;
+        align-self: center;
+        width: 100vw;
+        justify-content: center;
+    }
+
     .purple-box {
         display: flex;
     flex-direction: column;
@@ -397,22 +418,24 @@ body {
     background-color: #6a0dad; 
     color: white;
     border-radius: 10px;
-    align-content:center;
-    text-align: center;
+    align-content:left;
+    text-align: right;
     width: 100vw;
     margin: 2rem 1rem 1rem 1rem;
     align-items: center; 
+    
     }
 
     
 .purple-box img {
     display:flex;
     width: 30vw;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     height: auto;
     border-radius: 20%;
-    margin:2rem 1rem 0.5rem 1rem;
+    flex-direction: column;
+    /* margin:2rem 1rem 0.5rem 1rem; */
     /* margin: 3rem; */
 }
 
@@ -424,9 +447,7 @@ body {
 }
 
 .textBio {
-    font-weight: bold;
-    font-size: 5vw;
-    
+    font-size: 1rem;
     align-items:center;
     justify-content: center;
 }
