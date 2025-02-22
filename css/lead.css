@@ -1,4 +1,4 @@
-/* body{ 
+/*body{ 
     margin:0;
     padding:0;
     overflow-x: hidden;
@@ -6,6 +6,14 @@
 }
 */
 
+.h1{ 
+    text-align:center;
+    width: 10vw;
+    color: yellow;
+    font-size: 30rem; 
+    margin:1rem 1rem 1rem 1rem;
+}
+/*
 body {
     display: flex;
     justify-content: center;
@@ -25,7 +33,7 @@ body {
     background-color: #000000;
 }
 
-.search-container 
+/* .search-container 
 {
     display: flex;
     font-size: 500px;
@@ -50,7 +58,7 @@ body {
 .search-bar::placeholder 
 {
     color: #6a0dad;
-}
+} */
 
 /* .text8 {   
     position: flex;
@@ -216,7 +224,7 @@ body {
     text-align: center;
     margin-left: 6rem;
 
-    margin: 1rem 3rem 1rem 1rem;
+    margin: 1rem 1rem 1rem 1rem;
     align-items: center; 
     }
 
