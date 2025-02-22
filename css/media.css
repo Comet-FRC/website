@@ -3,19 +3,13 @@
     padding: 8ex 0 0 0;
     display: grid;
     grid-template-columns: 30% 1fr;
-    width: 100%;
+    padding-right: 1rem;
 }
 
 .text {
     padding: 1rem;
 }
-.text h3 {
-    padding: 0.7rem 0;
-}
 
-.norm, .it {
-    padding: 0.7rem 0;
-}
 .it {
     font-style: italic;
     font-size: 1rem;
@@ -24,6 +18,8 @@
 }
 .norm {
     font-size: 1.2rem;
+    padding-top: 5vh;
+    padding-bottom: 8vh;
 }
 
 .left
@@ -35,7 +31,7 @@
 
 .landing
 {
-    background-color: var(--color-bg-second);
+    background-color: var(--color-primary-dark);
     /*
     padding: 5rem 0 1rem 0rem;
     */
@@ -46,21 +42,21 @@
     border-bottom-left-radius: 20%;
     border-bottom-right-radius: 20%;
     */
-    box-shadow: 0 3px 5px var(--color-bg-second);
+    box-shadow: 0 3px 5px var(--color-primary);
     border-radius: 2rem; 
 }
 .flashy 
 {
     /*font-family: "Lavishly Yours";*/
     font-size: 4vw;
-    color: var(--color-accent);
+    color: var(--color-primary);
 }
 
 .right
 {
     width: 100%;
     background-color: var(--color-bg-primary);
-    columns: 300px;
+    columns: 350px;
 }
 
 .right img
@@ -71,7 +67,7 @@
 
 @media screen and (max-width: 700px)
 {
-    .image-container 
+    .image-container
     {
         display: flex;
         flex-direction: column;
@@ -85,4 +81,29 @@
     .norm {
         font-size: 1.4rem;
     }
+}   
+
+.whole {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.466);
+    z-index: 10;
+}
+
+.whole-active {
+    visibility: visible;
+    display: flex;
+    opacity: 1;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.whole-img {
+    width: 50%;
 }
