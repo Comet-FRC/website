@@ -1,9 +1,8 @@
 .image-container
 {
-    padding: 8ex 0 0 0;
+    padding: 8ex 1rem;
     display: grid;
     grid-template-columns: 30% 1fr;
-    padding-right: 1rem;
 }
 
 .text {
@@ -36,7 +35,7 @@
     padding: 5rem 0 1rem 0rem;
     */
     padding: 1.5rem;
-    margin: 2rem;
+    margin: 0.5rem 2rem 1rem;
     text-align: center;
     /*
     border-bottom-left-radius: 20%;
@@ -48,7 +47,7 @@
 .flashy 
 {
     /*font-family: "Lavishly Yours";*/
-    font-size: 4vw;
+    font-size: 3vw;
     color: var(--color-primary);
 }
 
@@ -63,25 +62,7 @@
 {
     width: 100%;
     margin-bottom: 1rem;
-}
-
-@media screen and (max-width: 700px)
-{
-    .image-container
-    {
-        display: flex;
-        flex-direction: column;
-    }
-    .landing {
-        border-radius: 2rem; 
-    }
-    .it {
-        font-size: 1.15rem;
-    }
-    .norm {
-        font-size: 1.4rem;
-    }
-}   
+} 
 
 .whole {
     position: fixed;
@@ -107,3 +88,31 @@
 .whole-img {
     width: 50%;
 }
+
+@media screen and (max-width: 900px)
+{
+    .image-container
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .landing {
+        border-radius: 2rem; 
+    }
+    .it {
+        font-size: 1.15rem;
+    }
+    .norm {
+        font-size: 1.4rem;
+    }
+    .flashy {
+        font-size: 8vw;
+    }
+    .right img {
+        margin-bottom: 1.5rem;
+    }
+
+    .whole-img{
+        width: 100%;
+    }
+}  
