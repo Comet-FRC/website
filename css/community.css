@@ -197,18 +197,17 @@
         flex-direction: column;
     }
     .event div p {
-        font-size: 4vw;
-        margin: 0rem;
+        font-size: 4.5vw;
+        margin: 0;
         margin-bottom: 1rem;
     }
     .event img {
         width: 90%;
-        margin: 2rem 1rem 1rem;
+        margin: 2rem 0.5rem 1rem;
     }
     .event a, .event a:visited, .event a:hover {
         position: static;
-        padding: 0.6rem 0;
-        padding-bottom: 0.5rem;
+        padding: 0.6rem 0 0.5rem;
     }
     .d-green {
         position: relative;
