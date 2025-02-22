@@ -112,10 +112,11 @@ body {
     width: 14.25vw;
     justify-content: center;
     align-items: center;
-    height: auto;
+    height: 30vh;
     border-radius: 20%;
     margin-top: 2rem;
     /* margin: 3rem; */
+    object-fit: cover;
 
 }
 
@@ -161,6 +162,8 @@ body {
     justify-content: center;
     text-align: center;
     margin: 2rem 2rem 1rem 2rem;
+    object-fit: cover;
+
 }
 
 .textName {
@@ -213,6 +216,7 @@ body {
     align-items:center;
     justify-content: center;
     text-align: center;
+    object-fit: cover;
     /* margin: 2rem 2rem 2rem 6rem; */
 }
 
@@ -270,6 +274,7 @@ body {
     justify-content: left;
     border-radius: 20%;
     flex-direction: column;
+    object-fit: cover;
      /* margin: 3rem; */
 }
 
@@ -325,6 +330,7 @@ body {
     border-radius: 20%;
     margin: 1rem 2rem 1.5rem 1rem; 
     flex-direction: column;
+    object-fit: cover;
     }
 
 .textName {
@@ -379,7 +385,8 @@ body {
     height: auto;
     border-radius: 20%;
     margin:2rem 1rem 1.5rem 1rem;
-    flex-direction: column;
+    flex-direction: column;    
+    object-fit: cover;
     /* margin: 3rem; */
 }
 
@@ -435,6 +442,8 @@ body {
     height: auto;
     border-radius: 20%;
     flex-direction: column;
+    object-fit: cover;
+
     /* margin:2rem 1rem 0.5rem 1rem; */
     /* margin: 3rem; */
 }
