@@ -135,13 +135,14 @@
 }
 .event a, .event a:visited, .event a:hover {
     position: absolute;
-    color: black;
+    color: var(--color-primary-dark);
     top: 1rem;
     left: 1rem;
 
     font-family: var(--heading-font);
     font-weight: bold;
     font-size: 4ex;
+    text-decoration: underline;
 }
 .event div p {
     font-size: 1.3vw;
