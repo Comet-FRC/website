@@ -67,10 +67,10 @@ body{
         margin:0;
         padding:0;
         overflow-x: hidden;
-        background: #000000;
+        background: #000000;		
     }
 
-.filler-backround 
+.filler-backround  
 {
     filter: blur(6px) brightness(0.5);
     width: 100%;
@@ -96,6 +96,15 @@ body{
     font-family: "Oswald", sans-serif;
 }
 
+/* .blurred-image-robot{
+    position: absolute;
+    filter: blur(6px) brightness(0.5);
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    background-color: #000000;
+} */
+
 .purple-box {
     display: grid;
     flex-direction: column;
@@ -118,12 +127,13 @@ body{
     width: 14.25vw;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 25vh;
     border-radius: 20%;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     /* margin: 3rem; */
     object-fit: cover;
-    object-position: 50% 30%;
+    object-position: 50% 22.5%;
 }
 
 .textName { 
