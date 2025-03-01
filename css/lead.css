@@ -90,7 +90,7 @@ body{
     width: 100vw;
     color: white;
     font-size: 10rem; 
-    margin:1rem 0.1rem 2rem 0.1rem;
+    margin:2.5rem 0.1rem 2rem 0.1rem;
     align-self: center;
     justify-content: center;
     font-family: "Oswald", sans-serif;
@@ -438,7 +438,7 @@ body{
         text-align:center;
         color: white;
         font-size:10vw; 
-        margin:1rem 0rem 1rem 0rem;
+        margin:6rem 0rem 1rem 0rem;
         align-self: center;
         width: 100vw;
         justify-content: center;
