@@ -291,15 +291,18 @@ button:hover {
     align-content: center;
     justify-items: center;
     justify-content: center;
+    margin: 2em 0 0;
 }
 
 #about h2 {
     color: var(--color-primary);
+    margin: 0 0 1em;
 }
 
 #about h2, #about p {
     text-align: center;
     overflow: visible;
+    
 }   
 
 #about img {
@@ -324,6 +327,7 @@ button:hover {
 }
 
 #sponsors {
+    margin-top: 2em;
     padding: 5vh 5vw;
     background-color: var(--color-bg-primary);
     text-align: center;
@@ -361,7 +365,7 @@ button:hover {
     font-family: var(--heading-font);
     font-weight: bold;
 
-    margin: 1.2rem;
+    margin: 3em 1.2rem 1.8em;
 }
 
 @media screen and (max-width: 700px) {
