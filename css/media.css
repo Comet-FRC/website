@@ -67,9 +67,11 @@
 {
     width: 100%;
     margin-bottom: 1rem;
+    cursor: pointer;
 } 
 .right img:hover {
-    filter: contrast(120%);
+    filter: contrast(125%);
+    transform: scale(101%);
 }
 
 .whole {
