@@ -119,7 +119,7 @@ body {
         padding: 0 7vw 8vh;
     }
     .date {
-        bottom: 11rem;
+        bottom: 11rem;  
     }
 }
 @media screen and (min-width: 480px) and (max-width: 650px) {
