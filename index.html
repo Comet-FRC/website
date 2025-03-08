@@ -79,11 +79,61 @@
     </div>
 </section>
 
+<!--Input select thing on left where basically the active one determines what pics of robot shown on the right-->
+<section id="robot">
+    <div class="r-left">
+        <h1>Our Robots</h1>
+        <ul id="robot-select">
+            <li id="25">
+                Marina
+                <p class="text-right">2025</p>
+            </li>
+            <li id='24' class="active">
+                Melody
+                <p class="text-right">2024</p>
+            </li>
+            <li id='23'>
+                Lea's Comet
+                <p class="text-right">2023</p>
+            </li>
+            <li id="spirit">
+                SpiritBot
+            </li>
+        </ul>
+        <div class="robot-info">
+            <div id="25-info">
+                <h2>Meet <span class="accent">Marina</span></h2>
+                <p>For the 2024-2025 season, Marina is sailing us into the Reefscape!</p>
+            </div>
+            <div id='24-info' class="inf-active">
+                <h2>Meet <span class="accent">Melody</span></h2>
+                <p>Created for First Robotics Competition's CRESCENDO, our Melody robot is raising the roof!</p>
+            </div>
+            <div id='23-info'>
+                <h2>Meet <span class="accent">Lea's Comet</span></h2>
+                <p>In our first ever season as Comet Robotics, Lea's Comet electrified us into Charged Up!</p>
+            </div>
+            <div id="spirit-info">
+                <h2>Meet our <span class="accent">SpiritBot</span></h2>
+                <p>At Battlefield High School, we are dedicated to raising our school spirit and sharing our Bobcat pride. Our t-shirt launching SpiritBot frequents school events and ignites our students!</p>
+            </div>
+        </div>
+    </div>
+    <div class='r-right'>
+        <div class="robot-image">
+            <img id='25-img' src="images/IMG_0982.avif"> <!--temp image-->
+            <img id='24-img' src="images/media/robot/blacksburg_robot.avif" class="i-active">
+            <img id='23-img' src="images/media/robot/robot3.jpg"> 
+            <img id="spirit-img" src="images/Robot_Shot.jpeg">
+        </div>
+    </div>
+</section>
+
 <!--Placeholder for the footer-->
 <div id="footer-placeholder"></div>
 
+</body>
 <!--Instantiate components-->
 <script src="js/repeat.js"></script> 
-
-</body>
+<script src="js/robots.js"></script>
 </html>
