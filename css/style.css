@@ -508,3 +508,19 @@ button:hover {
     position: absolute;
     right: 0.5em;
 }
+
+@media screen and (max-width: 900px) {
+    #robot {
+        display: flex;
+        flex-direction: column;
+        margin: 5em 0 15em;
+        justify-content: center;
+    }
+    .r-right {
+        justify-content: center;    
+    }
+    .robot-image {
+        display: flex;
+        justify-content: center;
+    }
+}
