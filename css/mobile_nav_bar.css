@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    display: none; /* Hide everything by default */
+  }
+  
+  @media (max-width: 460px) {
+    .navbar {
+      display: flex; /* Show the navbar only when screen is 460px or smaller */
+      background-color: #333;
+      justify-content: space-between;
+      padding: 10px 20px;
+      align-items: center;
+    }
+  
+    .menu-icon {
+      display: flex;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 3px;
+    }
+  
+    .nav-links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background-color: #333;
+      padding: 10px 0;
+      text-align: center;
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  }
+  
