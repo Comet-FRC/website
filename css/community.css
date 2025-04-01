@@ -1,9 +1,24 @@
 @import url("fontawesome-all.min.css");
 
+/*
+Theme 1:Black, Purple, White
+Black Canvas Background, Purple Triangle, white images
+Purple events
+
+Theme 2: White, Dark Green, Purple, Black
+Dark Green background, Purple Triangle, white images
+White events
+
+*/
+
 .lavishly-yours-regular {
     font-family: "Lavishly Yours", serif;
     font-weight: 400;
     font-style: normal;
+}
+
+body {
+    background-color: var(--color-bg-primary);
 }
 
 .triangle
@@ -14,13 +29,23 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     height: 100vh;
-    margin-bottom: 5rem;  
+    margin-bottom: 5rem; 
+    animation: slideIn 0.8s ease-in-out 1; 
+}
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 .triangle canvas 
 {
     position: absolute;
     z-index: -1;
-    background-color: var(--color-bg-primary);
+    width: 100%;
+    height: 105vh;
 }
 
 .right-top {
@@ -32,6 +57,7 @@
 }
 .right-top h1 {
     font-size: 8.2vw;
+    color: var(--color-bg-second);
 }
 .right-top p {
     margin: 1.3rem 1rem 0 0;
@@ -61,7 +87,7 @@
 }
 .date {
     position: absolute;
-    bottom: 0;
+    bottom: 2rem;
     left: 0.3rem;
     color: rgba(255, 255, 255, 0.471);
 }
@@ -92,68 +118,32 @@
         font-size: 10vw;
         padding: 0 7vw 8vh;
     }
+    .date {
+        bottom: 11rem;  
+    }
 }
-@media screen and (min-width: 450px) and (max-width: 650px) {
-    .triangle {
+@media screen and (min-width: 480px) and (max-width: 650px) {
+    .triangle canvas, .triangle {
         height: 125vh;
+    }
+    .date {
+        bottom: 11rem;
     }
 }
 @media screen and (min-width: 650px) and (max-width: 950px) {
-    .triangle {
+    .triangle canvas, .triangle{
         height: 66vh;    
+    }
+    .stats-container div {
+        margin-top: 10vh;
+    }
+}
+@media screen and (min-width: 950px) and (max-width: 1450px){
+    .stats-container div {
+        margin-top: 10vh;
     }
 }
 
-.image-container
-{
-    padding: 8ex 0 0 0;
-    display: grid;
-    grid-template-columns: 30% 1fr;
-    width: 100%;
-}
-
-.left
-{
-    background-color: var(--color-bg-primary);
-    color: var(--color-bg-second);
-    grid-column: 1/2;
-}
-
-.landing
-{
-    background-color: var(--color-bg-second);
-    /*
-    padding: 5rem 0 1rem 0rem;
-    */
-    padding: 1.5rem;
-    margin: 2rem;
-    text-align: center;
-    /*
-    border-bottom-left-radius: 20%;
-    border-bottom-right-radius: 20%;
-    */
-    box-shadow: 0 3px 5px var(--color-bg-second);
-    border-radius: 2rem; 
-}
-.flashy 
-{
-    /*font-family: "Lavishly Yours";*/
-    font-size: 7vw;
-    color: var(--color-accent);
-}
-
-.right
-{
-    width: 100%;
-    background-color: var(--color-bg-primary);
-    columns: 300px;
-}
-
-.right img
-{
-    width: 100%;
-    margin-bottom: 1rem;
-}
 
 #events {
     display: flex;
@@ -161,7 +151,7 @@
     margin: 5rem 0;
 }
 #events h1 {
-    color: var(--color-bg-second);
+    color: var(--color-accent);
     padding: 1.5rem 0.4rem 0.2rem;
 }
 
@@ -174,21 +164,33 @@
     height: fit-content;
     
     font-weight: 600;
-    margin: 2.25rem 0;
+    margin: 1.8rem 0;
 }
-.event img {
+.event img{
     width: 30%;
     height: auto;
+    cursor: pointer;
+    transition: all 0.1s ease;
 }
 .event img, .event .text {
     margin: 3rem;
     margin-top: 6rem;
 }
-.event h2 {
+.event img:hover{
+    border-color: var(--color-accent);
+    filter: contrast(120%);
+}
+.event a, .event a:visited, .event a:hover {
     position: absolute;
-    color: black;
+    color: var(--color-primary-dark);
     top: 1rem;
     left: 1rem;
+
+    font-family: var(--heading-font);
+    font-weight: bold;
+    font-size: 4ex;
+    text-decoration: underline;
+    cursor: pointer;
 }
 .event div p {
     font-size: 1.3vw;
@@ -202,9 +204,6 @@
 }
 .purple img {       
     border: solid 0.3rem var(--color-primary);
-}
-.purple h2 {
-    color: white;
 }
 
 .white {
@@ -221,20 +220,24 @@
 .white img {
     border: solid 0.3rem var(--color-primary-dark);
 }
-.white h2 {
+.white a, .white a:visited, .white .d-green {
     color: var(--color-primary-dark);
+}
+.white a:hover {
+    color: var(--color-accent);
+}
+
+.purple a, .purple a:visited, .purple-d-green{
+    color: var(--color-bg-second);
+}
+.purple a:hover {
+    color: var(--color-accent);
 }
 
 .d-green {
     position: absolute;
     top: 1rem;
     right: 1rem;
-}
-.white .d-green {
-    color: var(--color-primary-dark);
-}
-.purple .d-green {
-    color: var(--color-primary);
 }
 
 @media screen and (max-width: 700px)
@@ -243,42 +246,23 @@
         flex-direction: column;
     }
     .event div p {
-        font-size: 4vw;
-        margin: 0rem;
+        font-size: 4.5vw;
+        margin: 0;
         margin-bottom: 1rem;
     }
     .event img {
         width: 90%;
-        margin: 2rem 1rem 1rem;
+        margin: 2rem 0.5rem 1rem;
     }
-    .event h2 {
+    .event a, .event a:visited, .event a:hover {
         position: static;
-        padding: 0.6rem 0;
-        padding-bottom: 0.5rem;
+        padding: 0.6rem 0 0.5rem;
     }
     .d-green {
         position: relative;
 
     }
     
-}
-
-@media screen and (max-width: 700px)
-{
-    .image-container 
-    {
-        display: flex;
-        flex-direction: column;
-    }
-    .landing {
-        border-radius: 2rem; 
-    }
-    .text
-    {
-        display: none;
-        visibility: hidden;
-        opacity: 0;
-    }
 }
 
 @media screen and (min-width: 700px) {
@@ -289,5 +273,16 @@
     .white {
         margin-right: 1.5rem;
         margin-left: 1.5rem;
+    }
+}
+
+.transit {
+    width: 100%;
+    height: 40vh;
+    background: linear-gradient(var(--color-bg-primary), var(--color-primary-dark), black);
+}
+@media screen and (max-width: 800px) {
+    .transit {
+        height: 50vh;
     }
 }

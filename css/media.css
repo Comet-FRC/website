@@ -1,0 +1,132 @@
+.image-container
+{
+    padding: 8ex 1rem;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+}
+
+.text {
+    padding: 1rem;
+}
+
+.it {
+    font-style: italic;
+    font-size: 1rem;
+
+    color: var(--color-primary);
+}
+.norm {
+    font-size: 1.2rem;
+    padding-top: 5vh;
+    padding-bottom: 8vh;
+}
+
+.left
+{
+    background-color: var(--color-bg-primary);
+    color: var(--color-bg-second);
+    grid-column: 1/2;
+    position: relative;
+}
+
+.landing
+{
+    background-color: var(--color-primary-dark);
+    /*
+    padding: 5rem 0 1rem 0rem;
+    */
+    padding: 1.5rem;
+    margin: 0.5rem 2rem 1rem;
+    text-align: center;
+    /*
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    */
+    box-shadow: 0 3px 5px var(--color-primary);
+    border-radius: 2rem; 
+}
+.flashy 
+{
+    /*font-family: "Lavishly Yours";*/
+    font-size: 3vw;
+    color: var(--color-primary);
+}
+.bot {
+    position: absolute;
+    bottom: 0;
+}
+
+.right
+{
+    width: 100%;
+    background-color: var(--color-bg-primary);
+    columns: 350px;
+}
+
+.right img
+{
+    width: 100%;
+    margin-bottom: 1rem;
+    cursor: pointer;
+} 
+.right img:hover {
+    filter: contrast(125%);
+    transform: scale(101%);
+}
+
+.whole {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.466);
+    z-index: 10;
+}
+
+.whole-active {
+    visibility: visible;
+    display: flex;
+    opacity: 1;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.whole-img {
+    width: 50%;
+}
+
+@media screen and (max-width: 900px)
+{
+    .image-container
+    {
+        display: flex;
+        flex-direction: column;
+        padding: 10ex 0.5rem
+    }
+    .landing {
+        border-radius: 2rem; 
+    }
+    .it {
+        font-size: 1.1rem;
+    }
+    .norm {
+        font-size: 1.3rem;
+    }
+    .flashy {
+        font-size: 8vw;
+    }
+    .right img {
+        margin-bottom: 1.5rem;
+    }
+
+    .whole-img{
+        width: 100%;
+    }
+    .bot {
+        position: relative;
+    }
+}  

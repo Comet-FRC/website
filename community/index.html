@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - Comet Robotics Team 1885</title>
+    
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/community.css">
+    
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">   
+</head>
+<body>
+    <!-- Placeholder for the navigation bar -->
+    <div id="nav-placeholder"></div>
+    
+    <section class="triangle">
+        <canvas id="can">
+        </canvas>
+        <script>
+            let canvas = document.getElementById("can");
+            let largerHeight = window.innerHeight*1.25;
+            function resizeCanvas() {
+                
+                canvas.width = document.documentElement.clientWidth;
+                canvas.height = window.innerHeight;
+                if (canvas.width < 650 && canvas.width >= 480) {
+                    canvas.height = largerHeight;
+                }
+                if (canvas.width >= 650 && canvas.width < 950) {
+                    canvas.height = window.innerHeight*2/3;
+                } 
+                
+                drawCanvas();
+            }
+            function drawCanvas() {
+                let ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.fillStyle = "#3e006d";
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, canvas.height);
+                ctx.lineTo(document.documentElement.clientWidth, window.innerHeight*2/3);
+                ctx.fill();
+            }
+            window.addEventListener("resize", resizeCanvas);
+            window.addEventListener("load", resizeCanvas);
+        </script>
+        <div class="right-top slide-in">
+            <h1>Community</h1>
+            <p>Robotics isn't just a competition</p>
+            <p>It's a home</p>
+        </div>
+        <div id="stats" class="stats-container">
+            <div>
+                <i class="fa-solid fa-users"></i>
+                <h4>2500+ Impacted</h4>
+            </div>
+            <div>
+                <i class="fa-solid fa-calendar-day"></i>
+                <h4>15+ Events</h4>
+            </div>
+            <div>
+                <i class="fa-solid fa-handshake"></i>
+                <h4>8+ Collaborations</h4>
+            </div>
+        </div> 
+        <p class="date">In the 2023-2024 Season</p>
+    </section>
+    
+    <!--Blocks of events-->
+    <!--This year events: Gravely night and onwards-->
+    <!--IDEA: Button or sidebar to access past years events-->
+    <section id="events">
+        <h1>Events</h1>
+        <div class="event white">
+            <a href="alvey-2025.html">Alvey STEAM Night</a>
+            <p class="d-green">January 29, 2025</p>
+            <img class="pic-scroll" src="/images/media/alvey-2025/8.JPG">
+            <div>
+                <p>Comet Robotics proudly participated in the Alvey STEAM Night for the second year in a row, a collaborative event with several local clubs such as BAAP, Science National Honor Society, Math Honor Society, STAR Club, and the National Honor Society. The event featured hands-on activities such as building with Snap Circuits, driving our robot, and creating personalized pins at the pin-making station. Together, we provided an engaging and interactive experience for students, showcasing the exciting world of robotics and STEAM.</p>
+            </div>
+        </div>
+        <div class="event white">
+            <a>Tyler STEAM Night</a>
+            <p class="d-green">December 16, 2024</p>
+            <img class='' src="/images/IMG_0788.avif">
+            <div>
+                <p>Comet Robotics was thrilled to host the Tyler STEAM Night for the second year at Tyler Elementary School in Haymarket, VA. The night was filled with exciting hands-on activities designed to inspire and engage students in the world of robotics and engineering. We had about 150 attendees at this event, and our STEAM night was a huge hit. This event was made possible through our collaboration with BAAP, the Science National Honor Society, the Math Honor Society, and the STAR Club.</p>
+                <!--Attendees had the opportunity to interact with our robot, drive it around, and participate in building projects using Snap Circuits. Additionally, a pin-making station allowed students to unleash their creativity. By working with these clubs from Battlefield High School, Comet Robotics was able to provide a dynamic and educational environment that not only showcased the potential of robotics but also emphasized the importance of teamwork and innovation in the STEAM field. -->
+            </div>
+        </div>
+        <div class="event white">
+            <a>Gravely STEAM Night</a>
+            <p class="d-green">April 17, 2024</p>
+            <img class='' src="/images/happy note catch.jpeg">
+            <div>
+                <p>For our Gravley STEAM Night, we’ve been attending for two years in a row now, and we are excited to go again this year. In 2024, we took our Crescendo robot for the first time to a STEAM night. It was a big hit with the elementary schoolers, as it shot out notes and everyone engaged with the idea of robotics. It was a fun way to showcase our team’s creativity and introduce the younger students to STEAM concepts in an interactive way. We look forward to continuing this tradition and making it even better this year.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="videos" class="video-container"></section>
+
+    <div class="transit">
+        <p>.</p>
+    </div>
+    
+    <!--Placeholder for the footer-->
+    <div id="footer-placeholder"></div>
+</body>
+<!--Instantiate components-->
+<script src="/js/repeat.js"></script> 
+<script src="/js/pic-scroll.js"></script>
+</html>
