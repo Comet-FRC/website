@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+const { showAll = true, limit = 6 } = Astro.props;
+
+const allSponsors = await getCollection("sponsors", ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+const activeSponsors = allSponsors
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, showAll ? undefined : limit);
+---
+
+<section id="sponsors" class="py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-4">Our Valued Sponsors</h2>
+    <p class="text-center text-gray-600 mb-12">
+      We are grateful for the generous support of our sponsors.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
+      {activeSponsors.map(sponsor => (
+        <div class="bg-white rounded-lg shadow overflow-hidden flex flex-col h-full">
+          {/* Sponsor Logo Container - FIXED HEIGHT for consistent spacing */}
+          <div class="relative w-full h-32 p-4 flex items-center justify-center flex-shrink-0">
+            <img loading="lazy"
+              src={sponsor.data.logo}
+              alt={sponsor.data.name}
+              class="max-w-full max-h-full object-contain"
+            />
+          </div>
+
+          {/* Main Content Area - This needs to contain ALL text and the links */}
+          <div class="p-4 flex flex-col flex-1"> {/* flex-1 here is key */}
+            
+            {/* Top portion of content (Name, Tier, Description) */}
+            <div class="text-center"> {/* Added text-center here for all top content */}
+              <h3 class="text-xl font-semibold mb-1">{sponsor.data.name}</h3>
+              {sponsor.data.tier && (
+                <p class="text-primary-600 mb-2">{sponsor.data.tier} Sponsor</p>
+              )}
+              {sponsor.data.description && (
+                <p class="text-gray-700 text-sm">{sponsor.data.description}</p>
+              )}
+            </div>
+
+            {/* SPACER DIV - This pushes the links to the bottom */}
+            <div class="flex-grow"></div> 
+            
+            {/* Links section - now consistently at the bottom */}
+            <div class="mt-4 space-y-1 text-sm text-center flex-shrink-0"> {/* flex-shrink-0 to prevent shrinking */}
+              {sponsor.data.website && (
+                <a
+                  href={sponsor.data.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-primary-600 hover:underline block"
+                >
+                  Visit Website
+                </a>
+              )}
+              {sponsor.data.contactEmail && (
+                <a
+                  href={`mailto:${sponsor.data.contactEmail}`}
+                  class="text-primary-600 hover:underline block"
+                >
+                  Contact Sponsor
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

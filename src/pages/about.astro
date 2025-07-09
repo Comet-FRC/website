@@ -1,0 +1,284 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/Sections/PageHeader.astro";
+import LeadsList from "../components/Sections/LeadsList.astro";
+import { Image } from "astro:assets";
+import AboutImage from "/public/uploads/about/about.avif";
+---
+
+<BaseLayout
+  title="About Us - Comet Robotics"
+  description="Learn about our teams's history, mission, values, and the people who make our community special."
+>
+  <PageHeader 
+    title="About" 
+    subtitle="Our History, Mission, and Values"
+    backgroundImage="uploads/header/about-header.avif"
+  />
+  
+  <!-- Mission & Vision -->
+  <section class="py-16 bg-secondary-100">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-secondary-900 text-3xl md:text-4xl font-bold mb-6">Our Motto</h2>
+          <p class="text-3xl italic font-semibold text-secondary-800 mb-6 border-l-4 border-secondary-500">
+            <q>We build a team, not a robot.</q>
+          </p>
+          <p class="text-xl text-secondary-800 mb-8">
+            At Comet, in the spirit of FIRST, our focus isn't just on winning, but on working together and learning together.
+          </p>
+          <!-- <h2 class="text-3xl md:text-4xl font-bold mb-6">Our Vision</h2>
+          <p class="text-xl text-gray-700 mb-8">
+            To be a vibrant, growing community of believers who are transformed by the Gospel and transforming our community with the love of Christ.
+          </p> -->
+        </div>
+        
+        <div>
+          <Image
+            loading="lazy"
+            src={AboutImage}
+            alt="Working in the pits" 
+            class="rounded-lg shadow-lg object-cover w-full h-full"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Core Values -->
+  <!-- <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          These principles guide everything we do as a church community
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Biblical Teaching</h3>
+          <p class="text-gray-700">
+            We are committed to teaching God's Word faithfully and helping people apply it to their lives. We believe the Bible is God's inspired, inerrant Word and our ultimate authority.
+          </p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-secondary-100 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Authentic Community</h3>
+          <p class="text-gray-700">
+            We believe spiritual growth happens best in community. We foster genuine relationships where people can be known, loved, and challenged to grow in their faith.
+          </p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-accent-100 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Missional Living</h3>
+          <p class="text-gray-700">
+            We believe every follower of Jesus is called to share His love with others. We equip and encourage our members to live on mission in their neighborhoods, workplaces, and beyond.
+          </p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Spiritual Growth</h3>
+          <p class="text-gray-700">
+            We are committed to helping people grow in their relationship with Christ, becoming more like Him in their thoughts, words, and actions through discipleship and spiritual practices.
+          </p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Spirit-Led Worship</h3>
+          <p class="text-gray-700">
+            We value authentic, heartfelt worship that glorifies God and transforms lives. We seek to create environments where people can encounter God's presence.
+          </p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-lg shadow-sm">
+          <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Servant Leadership</h3>
+          <p class="text-gray-700">
+            We believe leadership is about service, not status. We develop and empower leaders who model Christ-like humility and sacrifice as they guide others.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  
+  <!-- History -->
+<section class="py-16 bg-secondary-100">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-secondary-900">Our Journey</h2>
+      <p class="text-xl text-secondary-800 max-w-3xl mx-auto">
+        A timeline of our evolution and achievements.
+      </p>
+    </div>
+
+    <ol class="relative border-s border-secondary-500 dark:border-secondary-800 max-w-4xl mx-auto">
+      <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-secondary-800 rounded-full mt-1.5 -start-1.5 border border-white dark:border-secondary-900"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-secondary-700 dark:text-secondary-700 uppercase">Aug. 2022</time>
+        <h3 class="text-lg font-semibold text-secondary-900 dark:text-secondary-900">A New Chapter Begins</h3>
+        <p class="text-base font-normal text-secondary-800 dark:text-secondary-800">
+          The 2022 season marked a significant turning point for our team. Our previous head coach, Gail Drake, and all other mentors from ILITE departed. This left us at a crossroads in which we had to re-evaluate our future.
+        </p>
+      </li>
+
+      <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-secondary-800 rounded-full mt-1.5 -start-1.5 border border-white dark:border-secondary-900"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-secondary-700 dark:text-secondary-700 uppercase">Sep. - Nov. 2022</time>
+        <h3 class="text-lg font-semibold text-secondary-900 dark:text-secondary-900">Exploring New Horizons</h3>
+        <p class="text-base font-normal text-secondary-800 dark:text-secondary-800">
+          In the months that followed, our students explored various options. We considered a "training season" to regroup or forming an FTC team. During this period, several students who had been part of ILITE chose to join other teams such as 8592 Newton<sup>2</sup>.
+        </p>
+      </li>
+
+      <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-secondary-800 rounded-full mt-1.5 -start-1.5 border border-white dark:border-secondary-900"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-secondary-700 dark:text-secondary-700 uppercase">Nov. 2022</time>
+        <h3 class="text-lg font-semibold text-secondary-900 dark:text-secondary-900">Rebuilding with Purpose</h3>
+        <p class="text-base font-normal text-secondary-800 dark:text-secondary-800">
+          Despite the departures, seven committed members chose to stay and rebuild. We were incredibly fortunate to welcome <a target="_blank" rel="noopenner noreferrer" href="https://www.linkedin.com/in/lea-may-28385a256" class="text-blue-600 hover:text-blue-800 hover:underline">Mrs. May</a> as our new head coach, who brought with her a wealth of experience and her husband, Mr. May, a talented software engineer. This marked the true beginning of Comet Robotics.
+        </p>
+      </li>
+
+      <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-secondary-800 rounded-full mt-1.5 -start-1.5 border border-white dark:border-secondary-900"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-secondary-700 dark:text-secondary-700 uppercase">2023 Season</time>
+        <h3 class="text-lg font-semibold text-secondary-900 dark:text-secondary-900">Forging Our Own Identity</h3>
+        <p class="text-base font-normal text-secondary-800 dark:text-secondary-800">
+          The 2022-2023 season was filled with challenges, but it was also a period where we truly distinguished ourselves. We focused on cultivating a kind, respectful, and fun attitude, setting us apart from previous iterations. Our efforts were recognized at our second competition in Alexandria, Virginia, where we proudly won the Team Spirit Award—an award ILITE had never achieved! This victory was a testament to our successful rebranding and the new ethos we had embraced.
+        </p>
+      </li>
+
+      <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-secondary-800 rounded-full mt-1.5 -start-1.5 border border-white dark:border-secondary-900"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-secondary-700 dark:text-secondary-700 uppercase">2024 Season</time>
+        <h3 class="text-lg font-semibold text-secondary-900 dark:text-secondary-900">Soaring with Outreach and Recognition</h3>
+        <p class="text-base font-normal text-secondary-800 dark:text-secondary-800">
+          Building on our newfound identity, the 2023-2024 season saw tremendous strides in our outreach efforts. Our dedicated work in the community led us to win the prestigious Engineering Inspiration Award at our Blacksburg event. We continued our winning streak at the Alexandria event, once again securing the Team Spirit Award. Our hard work culminated in our first-ever trip to Districts, where we competed for the Engineering Inspiration Award, a significant milestone for our growing team.
+        </p>
+      </li>
+
+      <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-secondary-800 rounded-full mt-1.5 -start-1.5 border border-white dark:border-secondary-900"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-secondary-700 dark:text-secondary-700 uppercase">2024 Offseason</time>
+        <h3 class="text-lg font-semibold text-secondary-900 dark:text-secondary-900">First Offseason Competitions & Custom Build</h3>
+        <p class="text-base font-normal text-secondary-800 dark:text-secondary-800">
+          The 2024 offseason marked our first attendance at off-season competitions and our debut building a robot from scratch, moving beyond kitbots. Our design, a modified clone of 9496 LYNK's LATCH, competed at the Chesapeake Robotics Icebreaker and Battle o' Baltimore. At BoB, we achieved a qualification rank of 6 and were proud to captain Alliance 6—a team first, even for an offseason event.
+        </p>
+      </li>
+
+      <li class="ms-4">
+        <div class="absolute w-3 h-3 bg-secondary-800 rounded-full mt-1.5 -start-1.5 border border-white dark:border-secondary-900"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-secondary-700 dark:text-secondary-700 uppercase">2025 Season</time>
+        <h3 class="text-lg font-semibold text-secondary-900 dark:text-secondary-900">Fully CADed Robot & District Qualification</h3>
+        <p class="text-base font-normal text-secondary-800 dark:text-secondary-800">
+          The 2025 season saw us fully CAD our own robot for the first time, an 'Algae-focused shooter bot.' Competing at Severn and Alexandria, we achieved another team first at Severn: becoming Alliance 3 captain. Our robot's strong performance also earned us our first-ever qualification for Districts.
+        </p>
+      </li>
+    </ol>
+  </div>
+</section>
+  
+  <!-- Leadership Team Preview -->
+  <section class="py-16 bg-secondary-100">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Our Team Leads</h2>
+        <p class="text-xl text-secondary-800 max-w-3xl mx-auto">
+          Our dedicated student leaders
+        </p>
+      </div>
+      
+      <!-- Show limited leads preview -->
+      <leadsList showAll={false} limit={3} />
+      
+      <div class="mt-12 text-center">
+        <a 
+          href="/leads" 
+          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white bg-primary-600 rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+        >
+          Meet All Our leads
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Statement of Faith -->
+  <!-- <section class="py-16">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">What We Believe</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Our church adheres to these fundamental Christian beliefs
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto prose prose-lg">
+        <h3>The Bible</h3>
+        <p>
+          We believe the Bible is God's Word, inspired by the Holy Spirit, without error in the original manuscripts, and the final authority for all Christian faith and life.
+        </p>
+        
+        <h3>God</h3>
+        <p>
+          We believe in one God who exists eternally in three persons: Father, Son, and Holy Spirit. Each person is fully God, yet there is one God.
+        </p>
+        
+        <h3>Jesus Christ</h3>
+        <p>
+          We believe Jesus Christ is fully God and fully human. He was born of a virgin, lived a sinless life, died on the cross as the substitute for sinners, rose bodily from the grave, and ascended to heaven where He now serves as our High Priest and Advocate.
+        </p>
+        
+        <h3>Holy Spirit</h3>
+        <p>
+          We believe the Holy Spirit convicts the world of sin, regenerates believers, indwells them, and empowers them for godly living and service.
+        </p>
+        
+        <h3>Salvation</h3>
+        <p>
+          We believe salvation is by grace alone, through faith alone, in Christ alone. Good works are the necessary fruit of true faith but are not the basis of our right standing before God.
+        </p>
+        
+        <h3>The Church</h3>
+        <p>
+          We believe the church is the body of Christ, consisting of all true believers. Its mission is to worship God, build up believers in their faith, and share the gospel with the world.
+        </p>
+        
+        <h3>The Future</h3>
+        <p>
+          We believe in the personal, visible return of Jesus Christ, the resurrection of the dead, the final judgment, and the eternal state of blessing for the righteous and punishment for the unrighteous.
+        </p>
+      </div>
+    </div>
+  </section> -->
+</BaseLayout>
