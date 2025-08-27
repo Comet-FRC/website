@@ -102,6 +102,19 @@ const sponsorsCollection = defineCollection({
   }),
 });
 
+const robotCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    pic: z.string().startsWith('/uploads/robots/'), // Path to the sponsor's logo image
+    season: z.string().optional(), // e.g., 'Platinum', 'Gold', 'Silver', 'Bronze'
+    description: z.string().optional(),
+    cad: z.string().url().optional(),
+    order: z.number().default(0), // For sorting, lower number appears first
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   leads: leadsCollection,
   events: eventsCollection,
@@ -110,4 +123,5 @@ export const collections = {
   blog: blogCollection,
   siteInfo: siteInfoCollection,
   sponsors: sponsorsCollection, // <-- Add this line
+  robots: robotCollection,
 };
