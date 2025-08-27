@@ -3,47 +3,22 @@ import { Image } from "astro:assets";
 import Logo from "/public/uploads/logo/comet-cat-footer.svg"
 import { getCollection } from "astro:content";
 
-
-// Get the office hours from the siteInfo collection
-// let officeHours;
-// try {
-//   const siteInfoEntries = await getCollection("siteInfo");
-//   officeHours = siteInfoEntries.find(entry => entry.id === "office-hours.md");
-// } catch (error) {
-//   // Collection might not exist yet when first setting up the project
-//   console.log("Office hours not found or collections not yet available");
-// }
-
 // Footer navigation groups
 const footerNavs = [
   {
     title: "About",
     items: [
       { text: "About Us", href: "/about" },
-      // { text: "I'm New", href: "/im-new" },
-      // { text: "Members", href: "/leads" },
       { text: "Contact", href: "/contact" },
     ],
   },
   {
     title: "Resources",
     items: [
-      // { text: "Sermons", href: "/sermons" },
       { text: "Events", href: "/events" },
       { text: "Members", href: "/leads" },
-      // { text: "Blog", href: "/blog" },
-      // { text: "Ministries", href: "/ministries" },
     ],
   },
-  // {
-  //   title: "Connect",
-  //   items: [
-  //     { text: "Giving", href: "/giving" },
-  //     // { text: "Prayer Request", href: "/contact#prayer" },
-  //     // { text: "Newsletter", href: "/contact#newsletter" },
-  //     { text: "Volunteer", href: "/im-new#volunteer" },
-  //   ],
-  // },
 ];
 
 // Social media links
