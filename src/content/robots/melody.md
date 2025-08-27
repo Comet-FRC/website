@@ -1,5 +1,5 @@
 ---
-name: "Melody"
+name: "Melody - 2024"
 pic: "/uploads/robots/melody.avif" 
 # season: "2024 Crescendo"
 description: "This kitbot was completely built and modified by our members."
