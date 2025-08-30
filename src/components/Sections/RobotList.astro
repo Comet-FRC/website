@@ -20,8 +20,8 @@ const activeRobots = allRobots
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
       {activeRobots.map(robots => (
         <div class="bg-white rounded-lg shadow overflow-hidden flex flex-col h-full">
-          {/* Robot Picture Container - FIXED HEIGHT for consistent spacing */}
-          <div class="relative w-full h-32 p-4 flex items-center justify-center flex-shrink-0">
+          {/* Robot Picture Container - BIGGER HEIGHT for better visibility */}
+          <div class="relative w-full h-48 p-4 flex items-center justify-center flex-shrink-0">
             <img loading="lazy"
               src={robots.data.pic}
               alt={robots.data.name}
