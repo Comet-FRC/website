@@ -61,7 +61,7 @@ const formattedDate = date ? formatDate(date) : null;
     )}
 
     <div class="mb-8">
-      {(date || author) && (
+      {(date || author) && type !== "event" && (
         <div class="flex flex-wrap items-center mb-4 text-sm text-gray-600">
           {formattedDate && (
             <span class="mr-4 flex items-center">
