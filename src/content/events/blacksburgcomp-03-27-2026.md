@@ -4,7 +4,7 @@ date: 2026-03-27
 endDate: 2026-03-29
 time: "9:00 AM - 5:00 PM"
 location: "Blacksburg, Virginia"
-image: "/uploads/events/blacksburg_comp.avif"
+image: "/uploads/events/blacksburg_comp2026.avif"
 summary: "Our second district competition, where we refine performance and build on lessons learned from earlier events."
 tags: ["competition", "district", "frc"]
 registrationRequired: false

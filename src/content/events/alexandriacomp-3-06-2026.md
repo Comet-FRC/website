@@ -4,7 +4,7 @@ date: 2026-03-06
 endDate: 2026-03-08
 time: "9:00 AM - 5:00 PM"
 location: "Alexandria, Virginia"
-image: "/uploads/events/alexandria_comp.avif"
+image: "/uploads/events/alexandria_comp2026.avif"
 summary: "Our first district competition of the season, featuring qualification matches, alliance selection, and playoffs."
 tags: ["competition", "district", "frc"]
 registrationRequired: false
