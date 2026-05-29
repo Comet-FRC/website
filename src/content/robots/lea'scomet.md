@@ -1,9 +1,11 @@
 ---
 name: "Lea's Comet - 2023"
 pic: "/uploads/robots/lea'scomet.avif" 
-# season: "2023 Charged Up"
+season: "2023 Charged Up"
+seasonYear: "2023"
 description: "This was the first robot built after the rebranding of ILITE."
 cad: "https://www.thebluealliance.com/team/1885/2023"
 order: 4
+competition: true
 draft: false
 ---

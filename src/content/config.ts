@@ -106,11 +106,13 @@ const robotCollection = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
-    pic: z.string().startsWith('/uploads/robots/'), // Path to the sponsor's logo image
-    season: z.string().optional(), // e.g., 'Platinum', 'Gold', 'Silver', 'Bronze'
+    pic: z.string().startsWith('/uploads/robots/'), // Path to the robot image
+    season: z.string().optional(), // e.g., '2026 Rebuilt', '2024 Crescendo'
+    seasonYear: z.string().optional(), // e.g., '2026', '2025'
     description: z.string().optional(),
     cad: z.string().url().optional(),
     order: z.number().default(0), // For sorting, lower number appears first
+    competition: z.boolean().default(true), // true = competition robot, false = offseason
     draft: z.boolean().default(false),
   }),
 });

@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../../components/Sections/PageHeader.astro";
+import Button from "../../components/UI/Button.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const robotEntries = await getCollection("robots", ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true
+  );
+
+  return robotEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout
+  title={`${entry.data.name} - Robots - Comet Robotics`}
+  description={entry.data.description || `${entry.data.name} robot page`}
+>
+  <PageHeader 
+    title={entry.data.name}
+    subtitle={entry.data.season || undefined}
+    backgroundImage="/uploads/header/robots-header.avif"
+  />
+
+  <div class="bg-white py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <!-- Robot Image -->
+        <div class="mb-10 overflow-hidden rounded-lg bg-gray-100 p-8 flex items-center justify-center">
+          <img
+            src={entry.data.pic}
+            alt={entry.data.name}
+            class="max-w-full max-h-[400px] object-contain"
+          />
+        </div>
+
+        <!-- Robot Info -->
+        <div class="text-center mb-10">
+          <h1 class="text-3xl font-bold mb-4">{entry.data.name}</h1>
+          
+          {entry.data.season && (
+            <p class="text-primary-600 text-lg mb-4">{entry.data.season} Season</p>
+          )}
+
+          {entry.data.description && (
+            <p class="text-gray-700 text-lg max-w-2xl mx-auto">{entry.data.description}</p>
+          )}
+        </div>
+
+        <!-- Robot Content from Markdown -->
+        {Content && (
+          <article class="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-li:text-gray-700 prose-strong:text-gray-900 prose-a:text-primary-600 hover:prose-a:text-primary-700 mb-10">
+            <Content />
+          </article>
+        )}
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-4 justify-center mt-8">
+          {entry.data.cad && (
+            <Button
+              href={entry.data.cad}
+              target="_blank"
+              variant="primary"
+            >
+              Explore CAD
+            </Button>
+          )}
+
+          <Button href="/robots" variant="outline">
+            Back to All Robots
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
