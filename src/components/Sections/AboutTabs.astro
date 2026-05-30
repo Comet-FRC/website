@@ -1,0 +1,393 @@
+---
+export interface Tab {
+  id: string;
+  label: string;
+  headline: string;
+  paragraphs: string[];
+  /** Optional trailing element like a pull-quote */
+  quote?: { text: string; source?: string };
+}
+
+const { tabs } = Astro.props as { tabs: Tab[] };
+---
+
+<div class="about-tabs" data-component="about-tabs">
+  <!-- Tab Navigation -->
+  <nav class="tab-nav" role="tablist" aria-label="About sections">
+    {tabs.map((tab, i) => (
+      <button
+        class="tab-trigger"
+        role="tab"
+        aria-selected={i === 0 ? "true" : "false"}
+        aria-controls={`panel-${tab.id}`}
+        id={`tab-${tab.id}`}
+        tabindex={i === 0 ? "0" : "-1"}
+      >
+        <span class="tab-indicator"></span>
+        <span class="tab-label">{tab.label}</span>
+      </button>
+    ))}
+    <!-- Decorative line connecting tabs -->
+    <div class="tab-rail" aria-hidden="true"></div>
+  </nav>
+
+  <!-- Tab Panels -->
+  <div class="tab-panels">
+    {tabs.map((tab, i) => (
+      <div
+        class="tab-panel"
+        id={`panel-${tab.id}`}
+        role="tabpanel"
+        aria-labelledby={`tab-${tab.id}`}
+        data-active={i === 0 ? "true" : "false"}
+      >
+        <h2 class="panel-headline">{tab.headline}</h2>
+        {tab.paragraphs.map((p) => (
+          <p class="panel-text">{p}</p>
+        ))}
+        {tab.quote && (
+          <blockquote class="panel-quote">
+            <q>{tab.quote.text}</q>
+            {tab.quote.source && <cite>&mdash; {tab.quote.source}</cite>}
+          </blockquote>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  class AboutTabsController {
+    private container: HTMLElement;
+    private triggers: NodeListOf<HTMLButtonElement>;
+    private panels: NodeListOf<HTMLElement>;
+    private currentIndex: number = 0;
+    private isAnimating: boolean = false;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.triggers = container.querySelectorAll(".tab-trigger");
+      this.panels = container.querySelectorAll(".tab-panel");
+
+      this.triggers.forEach((trigger, i) => {
+        trigger.addEventListener("click", () => this.activateTab(i));
+        trigger.addEventListener("keydown", (e) => this.handleKeydown(e, i));
+      });
+
+      // Intersection Observer for scroll-based activation (optional enhancement)
+      // Start with first tab active
+      this.activateTab(0, true);
+    }
+
+    private activateTab(index: number, immediate: boolean = false): void {
+      if (this.isAnimating && !immediate) return;
+      if (index === this.currentIndex && !immediate) return;
+
+      this.isAnimating = true;
+      const prevIndex = this.currentIndex;
+      this.currentIndex = index;
+
+      // Update triggers
+      this.triggers.forEach((trigger, i) => {
+        const isActive = i === index;
+        trigger.setAttribute("aria-selected", isActive ? "true" : "false");
+        trigger.setAttribute("tabindex", isActive ? "0" : "-1");
+        trigger.classList.toggle("active", isActive);
+      });
+
+      // Update panels with animation
+      this.panels.forEach((panel, i) => {
+        const isActive = i === index;
+        panel.setAttribute("data-active", isActive ? "true" : "false");
+        if (isActive) {
+          panel.style.display = "";
+          // Trigger reflow for transition
+          void panel.offsetWidth;
+          panel.classList.add("panel-enter");
+        } else {
+          panel.classList.remove("panel-enter");
+          panel.style.display = "none";
+        }
+      });
+
+      // Focus the active trigger
+      this.triggers[index].focus();
+
+      setTimeout(() => {
+        this.isAnimating = false;
+      }, immediate ? 0 : 400);
+    }
+
+    private handleKeydown(e: KeyboardEvent, index: number): void {
+      const total = this.triggers.length;
+      let newIndex: number | null = null;
+
+      switch (e.key) {
+        case "ArrowDown":
+        case "ArrowRight":
+          e.preventDefault();
+          newIndex = (index + 1) % total;
+          break;
+        case "ArrowUp":
+        case "ArrowLeft":
+          e.preventDefault();
+          newIndex = (index - 1 + total) % total;
+          break;
+        case "Home":
+          e.preventDefault();
+          newIndex = 0;
+          break;
+        case "End":
+          e.preventDefault();
+          newIndex = total - 1;
+          break;
+      }
+
+      if (newIndex !== null) {
+        this.activateTab(newIndex);
+      }
+    }
+  }
+
+  // Initialize all instances
+  document.querySelectorAll<HTMLElement>('[data-component="about-tabs"]').forEach((el) => {
+    new AboutTabsController(el);
+  });
+</script>
+
+<style>
+  /* ─── Layout ─── */
+  .about-tabs {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 3rem;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .about-tabs {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  /* ─── Tab Navigation ─── */
+  .tab-nav {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (max-width: 768px) {
+    .tab-nav {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 0;
+      padding-bottom: 1rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .tab-nav::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.5rem 1rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    font-family: "Source Sans Pro", system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7B7B7B; /* dark-neutral-300 */
+    text-align: left;
+    transition: color 0.3s ease, padding 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    .tab-trigger {
+      width: auto;
+      white-space: nowrap;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 2px solid transparent;
+      font-size: 0.8rem;
+    }
+  }
+
+  .tab-trigger:hover {
+    color: #1A1A1A; /* dark-neutral-500 */
+  }
+
+  .tab-trigger.active {
+    color: #1A1A1A; /* dark-neutral-500 */
+    font-weight: 600;
+  }
+
+  @media (min-width: 769px) {
+    .tab-trigger.active {
+      padding-left: 0.5rem;
+    }
+  }
+
+  /* ─── Tab Indicator ─── */
+  .tab-indicator {
+    display: block;
+    width: 3px;
+    height: 1.5rem;
+    background: #DCDCDC; /* dark-neutral-100 */
+    border-radius: 2px;
+    flex-shrink: 0;
+    transition: background 0.3s ease, height 0.3s ease, transform 0.3s ease;
+  }
+
+  .tab-trigger.active .tab-indicator {
+    background: #4E3E78; /* primary */
+    height: 2rem;
+    transform: scaleY(1.1);
+  }
+
+  .tab-trigger:hover .tab-indicator {
+    background: #BEB4D8; /* primary-200 */
+  }
+
+  .tab-trigger.active:hover .tab-indicator {
+    background: #4E3E78; /* primary */
+  }
+
+  @media (max-width: 768px) {
+    .tab-indicator {
+      display: none;
+    }
+    .tab-trigger.active {
+      border-bottom-color: #4E3E78; /* primary */
+    }
+  }
+
+  /* ─── Decorative Rail ─── */
+  .tab-rail {
+    display: none;
+  }
+
+  @media (min-width: 769px) {
+    .tab-rail {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      width: 1px;
+      background: #DCDCDC; /* dark-neutral-100 */
+      z-index: 0;
+      pointer-events: none;
+    }
+    .tab-trigger:first-child .tab-indicator {
+      margin-top: 0.25rem;
+    }
+    .tab-trigger:last-child .tab-indicator {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  /* ─── Panels ─── */
+  .tab-panels {
+    position: relative;
+    min-height: 320px;
+  }
+
+  .tab-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .tab-panel[data-active="true"] {
+    display: block;
+  }
+
+  .tab-panel.panel-enter {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Panel Content ─── */
+  .panel-headline {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #201A31; /* primary-800 */
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 768px) {
+    .panel-headline {
+      font-size: 2.25rem;
+    }
+  }
+
+  .panel-text {
+    font-family: "Source Sans Pro", system-ui, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #4A4A4A; /* dark-neutral-400 */
+    margin-bottom: 1.25rem;
+  }
+
+  .panel-text:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* ─── Quote ─── */
+  .panel-quote {
+    margin: 1.5rem 0 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid #7AC6BB; /* secondary */
+    background: #ECF7F5; /* secondary-100 */
+    border-radius: 0 6px 6px 0;
+  }
+
+  .panel-quote q {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #24554E; /* secondary-800 */
+    quotes: none;
+  }
+
+  .panel-quote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: "Source Sans Pro", system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-style: normal;
+    color: #388378; /* secondary-700 */
+  }
+
+  @media (max-width: 768px) {
+    .panel-headline {
+      margin-top: 1.5rem;
+    }
+    .panel-quote {
+      margin-left: -1rem;
+      margin-right: -1rem;
+      border-radius: 0;
+    }
+  }
+</style>

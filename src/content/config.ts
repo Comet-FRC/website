@@ -107,7 +107,7 @@ const robotCollection = defineCollection({
   schema: z.object({
     name: z.string(),
     pic: z.string().startsWith('/uploads/robots/'), // Path to the robot image
-    season: z.string().optional(), // e.g., '2026 Rebuilt', '2024 Crescendo'
+    season: z.string().optional(), // e.g., 'Rebuilt', 'Crescendo'
     seasonYear: z.string().optional(), // e.g., '2026', '2025'
     description: z.string().optional(),
     cad: z.string().url().optional(),

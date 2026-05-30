@@ -1,0 +1,385 @@
+---
+export interface Subsystem {
+  key: string;
+  title: string;
+  description: string;
+  image: string;
+  // Dot position on the image (percentage of width/height from top-left)
+  lx: number;
+  ly: number;
+}
+
+export interface CadViewData {
+  fullImage: string;
+  subsystems: Subsystem[];
+}
+
+const { data } = Astro.props as { data: CadViewData };
+
+const svgW = 503;
+const svgH = 438;
+
+// Manually assign which side each subsystem's label goes on (3 left, 3 right)
+const leftKeys = new Set(["shooter", "bumpers", "intake"]);
+const rightKeys = new Set(["kicker", "indexer", "drivetrain"]);
+
+const leftSubsystems = data.subsystems
+  .filter((s) => leftKeys.has(s.key))
+  .sort((a, b) => a.ly - b.ly);
+const rightSubsystems = data.subsystems
+  .filter((s) => rightKeys.has(s.key))
+  .sort((a, b) => a.ly - b.ly);
+---
+
+<div class="robot-cad-viewer" data-cad-viewer>
+  <div class="cad-layout">
+    <!-- Labels on the left -->
+    <div class="cad-labels cad-labels-left">
+      {leftSubsystems.map((sub) => (
+        <div class="cad-label" data-key={sub.key}>
+          <span class="cad-label-text">
+            <span class="cad-label-title">{sub.title}</span>
+            <span class="cad-label-desc">{sub.description}</span>
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Image stage with overlaid lines + dots -->
+    <div class="cad-stage">
+      <div class="cad-images">
+        <img
+          class="cad-image active"
+          alt="Full robot assembly"
+          data-key="full"
+          src={data.fullImage}
+        />
+        {data.subsystems.map((sub) => (
+          <img
+            class="cad-image"
+            alt={sub.title}
+            data-key={sub.key}
+            src={sub.image}
+          />
+        ))}
+
+        <!-- Leader lines SVG — x1/y1 set dynamically by JS from label positions -->
+        <svg class="cad-leaders" viewBox={`0 0 ${svgW} ${svgH}`} preserveAspectRatio="none">
+          {data.subsystems.map((sub) => (
+            <g data-key={sub.key}>
+              <line
+                x1="0"
+                y1="0"
+                x2={sub.lx / 100 * svgW}
+                y2={sub.ly / 100 * svgH}
+                class="cad-leader-line"
+              />
+              <circle
+                cx={sub.lx / 100 * svgW}
+                cy={sub.ly / 100 * svgH}
+                r="5"
+                class="cad-leader-dot"
+              />
+            </g>
+          ))}
+        </svg>
+      </div>
+    </div>
+
+    <!-- Labels on the right -->
+    <div class="cad-labels cad-labels-right">
+      {rightSubsystems.map((sub) => (
+        <div class="cad-label" data-key={sub.key}>
+          <span class="cad-label-text">
+            <span class="cad-label-title">{sub.title}</span>
+            <span class="cad-label-desc">{sub.description}</span>
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .robot-cad-viewer {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    user-select: none;
+  }
+  .cad-layout {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  /* Image stage */
+  .cad-stage {
+    flex: 1;
+    position: relative;
+    background: #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    min-width: 0;
+  }
+  .cad-images {
+    position: relative;
+    width: 100%;
+    background: #f0f0f0;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+  .cad-image {
+    grid-area: 1 / 1;
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .cad-image.active {
+    opacity: 1;
+  }
+  .cad-image.dimmed {
+    opacity: 0.15 !important;
+    filter: grayscale(100%) !important;
+  }
+
+  /* Leader lines — positioned to match the padded image area */
+  .cad-leaders {
+    position: absolute;
+    inset: 40px;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .cad-leader-line {
+    stroke: #6D56A7;
+    stroke-width: 2.5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .cad-leader-dot {
+    fill: #6D56A7;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  g.active .cad-leader-line {
+    opacity: 1;
+  }
+  g.active .cad-leader-dot {
+    opacity: 1;
+  }
+
+  /* Labels on left/right */
+  .cad-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 16px 8px;
+    width: 220px;
+    flex-shrink: 0;
+  }
+  .cad-labels-left {
+    align-items: flex-end;
+  }
+  .cad-labels-right {
+    align-items: flex-start;
+  }
+  .cad-label {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    max-width: 200px;
+  }
+  .cad-label:hover,
+  .cad-label.active-label {
+    background: #f0edf7;
+    border-color: #6D56A7;
+  }
+  .cad-label-title {
+    display: block;
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #2F2649;
+    margin-bottom: 2px;
+  }
+  .cad-label-desc {
+    display: block;
+    font-family: 'Source Sans Pro', system-ui, sans-serif;
+    font-size: 0.78rem;
+    color: #4A4A4A;
+    line-height: 1.35;
+  }
+  .cad-labels-right .cad-label-text {
+    text-align: left;
+  }
+  .cad-labels-left .cad-label-text {
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    /* Stack vertically: image on top, all labels below */
+    .cad-layout {
+      flex-direction: column;
+    }
+    .cad-stage {
+      width: 100%;
+    }
+
+    /* Labels flow horizontally below the image */
+    .cad-labels {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 12px 16px;
+    }
+    .cad-labels-left .cad-label-text,
+    .cad-labels-right .cad-label-text {
+      text-align: left;
+    }
+
+    /* Smaller label cards, hide description */
+    .cad-label {
+      padding: 5px 10px;
+      max-width: 120px;
+    }
+    .cad-label-title {
+      font-size: 0.82rem;
+      margin-bottom: 0;
+    }
+    .cad-label-desc {
+      display: none;
+    }
+
+    /* Hide leader lines on mobile */
+    .cad-leaders {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  class CadViewer {
+    private container: HTMLElement;
+    private svg: SVGSVGElement;
+    private images: NodeListOf<HTMLImageElement>;
+    private lineGroups: NodeListOf<SVGGElement>;
+    private labels: NodeListOf<HTMLElement>;
+    private observer: ResizeObserver | null = null;
+
+    // SVG viewBox dimensions (must match the template)
+    private readonly svgW = 503;
+    private readonly svgH = 438;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.svg = container.querySelector('.cad-leaders')!;
+      this.images = container.querySelectorAll('.cad-image');
+      this.lineGroups = container.querySelectorAll('.cad-leaders g');
+      this.labels = container.querySelectorAll('.cad-label');
+      this.updateLines();
+      this.bindEvents();
+    }
+
+    private bindEvents() {
+      const stage = this.svg.closest('.cad-stage');
+
+      // Hover / click interactions
+      this.labels.forEach((label) => {
+        label.addEventListener('mouseenter', () => {
+          const key = label.dataset.key;
+          if (key) this.showSubsystem(key);
+        });
+        label.addEventListener('mouseleave', () => {
+          this.showFull();
+        });
+      });
+
+      if (stage) {
+        stage.addEventListener('click', (e) => {
+          if ((e.target as HTMLElement).closest('.cad-label')) return;
+          this.showFull();
+        });
+      }
+
+      // Recalculate lines on resize
+      this.observer = new ResizeObserver(() => this.updateLines());
+      this.observer.observe(stage || this.container);
+    }
+
+    /**
+     * Dynamically compute the start point (x1, y1) of each leader line
+     * based on the actual rendered position of the corresponding label.
+     */
+    private updateLines() {
+      const svgRect = this.svg.getBoundingClientRect();
+
+      this.labels.forEach((label) => {
+        const key = label.dataset.key;
+        if (!key) return;
+        const line = this.svg.querySelector(`g[data-key="${key}"] line`) as SVGLineElement | null;
+        if (!line) return;
+
+        const labelRect = label.getBoundingClientRect();
+
+        // Is this a left-side or right-side label?
+        const isLeft = label.closest('.cad-labels-left') !== null;
+
+        // Start point: the edge of the label closest to the image
+        const startX = isLeft ? labelRect.right : labelRect.left;
+        const startY = labelRect.top + labelRect.height / 2;
+
+        // Convert pixel coordinates to SVG viewBox coordinates
+        const x1 = ((startX - svgRect.left) / svgRect.width) * this.svgW;
+        const y1 = ((startY - svgRect.top) / svgRect.height) * this.svgH;
+
+        line.setAttribute('x1', String(x1));
+        line.setAttribute('y1', String(y1));
+      });
+    }
+
+    private showSubsystem(key: string) {
+      this.images.forEach((img) => {
+        const k = img.dataset.key;
+        if (k === 'full') {
+          img.classList.add('active');
+          img.classList.add('dimmed');
+        } else {
+          img.classList.toggle('active', k === key);
+          img.classList.remove('dimmed');
+        }
+      });
+
+      this.lineGroups.forEach((g) => {
+        g.classList.toggle('active', g.dataset.key === key);
+      });
+
+      this.labels.forEach((l) => {
+        l.classList.toggle('active-label', l.dataset.key === key);
+      });
+    }
+
+    private showFull() {
+      this.images.forEach((img) => {
+        img.classList.toggle('active', img.dataset.key === 'full');
+        img.classList.remove('dimmed');
+      });
+      this.lineGroups.forEach((g) => g.classList.remove('active'));
+      this.labels.forEach((l) => l.classList.remove('active-label'));
+    }
+  }
+
+  document.querySelectorAll('[data-cad-viewer]').forEach((el) => {
+    new CadViewer(el as HTMLElement);
+  });
+</script>
