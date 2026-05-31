@@ -5,9 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply scroll-smooth;
-  }
   
   body {
     @apply font-sans bg-gray-50;
@@ -74,6 +71,40 @@
   .card {
     @apply overflow-hidden transition-all bg-white rounded-lg shadow-md hover:shadow-lg;
   }
+}
+
+/* ─── High-Tech Minimalism Utilities ─── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ─── Animated Grid Background ─── */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(78, 62, 120, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(78, 62, 120, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Card Hover Effects ─── */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* ─── Glow Effect (Subtle) ─── */
+.glow-subtle {
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-subtle:hover {
+  box-shadow: 0 0 20px rgba(78, 62, 120, 0.15);
 }
 
 details > summary::-webkit-details-marker {

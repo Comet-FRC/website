@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
 import LeadsList from "../components/Sections/LeadsList.astro";
 import AboutTabs from "../components/Sections/AboutTabs.astro";
+import AboutSlideshow from "../components/Sections/AboutSlideshow.astro";
 import { Image } from "astro:assets";
 import AboutImage from "/public/uploads/about/about.avif";
 ---
@@ -14,8 +15,10 @@ import AboutImage from "/public/uploads/about/about.avif";
   <PageHeader 
     title="About" 
     subtitle="Our History, Mission, and Values"
-    backgroundImage="/uploads/header/about-header.avif"
   />
+  
+  <!-- Scroll-driven image slideshow -->
+  <AboutSlideshow />
   
   <!-- About → Vertical Tabs: Who We Are / What We Do / Our Ethos -->
   <section class="py-20 bg-white">

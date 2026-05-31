@@ -1,0 +1,56 @@
+---
+import { getCollection } from "astro:content";
+
+const allSponsors = await getCollection("sponsors", ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+
+const activeSponsors = allSponsors
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6); // Show up to 6 sponsors
+---
+
+<section class="py-20 bg-white">
+  <div class="container">
+    <div class="text-center mb-12">
+      <!-- <p class="text-sm font-medium tracking-widest uppercase text-primary-500 mb-2">Our Partners</p> -->
+      <!-- <h2 class="text-3xl md:text-4xl font-bold mb-4">Sponsors</h2> -->
+    </div>
+
+    {activeSponsors.length > 0 ? (
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-10">
+        {activeSponsors.map((sponsor) => (
+          <a
+            href={sponsor.data.website || "#"}
+            target={sponsor.data.website ? "_blank" : undefined}
+            rel={sponsor.data.website ? "noopener noreferrer" : undefined}
+            class="flex items-center justify-center p-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+          >
+            <img
+              loading="lazy"
+              src={sponsor.data.logo}
+              alt={sponsor.data.name}
+              class="h-12 md:h-16 w-auto object-contain"
+            />
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 bg-gray-50 rounded-xl">
+        <p class="text-gray-500">Interested in sponsoring us?</p>
+      </div>
+    )}
+
+    <div class="text-center">
+      <a 
+        href="/sponsors" 
+        class="inline-flex items-center gap-2 text-primary-600 font-medium hover:text-primary-700 transition-colors"
+      >
+        View All Sponsors
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

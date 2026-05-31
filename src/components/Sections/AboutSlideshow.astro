@@ -1,0 +1,131 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+// Dynamically read all images from the slideshow folder at build time
+const slideshowDir = path.resolve(process.cwd(), "public/uploads/about/slideshow");
+const supportedExts = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"]);
+const images = fs
+  .readdirSync(slideshowDir)
+  .filter((file) => supportedExts.has(path.extname(file).toLowerCase()))
+  .sort()
+  .map((file) => `/uploads/about/slideshow/${file}`);
+const numImages = images.length;
+---
+
+<div
+  id="about-slideshow"
+  class="slideshow-wrapper"
+  style={`height: ${numImages * 100}vh;`}
+  data-num-images={numImages}
+>
+  <div class="slideshow-sticky">
+    <div class="slideshow-image-container">
+      {images.map((src, i) => (
+        <img
+          src={src}
+          alt={`Slideshow image ${i + 1}`}
+          class:list={["slideshow-image", { active: i === 0 }]}
+          loading={i < 2 ? "eager" : "lazy"}
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  function initSlideshow() {
+    const wrapper = document.querySelector('.slideshow-wrapper') as HTMLElement;
+    if (!wrapper) return;
+
+    const numImages = parseInt(wrapper.dataset.numImages || '1', 10);
+    const images = wrapper.querySelectorAll('.slideshow-image') as NodeListOf<HTMLImageElement>;
+    if (!images.length) return;
+
+    let currentIndex = 0;
+    let ticking = false;
+
+    function updateIndex() {
+      const rect = wrapper.getBoundingClientRect();
+      const scrollRange = rect.height - window.innerHeight;
+      if (scrollRange <= 0) return;
+      const wrapperTop = -rect.top;
+      const progress = Math.max(0, Math.min(1, wrapperTop / scrollRange));
+      const newIndex = Math.min(Math.floor(progress * numImages), numImages - 1);
+
+      // Toggle slideshow-active class on body for navbar styling
+      const isActive = rect.top <= 0 && rect.bottom >= window.innerHeight;
+      document.body.classList.toggle('slideshow-active', isActive);
+
+      // Only update DOM if index changed
+      if (newIndex === currentIndex) return;
+
+      images[currentIndex].classList.remove('active');
+      images[newIndex].classList.add('active');
+      currentIndex = newIndex;
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateIndex();
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  document.addEventListener('astro:page-load', initSlideshow);
+  initSlideshow();
+</script>
+
+<style>
+  .slideshow-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .slideshow-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    overflow: hidden;
+  }
+
+  .slideshow-image-container {
+    position: relative;
+    width: 75vw;
+    max-width: 75vw;
+    aspect-ratio: 17 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slideshow-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    contain: strict;
+    visibility: hidden;
+    z-index: 0;
+  }
+
+  .slideshow-image.active {
+    visibility: visible;
+    z-index: 1;
+  }
+</style>

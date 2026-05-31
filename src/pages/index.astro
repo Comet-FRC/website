@@ -1,106 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FrontPage from "../components/Sections/FrontPage.astro";
-import EventList from "../components/Sections/EventList.astro";
-import Button from "../components/UI/Button.astro";
+import FeaturedRobot from "../components/Sections/FeaturedRobot.astro";
+import MinimalEvents from "../components/Sections/MinimalEvents.astro";
+import MinimalSponsors from "../components/Sections/MinimalSponsors.astro";
 ---
 
 <BaseLayout>
   <FrontPage 
     title="Comet Robotics"
     subtitle="A FIRST® Robotics Team from Haymarket, Virginia"
-    backgroundImage="/uploads/index/hero.avif"
-    ctaText="Learn More"
-    ctaLink="/about"
-    secondaryCtaText="Our Impact"
-    secondaryCtaLink="/events"
   />
   
-  <!-- About Section -->
-  <section class="py-16 bg-primary-100">
-    <div class="container">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
-          <img 
-            loading="lazy"
-            src="/uploads/about-image.avif" 
-            alt="Our Team" 
-            class="rounded-lg shadow-lg object-cover w-full h-full"
-          />
-        </div>
-        
-        <div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">About Our Team</h2>
-          <p class="mb-6 text-lg">
-            We are Team 1885 Comet Robotics from Battlefield High School in Haymarket, Virginia. Our mission is to pioneer student leadership, emphasize hands-on applications, and provide accessible STEAM opportunities to our community.
-          </p>
-          <!-- <p class="text-gray-700 mb-8 text-lg">
-            Whether you're exploring faith for the first time or looking for a church home, we invite you to join us. Our diverse congregation welcomes people of all ages, backgrounds, and walks of life.
-          </p> -->
-          
-          <Button href="/about">
-            Learn More About Us
-          </Button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="pb-16 bg-primary-100">
-    <div class="container">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-        <div class="md:order-last m-auto w-full">
-          <img 
-            loading="lazy"
-            src="/uploads/index/first-horizontal.avif" 
-            alt="Our Team" 
-            class="m-auto p-8 rounded-lg shadow-lg object-cover"
-          />
-        </div>
-
-        <div class="md:order-first">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">About <i>FIRST</i></h2>
-          <p class="mb-6 text-lg">
-            <i>FIRST</i> was created “to inspire young people to be science and technology leaders, by engaging them in exciting mentor-based programs that build science, engineering and technology skills, that inspire innovation, and that foster well-rounded life capabilities including self-confidence, communication, and leadership.”
-          </p>
-          
-          <Button href="https://www.firstinspires.org/" target="_blank" rel="noopener noreferrer">
-            Learn more about FIRST at firstinspires.org
-            <svg class="text-primary-200 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path fill="currentColor" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l82.7 0L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3l0 82.7c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160c0-17.7-14.3-32-32-32L320 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/>
-            </svg>
-          </Button>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Featured Robot Section -->
+  <FeaturedRobot />
   
   <!-- Events Section -->
-  <EventList />
+  <MinimalEvents />
   
-  <!-- Call to Action -->
-  <section 
-    class="py-20 bg-cover bg-center"
-    style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/uploads/index/get-involved.avif)"
-  >
-    <div class="container">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-secondary-100">Get Involved!</h2>
-        <p class="text-xl mb-8 text-secondary-200">
-          Interested in becoming a <b>student</b>, <b>mentor</b>, or <b>sponsor</b>?
-        </p>
-        
-        <div class="flex flex-wrap justify-center gap-4">
-          <Button href="/contact" variant="primary" size="lg">
-            Contact Us
-          </Button>
-          
-          <!-- <Button href="/contact?subject=Sponsorship" variant="outline" size="lg" class="bg-white/10 text-white border-white hover:bg-white hover:text-gray-900 backdrop-blur-sm">
-            Become a Sponser
-          </Button> -->
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Sponsors Section -->
+  <MinimalSponsors />
 </BaseLayout>

@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <!-- Desktop Navigation -->
-<nav class="hidden lg:flex items-center gap-1">
+<nav id="desktop-nav" class="hidden lg:flex items-center gap-1">
   {navItems.map((item) => {
     const isActive =
       currentPath === item.href ||
@@ -342,6 +342,36 @@ const currentPath = Astro.url.pathname;
     background: rgba(0,0,0,0.1);
     border-radius: 4px;
   }
+
+  /* ─── Slideshow Active: White logo + hamburger, hide desktop links ─── */
+  body.slideshow-active #site-header {
+    background: transparent !important;
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  body.slideshow-active #site-header a img,
+  body.slideshow-active #site-header a svg {
+    filter: brightness(0) invert(1);
+  }
+
+  body.slideshow-active #desktop-nav {
+    display: none !important;
+  }
+
+  body.slideshow-active #mobile-menu-button {
+    display: flex !important;
+    color: white !important;
+  }
+
+  body.slideshow-active #mobile-menu-button .hamburger-line {
+    background-color: white !important;
+  }
+
+  body.slideshow-active #mobile-menu {
+    display: block !important;
+  }
 </style>
 
 <script is:inline>
@@ -477,4 +507,5 @@ const currentPath = Astro.url.pathname;
       });
     });
   });
+
 </script>
