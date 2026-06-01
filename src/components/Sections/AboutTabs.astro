@@ -110,8 +110,8 @@ const { tabs } = Astro.props as { tabs: Tab[] };
         }
       });
 
-      // Focus the active trigger
-      this.triggers[index].focus();
+      // Focus the active trigger without scrolling to it
+      this.triggers[index].focus({ preventScroll: true });
 
       setTimeout(() => {
         this.isAnimating = false;

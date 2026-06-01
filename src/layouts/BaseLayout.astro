@@ -48,11 +48,17 @@ const {
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <!-- Prevent browser scroll restoration -->
+    <!-- Prevent browser scroll restoration and scroll anchoring -->
     <script is:inline>
       if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
       }
+      // Disable scroll anchoring to prevent the browser from auto-adjusting
+      // scroll position when images/content load after paint
+      document.documentElement.style.overflowAnchor = 'none';
+      // Scroll to top on initial page load and bfcache restore
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => window.scrollTo(0, 0));
       window.addEventListener('pageshow', () => {
         window.scrollTo(0, 0);
       });

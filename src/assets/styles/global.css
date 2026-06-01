@@ -6,6 +6,10 @@
 
 @layer base {
   
+  html {
+    overflow-anchor: none;
+  }
+
   body {
     @apply font-sans bg-gray-50;
   }

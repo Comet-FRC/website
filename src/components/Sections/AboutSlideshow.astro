@@ -35,26 +35,41 @@ const numImages = images.length;
 
 <script>
   function initSlideshow() {
-    const wrapper = document.querySelector('.slideshow-wrapper') as HTMLElement;
+    const wrapper = document.getElementById('about-slideshow') as HTMLElement;
     if (!wrapper) return;
 
     const numImages = parseInt(wrapper.dataset.numImages || '1', 10);
     const images = wrapper.querySelectorAll('.slideshow-image') as NodeListOf<HTMLImageElement>;
     if (!images.length) return;
 
+    // --- Geometry - computed once on init, recalculated only on resize ---
+    let wrapperTop = 0;
+    let wrapperHeight = 0;
+    let scrollRange = 0;
+
+    function computeGeometry() {
+      wrapperTop = wrapper.offsetTop;
+      wrapperHeight = wrapper.offsetHeight;
+      scrollRange = wrapperHeight - window.innerHeight;
+      if (scrollRange < 0) scrollRange = 0;
+    }
+
+    computeGeometry();
+
+    // --- State ---
     let currentIndex = 0;
     let ticking = false;
 
     function updateIndex() {
-      const rect = wrapper.getBoundingClientRect();
-      const scrollRange = rect.height - window.innerHeight;
       if (scrollRange <= 0) return;
-      const wrapperTop = -rect.top;
-      const progress = Math.max(0, Math.min(1, wrapperTop / scrollRange));
+
+      const scrollY = window.scrollY;
+      const offset = scrollY - wrapperTop;
+      const progress = Math.max(0, Math.min(1, offset / scrollRange));
       const newIndex = Math.min(Math.floor(progress * numImages), numImages - 1);
 
       // Toggle slideshow-active class on body for navbar styling
-      const isActive = rect.top <= 0 && rect.bottom >= window.innerHeight;
+      const isActive = scrollY >= wrapperTop && scrollY < wrapperTop + wrapperHeight - window.innerHeight;
       document.body.classList.toggle('slideshow-active', isActive);
 
       // Only update DOM if index changed
@@ -74,8 +89,20 @@ const numImages = images.length;
       });
     }
 
+    // --- Resize handler ---
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+
+    function onResize() {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        computeGeometry();
+        updateIndex();
+      }, 100);
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('resize', onResize, { passive: true });
+    updateIndex();
   }
 
   document.addEventListener('astro:page-load', initSlideshow);
@@ -105,9 +132,9 @@ const numImages = images.length;
     width: 75vw;
     max-width: 75vw;
     aspect-ratio: 17 / 9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   }
 
   .slideshow-image {
@@ -117,8 +144,6 @@ const numImages = images.length;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     contain: strict;
     visibility: hidden;
     z-index: 0;
