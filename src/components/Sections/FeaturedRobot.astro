@@ -22,7 +22,7 @@ if (!latestRobot) {
 const { name, pic, season, seasonYear, description, cad } = latestRobot.data;
 ---
 
-<section class="py-20 bg-white">
+<section class="py-20 bg-white" style="content-visibility: auto; contain-intrinsic-size: 700px;">
   <div class="container">
     <div class="text-center mb-12">
       <p class="text-sm font-medium tracking-widest uppercase text-primary-500 mb-2">Featured Robot</p>
@@ -38,8 +38,11 @@ const { name, pic, season, seasonYear, description, cad } = latestRobot.data;
         <div class="aspect-square overflow-hidden rounded-xl bg-gray-100">
           <img
             loading="lazy"
+            decoding="async"
             src={pic}
             alt={name}
+            width="600"
+            height="600"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>

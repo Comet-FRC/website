@@ -19,20 +19,35 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-// Load CAD view data for this robot (if available)
+// Load CAD view data for this robot (if available) — dynamic import to only fetch one file
 let cadViewData = null;
 try {
-  const cadModules = import.meta.glob("../../data/robotCadViews/*.json", { eager: true });
-  for (const [path, mod] of Object.entries(cadModules)) {
-    if (path.includes(entry.slug)) {
-      cadViewData = (mod as any).default;
-      break;
-    }
-  }
+  const mod = await import(`../../data/robotCadViews/${entry.slug}.json`);
+  cadViewData = mod.default;
 } catch (e) {
   // No CAD view data available for this robot
 }
+
+// JSON-LD structured data
+const robotName = entry.data.name;
+const robotDesc = entry.data.description || (robotName + " robot from Comet Robotics FRC Team 1885");
 ---
+
+<!-- TechArticle JSON-LD structured data for robot pages -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "${robotName}",
+    "description": "${robotDesc}",
+    "proficiencyLevel": "Beginner",
+    "author": {
+      "@type": "Organization",
+      "name": "Comet Robotics",
+      "url": "https://comet1885.org/"
+    }
+  }
+</script>
 
 <BaseLayout
   title={`${entry.data.name} - Robots - Comet Robotics`}

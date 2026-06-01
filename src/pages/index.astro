@@ -6,6 +6,10 @@ import MinimalEvents from "../components/Sections/MinimalEvents.astro";
 import MinimalSponsors from "../components/Sections/MinimalSponsors.astro";
 ---
 
+<!-- Preload the hero image (LCP element) — prefer WebP, fallback JPG -->
+<link rel="preload" as="image" href="/uploads/index/hero.webp" fetchpriority="high" type="image/webp">
+<link rel="preload" as="image" href="/uploads/index/hero.jpg" fetchpriority="high" type="image/jpeg">
+
 <BaseLayout>
   <FrontPage 
     title="Comet Robotics"

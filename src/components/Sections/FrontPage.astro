@@ -15,9 +15,20 @@ const {
 ---
 
 <section 
-  class="relative min-h-[85vh] flex items-center overflow-hidden bg-cover bg-center"
-  style={`background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url(${backgroundImage});`}
+  class="relative min-h-[85vh] flex items-center overflow-hidden"
 >
+  <!-- Hero background image with WebP + responsive picture element -->
+  <picture class="absolute inset-0 -z-10">
+    <source media="(min-width: 768px)" srcset="/uploads/index/hero.webp" type="image/webp">
+    <source media="(min-width: 768px)" srcset={backgroundImage} type="image/jpeg">
+    <source srcset="/uploads/index/hero-mobile.webp" type="image/webp">
+    <source srcset="/uploads/index/hero-mobile.jpg" type="image/jpeg">
+    <img src={backgroundImage} alt="" class="w-full h-full object-cover" loading="eager" decoding="async" fetchpriority="high">
+  </picture>
+  
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/70"></div>
+  
   <!-- Subtle gradient overlay for depth -->
   <div class="absolute inset-0 bg-gradient-to-br from-primary-900/10 to-transparent pointer-events-none"></div>
   
