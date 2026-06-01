@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { formatDate, isFutureDate } from "../../utils/dateUtils";
+import { isFutureDate } from "../../utils/dateUtils";
 
 // Get upcoming events (limit to 3)
 const allEvents = await getCollection("events", ({ data }) => {

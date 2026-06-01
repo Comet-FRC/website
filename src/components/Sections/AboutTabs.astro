@@ -58,14 +58,12 @@ const { tabs } = Astro.props as { tabs: Tab[] };
 
 <script>
   class AboutTabsController {
-    private container: HTMLElement;
     private triggers: NodeListOf<HTMLButtonElement>;
     private panels: NodeListOf<HTMLElement>;
     private currentIndex: number = 0;
     private isAnimating: boolean = false;
 
     constructor(container: HTMLElement) {
-      this.container = container;
       this.triggers = container.querySelectorAll(".tab-trigger");
       this.panels = container.querySelectorAll(".tab-panel");
 
@@ -84,7 +82,6 @@ const { tabs } = Astro.props as { tabs: Tab[] };
       if (index === this.currentIndex && !immediate) return;
 
       this.isAnimating = true;
-      const prevIndex = this.currentIndex;
       this.currentIndex = index;
 
       // Update triggers

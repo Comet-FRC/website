@@ -19,24 +19,12 @@ export interface Props {
 
 const {
   title,
-  description,
   image,
   date,
   author,
   tags = [],
   type = "blog",
 } = Astro.props;
-
-const seoType = "article";
-
-let pageTitle = title;
-if (type === "sermon") {
-  pageTitle = `Sermon: ${title}`;
-} else if (type === "event") {
-  pageTitle = `Event: ${title}`;
-} else if (type === "ministry") {
-  pageTitle = `${title} Ministry`;
-}
 
 const formattedDate = date ? formatDate(date) : null;
 ---

@@ -71,11 +71,13 @@ function initMobileMenu() {
     if (!dropdown) return;
 
     function openDropdown() {
+      if (!dropdown) return;
       dropdown.classList.remove('opacity-0', 'invisible');
       dropdown.classList.add('opacity-100', 'visible');
     }
 
     function closeDropdown() {
+      if (!dropdown) return;
       dropdown.classList.remove('opacity-100', 'visible');
       dropdown.classList.add('opacity-0', 'invisible');
     }

@@ -30,16 +30,15 @@ try {
 
 // JSON-LD structured data
 const robotName = entry.data.name;
-const robotDesc = entry.data.description || (robotName + " robot from Comet Robotics FRC Team 1885");
 ---
 
 <!-- TechArticle JSON-LD structured data for robot pages -->
-<script type="application/ld+json">
+<script is:inline type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "${robotName}",
-    "description": "${robotDesc}",
+    "description": "${entry.data.description || (robotName + ' robot from Comet Robotics FRC Team 1885')}",
     "proficiencyLevel": "Beginner",
     "author": {
       "@type": "Organization",

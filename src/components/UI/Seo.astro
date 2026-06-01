@@ -66,7 +66,7 @@ const orgInfo = {
 <meta property="twitter:image:alt" content={image.alt} />
 
 <!-- JSON-LD Organization Schema (replaces old Church schema) -->
-<script type="application/ld+json">
+<script is:inline type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -88,7 +88,7 @@ const orgInfo = {
 </script>
 
 <!-- BreadcrumbList structured data for navigation context -->
-<script type="application/ld+json">
+<script is:inline type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -111,7 +111,7 @@ const orgInfo = {
 
 {
   type === "article" && (
-    <script type="application/ld+json">
+    <script is:inline type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Article",
