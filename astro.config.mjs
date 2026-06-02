@@ -6,6 +6,8 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://comet1885.org/', // Replace with your site URL
+  prefetch: true,
+  compressHTML: true,
   integrations: [
     tailwind(),
     sitemap(),

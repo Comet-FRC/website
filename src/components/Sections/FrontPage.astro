@@ -5,42 +5,52 @@ export interface Props {
   title?: string;
   subtitle?: string;
   backgroundImage?: string;
-  ctaText?: string;
-  ctaLink?: string;
-  secondaryCtaText?: string;
-  secondaryCtaLink?: string;
 }
 
 const {
-  title = "Welcome to Our Church",
-  subtitle = "A place of worship, community, and spiritual growth",
-  backgroundImage = "/uploads/hero-bg.avif",
-  ctaText = "Plan Your Visit",
-  ctaLink = "/im-new",
-  secondaryCtaText = "Watch Sermons",
-  secondaryCtaLink = "/sermons",
+  title = "Comet Robotics",
+  subtitle = "A FIRST® Robotics Team from Haymarket, Virginia",
+  backgroundImage = "/uploads/index/hero.jpg",
 } = Astro.props;
 ---
 
-<section
-  class="relative min-h-[70vh] flex items-center bg-cover pt-30"
-  style={`background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${backgroundImage}); background-position: center 20%;`}
+<section 
+  class="relative min-h-[85vh] flex items-center overflow-hidden"
 >
-
-  <div class="container">
-    <div class="max-w-3xl text-white">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">{title}</h1>
-      <p class="text-xl md:text-2xl mb-8 text-primary-100">{subtitle}</p>
+  <!-- Hero background image with WebP + responsive picture element -->
+  <picture class="absolute inset-0 -z-10">
+    <source media="(min-width: 768px)" srcset="/uploads/index/hero.webp" type="image/webp">
+    <source media="(min-width: 768px)" srcset={backgroundImage} type="image/jpeg">
+    <source srcset="/uploads/index/hero-mobile.webp" type="image/webp">
+    <source srcset="/uploads/index/hero-mobile.jpg" type="image/jpeg">
+    <img src={backgroundImage} alt="" class="w-full h-full object-cover" loading="eager" decoding="async" fetchpriority="high">
+  </picture>
+  
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/70"></div>
+  
+  <!-- Subtle gradient overlay for depth -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-900/10 to-transparent pointer-events-none"></div>
+  
+  <div class="container relative z-10">
+    <div class="max-w-3xl">
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 text-white tracking-tight">
+        {title}
+      </h1>
+      <p class="text-lg md:text-xl mb-8 text-gray-300 tracking-wide uppercase">
+        {subtitle}
+      </p>
       
       <div class="flex flex-wrap gap-4">
-       <!-- <Button href={ctaLink} variant="primary" size="lg">
-          {ctaText}
-        </Button> //no need for two learn more buttons on homepage pointing to same tab --> 
-        
-        <!-- <Button href={secondaryCtaLink} variant="outline" size="lg" class="bg-white/10 text-white border-white hover:bg-white hover:text-gray-900 backdrop-blur-sm">
-          {secondaryCtaText}
-        </Button> -->
+        <Button href="/robots" variant="primary" size="lg">
+          Meet Our Robots
+        </Button>
       </div>
     </div>
+  </div>
+  
+  <!-- Decorative corner element -->
+  <div class="absolute bottom-8 right-8 text-gray-400 text-sm font-mono hidden md:block">
+    TEAM 1885
   </div>
 </section>

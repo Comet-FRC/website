@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import Button from "../UI/Button.astro";
+
+// Get the latest competition robot
+const allRobots = await getCollection("robots", ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+
+const latestRobot = allRobots
+  .filter((robot) => robot.data.competition !== false)
+  .sort((a, b) => {
+    const yearA = typeof a.data.seasonYear === 'string' ? parseInt(a.data.seasonYear) : (a.data.seasonYear || 0);
+    const yearB = typeof b.data.seasonYear === 'string' ? parseInt(b.data.seasonYear) : (b.data.seasonYear || 0);
+    return yearB - yearA;
+  })[0];
+
+if (!latestRobot) {
+  throw new Error("No competition robots found");
+}
+
+const { name, pic, season, seasonYear, description } = latestRobot.data;
+---
+
+<section class="py-20 bg-white" style="content-visibility: auto; contain-intrinsic-size: 700px;">
+  <div class="container">
+    <div class="text-center mb-12">
+      <p class="text-sm font-medium tracking-widest uppercase text-primary-500 mb-2">Featured Robot</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{name}</h2>
+      <p class="text-lg text-gray-600">
+        {season} • {seasonYear}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Robot Image */}
+      <div class="relative group">
+        <div class="aspect-square overflow-hidden rounded-xl bg-gray-100">
+          <img
+            loading="lazy"
+            decoding="async"
+            src={pic}
+            alt={name}
+            width="600"
+            height="600"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+        {/* Subtle border glow on hover */}
+        <div class="absolute inset-0 rounded-xl border-2 border-transparent transition-colors duration-300 group-hover:border-primary-200 pointer-events-none"></div>
+      </div>
+
+      {/* Robot Details */}
+      <div>
+        <h3 class="text-2xl font-bold mb-4">{name}</h3>
+        
+        {description && (
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            {description}
+          </p>
+        )}
+
+        <div class="flex flex-wrap gap-4">
+          <Button href="/robots" variant="primary" size="md">
+            View All Robots
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

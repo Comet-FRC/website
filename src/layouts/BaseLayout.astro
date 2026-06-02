@@ -35,6 +35,11 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     
+    <!-- Google Fonts: preconnect + inline stylesheet (replaces CSS @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <Seo
       title={title}
       description={description}
@@ -48,6 +53,21 @@ const {
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <!-- Prevent browser scroll restoration and scroll anchoring (deferred) -->
+    <script is:inline defer>
+      if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+      }
+      // Disable scroll anchoring to prevent the browser from auto-adjusting
+      // scroll position when images/content load after paint
+      document.documentElement.style.overflowAnchor = 'none';
+      // Scroll to top on initial page load and bfcache restore
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => window.scrollTo(0, 0));
+      window.addEventListener('pageshow', () => {
+        window.scrollTo(0, 0);
+      });
+    </script>
   </head>
   <body>
     <div class="flex flex-col min-h-screen">
@@ -59,5 +79,6 @@ const {
       
       <Footer />
     </div>
+    
   </body>
 </html>

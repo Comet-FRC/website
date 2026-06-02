@@ -1,0 +1,6 @@
+# robots.txt for Comet Robotics
+# https://comet1885.org/
+
+User-agent: *
+Allow: /
+Sitemap: https://comet1885.org/sitemap-index.xml

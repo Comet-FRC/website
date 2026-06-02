@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import { isFutureDate } from "../../utils/dateUtils";
+
+// Get upcoming events (limit to 3)
+const allEvents = await getCollection("events", ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+const upcomingEvents = allEvents
+  .filter(event => isFutureDate(event.data.date))
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime())
+  .slice(0, 3);
+---
+
+<section class="py-20 bg-gray-50" style="content-visibility: auto; contain-intrinsic-size: 500px;">
+  <div class="container">
+    <div class="text-center mb-12">
+      <p class="text-sm font-medium tracking-widest uppercase text-primary-500 mb-2">Upcoming Events</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Join Us</h2>
+    </div>
+
+    {upcomingEvents.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        {upcomingEvents.map((event) => (
+          <a 
+            href={`/events/${event.slug}`}
+            class="block p-6 bg-white rounded-xl border border-gray-100 transition-all duration-300 hover:border-primary-200 hover:shadow-lg group"
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-14 h-14 rounded-lg bg-primary-50 flex flex-col items-center justify-center">
+                <span class="text-xs font-medium text-primary-600 uppercase">
+                  {new Date(event.data.date).toLocaleDateString('en-US', { month: 'short' })}
+                </span>
+                <span class="text-lg font-bold text-primary-700">
+                  {new Date(event.data.date).getDate()}
+                </span>
+              </div>
+              
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors">
+                  {event.data.title}
+                </h3>
+                {event.data.location && (
+                  <p class="text-sm text-gray-500 flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    {event.data.location}
+                  </p>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 bg-white rounded-xl border border-gray-100">
+        <p class="text-gray-500">No upcoming events at this time.</p>
+      </div>
+    )}
+
+    <div class="text-center">
+      <a 
+        href="/events" 
+        class="inline-flex items-center gap-2 text-primary-600 font-medium hover:text-primary-700 transition-colors"
+      >
+        View All Events
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

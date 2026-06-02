@@ -1,9 +1,11 @@
 ---
-name: "Rhythm - Offseason"
+name: "Rhythm"
 pic: "/uploads/robots/rhythm.avif" 
-season: "Offseason - Crescendo"
+season: "Crescendo"
+seasonYear: "2024"
 description: "Our offseason bot for Crescendo, our first swerve. Built to explore new mechanisms and strategies during the off-season."
 cad: "https://www.thebluealliance.com/team/1885"
 order: 5
+competition: false
 draft: false
 ---

@@ -1,0 +1,53 @@
+{
+  "fullImage": "/uploads/robots/rocky/fullrobot.png",
+  "subsystems": [
+    {
+      "key": "shooter",
+      "title": "Shooter",
+      "description": "2 Kraken x60s on a 4″ flywheel and 1 Kraken x60 for hood adjustment.",
+      "image": "/uploads/robots/rocky/shooter.png",
+      "lx": 45,
+      "ly": 25
+    },
+    {
+      "key": "kicker",
+      "title": "Kicker",
+      "description": "High-speed kicker wheel for transferring fuel to the shooter.",
+      "image": "/uploads/robots/rocky/kicker.png",
+      "lx": 72.5,
+      "ly": 40
+    },
+    {
+      "key": "bumpers",
+      "title": "Bumpers",
+      "description": "",
+      "image": "/uploads/robots/rocky/bumpers.png",
+      "lx": 30,
+      "ly": 42
+    },
+    {
+      "key": "indexer",
+      "title": "Indexer",
+      "description": "Single-file indexing system.",
+      "image": "/uploads/robots/rocky/indexer.png",
+      "lx": 50,
+      "ly": 50
+    },
+    {
+      "key": "drivetrain",
+      "title": "Drivetrain",
+      "description": "26×26″ drivetrain using MK5n R1 swerve modules.",
+      "image": "/uploads/robots/rocky/drivetrain.png",
+      "lx": 65,
+      "ly": 75
+    },
+    {
+      "key": "intake",
+      "title": "Intake",
+      "description": "Powered by 1 NEO for fuel acquisition.",
+      "image": "/uploads/robots/rocky/intake.png",
+      "lx": 30,
+      "ly": 82
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+// Dynamically read all images from the slideshow folder at build time
+const slideshowDir = path.resolve(process.cwd(), "public/uploads/about/slideshow");
+const supportedExts = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"]);
+const images = fs
+  .readdirSync(slideshowDir)
+  .filter((file) => {
+    const ext = path.extname(file).toLowerCase();
+    // Include only supported extensions, exclude low-quality versions
+    return supportedExts.has(ext) && !file.includes("-low");
+  })
+  .sort()
+  .map((file) => {
+    const basename = path.basename(file, path.extname(file));
+    const ext = path.extname(file);
+    return {
+      high: `/uploads/about/slideshow/${file}`,
+      low: `/uploads/about/slideshow/${basename}-low.webp`,
+    };
+  });
+const numImages = images.length;
+---
+
+<div
+  id="about-slideshow"
+  class="slideshow-wrapper"
+  style={`height: ${numImages * 100}vh;`}
+  data-num-images={numImages}
+  role="region"
+  aria-label="Image slideshow"
+>
+  <div class="slideshow-sticky">
+    <div class="slideshow-image-container">
+      {images.map((img, i) => (
+        <div class:list={["slideshow-slide", { active: i === 0 }]} data-index={i}>
+          <img
+            src={i === 0 ? img.high : img.low}
+            class="slideshow-image-base"
+            alt={`Slideshow image ${i + 1}`}
+            loading="eager"
+            aria-hidden={i !== 0}
+          />
+          <img
+            src={img.high}
+            class="slideshow-image-overlay"
+            alt=""
+            loading="eager"
+            aria-hidden="true"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  function initSlideshow() {
+    const wrapper = document.getElementById('about-slideshow') as HTMLElement;
+    if (!wrapper) return;
+
+    const numImages = parseInt(wrapper.dataset.numImages || '1', 10);
+    const slides = wrapper.querySelectorAll('.slideshow-slide') as NodeListOf<HTMLElement>;
+    if (!slides.length) return;
+
+    // --- Geometry - computed once on init, recalculated only on resize ---
+    let wrapperTop = 0;
+    let wrapperHeight = 0;
+    let scrollRange = 0;
+
+    function computeGeometry() {
+      wrapperTop = wrapper.offsetTop;
+      wrapperHeight = wrapper.offsetHeight;
+      scrollRange = wrapperHeight - window.innerHeight;
+      if (scrollRange < 0) scrollRange = 0;
+    }
+
+    computeGeometry();
+
+    // --- State ---
+    let currentIndex = 0;
+    let ticking = false;
+    let accumulatedDelta = 0;
+    let resetTimer: ReturnType<typeof setTimeout> | null = null;
+    let pauseTimer: ReturnType<typeof setTimeout> | null = null;
+    const deltaPerImage = window.innerHeight; // 100vh per image
+    const PAUSE_DELAY = 300; // ms to wait before loading high-quality image
+
+    // Track which overlays have loaded high-quality
+    const highQualityLoaded = new Set<number>();
+
+    function loadHighQualityOverlay(index: number) {
+      // If already loaded, skip
+      if (highQualityLoaded.has(index)) return;
+
+      const slide = slides[index];
+      const overlay = slide.querySelector('.slideshow-image-overlay') as HTMLImageElement;
+      if (!overlay) return;
+
+      // The overlay already has the high-quality src loaded (eager)
+      // Just add the 'loaded' class to fade it in
+      highQualityLoaded.add(index);
+      overlay.classList.add('loaded');
+    }
+
+    function revertToLowQuality(index: number) {
+      // If high-quality was loaded, fade out the overlay
+      if (highQualityLoaded.has(index)) {
+        const slide = slides[index];
+        const overlay = slide.querySelector('.slideshow-image-overlay') as HTMLImageElement;
+        if (overlay) {
+          overlay.classList.remove('loaded');
+        }
+        highQualityLoaded.delete(index);
+      }
+    }
+
+    function onImagePause() {
+      // Load high-quality overlay after pause
+      loadHighQualityOverlay(currentIndex);
+    }
+
+    function resetPauseTimer() {
+      if (pauseTimer) clearTimeout(pauseTimer);
+      pauseTimer = setTimeout(onImagePause, PAUSE_DELAY);
+    }
+
+    function updateIndex() {
+      if (scrollRange <= 0) return;
+
+      const scrollY = window.scrollY;
+      const offset = scrollY - wrapperTop;
+      const progress = Math.max(0, Math.min(1, offset / scrollRange));
+      
+      // Apply 0.95 scroll buffer - restrict interpolation to 0-0.95 range
+      // This leaves a 5% "unpinning buffer" at the end for smoother exit
+      const adjustedProgress = Math.min(progress / 0.95, 1);
+      const newIndex = Math.min(Math.floor(adjustedProgress * numImages), numImages - 1);
+
+      // Toggle slideshow-active class on body for navbar styling
+      const isActive = scrollY >= wrapperTop && scrollY < wrapperTop + wrapperHeight - window.innerHeight;
+      document.body.classList.toggle('slideshow-active', isActive);
+
+      // Only update DOM if index changed
+      if (newIndex === currentIndex) return;
+
+      // Revert previous image overlay to hidden before switching
+      revertToLowQuality(currentIndex);
+
+      // Switch slides
+      slides[currentIndex].classList.remove('active');
+      slides[currentIndex].setAttribute('aria-hidden', 'true');
+      slides[newIndex].classList.add('active');
+      slides[newIndex].setAttribute('aria-hidden', 'false');
+      currentIndex = newIndex;
+
+      // Start pause timer to load high-quality overlay
+      resetPauseTimer();
+    }
+
+    function onScroll() {
+      updateIndex();
+    }
+
+    function onWheel(e: WheelEvent) {
+      // Only handle wheel events when slideshow is in view
+      const scrollY = window.scrollY;
+      if (scrollY < wrapperTop - window.innerHeight || scrollY > wrapperTop + wrapperHeight) {
+        return;
+      }
+
+      // Accumulate delta
+      accumulatedDelta += e.deltaY;
+
+      // Calculate new index from accumulated delta
+      const newIndex = Math.min(
+        Math.max(0, Math.round(accumulatedDelta / deltaPerImage)),
+        numImages - 1
+      );
+
+      // Update if index changed
+      if (newIndex !== currentIndex) {
+        // Revert previous image overlay to hidden before switching
+        revertToLowQuality(currentIndex);
+
+        slides[currentIndex].classList.remove('active');
+        slides[currentIndex].setAttribute('aria-hidden', 'true');
+        slides[newIndex].classList.add('active');
+        slides[newIndex].setAttribute('aria-hidden', 'false');
+        currentIndex = newIndex;
+
+        // Update body class
+        const isActive = scrollY >= wrapperTop && scrollY < wrapperTop + wrapperHeight - window.innerHeight;
+        document.body.classList.toggle('slideshow-active', isActive);
+
+        // Start pause timer to load high-quality overlay
+        resetPauseTimer();
+      }
+
+      // Reset accumulator after scrolling stops
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        accumulatedDelta = currentIndex * deltaPerImage;
+      }, 150);
+    }
+
+    // --- Resize handler ---
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+
+    function onResize() {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        computeGeometry();
+        updateIndex();
+      }, 100);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('wheel', onWheel, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
+    updateIndex();
+
+    // Load high-quality overlay for initial image immediately on page load
+    loadHighQualityOverlay(0);
+  }
+
+  document.addEventListener('astro:page-load', initSlideshow);
+  initSlideshow();
+</script>
+
+<style>
+  .slideshow-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .slideshow-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    overflow: hidden;
+    will-change: transform;
+  }
+
+  .slideshow-image-container {
+    position: relative;
+    width: 75vw;
+    max-width: 75vw;
+    aspect-ratio: 17 / 9;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .slideshow-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .slideshow-slide.active {
+    opacity: 1;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .slideshow-image-base,
+  .slideshow-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .slideshow-image-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+  }
+
+  .slideshow-image-overlay.loaded {
+    opacity: 1;
+  }
+</style>

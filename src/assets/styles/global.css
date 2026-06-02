@@ -1,14 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply scroll-smooth;
-  }
   
+  html {
+    overflow-anchor: none;
+  }
+
   body {
     @apply font-sans bg-gray-50;
   }
@@ -76,6 +75,40 @@
   }
 }
 
+/* ─── High-Tech Minimalism Utilities ─── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ─── Animated Grid Background ─── */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(78, 62, 120, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(78, 62, 120, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Card Hover Effects ─── */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* ─── Glow Effect (Subtle) ─── */
+.glow-subtle {
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-subtle:hover {
+  box-shadow: 0 0 20px rgba(78, 62, 120, 0.15);
+}
+
 details > summary::-webkit-details-marker {
   display: none;
 }
@@ -87,4 +120,163 @@ details > summary svg {
 
 details[open] > summary svg {
   transform: rotate(45deg);
+}
+
+/* ─── Navigation Styles ─── */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, transparent 50%, var(--tw-gradient-to, transparent));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+}
+
+/* Desktop Dropdown */
+.group .absolute {
+  transform-origin: top center;
+}
+
+.group:hover .absolute,
+.group:focus-within .absolute {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.group .absolute a {
+  position: relative;
+  overflow: hidden;
+}
+
+.group .absolute a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(78, 62, 120, 0.03), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.group .absolute a:hover::after {
+  transform: translateX(100%);
+}
+
+/* Prevent scroll when mobile menu open */
+body.menu-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+/* Mobile Hamburger Animation */
+#mobile-menu-button[aria-expanded="true"] .hamburger-line:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+#mobile-menu-button[aria-expanded="true"] .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+#mobile-menu-button[aria-expanded="true"] .hamburger-line:nth-child(3) {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+/* Mobile Menu Open State */
+#mobile-menu.open {
+  pointer-events: auto;
+}
+
+#mobile-menu.open #mobile-panel {
+  transform: translateX(0);
+}
+
+/* Staggered item animation */
+#mobile-menu.open .mobile-nav-item {
+  animation: mobileNavSlide 0.3s ease forwards;
+  opacity: 0;
+}
+
+#mobile-menu.open .mobile-nav-item:nth-child(1) { animation-delay: 0.05s; }
+#mobile-menu.open .mobile-nav-item:nth-child(2) { animation-delay: 0.10s; }
+#mobile-menu.open .mobile-nav-item:nth-child(3) { animation-delay: 0.15s; }
+#mobile-menu.open .mobile-nav-item:nth-child(4) { animation-delay: 0.20s; }
+#mobile-menu.open .mobile-nav-item:nth-child(5) { animation-delay: 0.25s; }
+#mobile-menu.open .mobile-nav-item:nth-child(6) { animation-delay: 0.30s; }
+
+@keyframes mobileNavSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desktop Underline Animation */
+.nav-link .relative .absolute {
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth Scrolling for Mobile Menu */
+#mobile-menu nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.1) transparent;
+}
+
+#mobile-menu nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+#mobile-menu nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#mobile-menu nav::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+
+/* Slideshow Active override for header */
+body.slideshow-active #site-header {
+  background: transparent !important;
+  border-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.slideshow-active #site-header a img,
+body.slideshow-active #site-header a svg {
+  filter: brightness(0) invert(1);
+}
+
+body.slideshow-active #desktop-nav {
+  display: none !important;
+}
+
+body.slideshow-active #mobile-menu-button {
+  display: flex !important;
+  color: white !important;
+}
+
+body.slideshow-active #mobile-menu-button .hamburger-line {
+  background-color: white !important;
+}
+
+body.slideshow-active #mobile-menu {
+  display: block !important;
 }

@@ -1,0 +1,123 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../../components/Sections/PageHeader.astro";
+import Button from "../../components/UI/Button.astro";
+import RobotCadViewer from "../../components/CAD/RobotCadViewer.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const robotEntries = await getCollection("robots", ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true
+  );
+
+  return robotEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Load CAD view data for this robot (if available) — dynamic import to only fetch one file
+let cadViewData = null;
+try {
+  const mod = await import(`../../data/robotCadViews/${entry.slug}.json`);
+  cadViewData = mod.default;
+} catch (e) {
+  // No CAD view data available for this robot
+}
+
+// JSON-LD structured data
+const robotName = entry.data.name;
+---
+
+<!-- TechArticle JSON-LD structured data for robot pages -->
+<script is:inline type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "${robotName}",
+    "description": "${entry.data.description || (robotName + ' robot from Comet Robotics FRC Team 1885')}",
+    "proficiencyLevel": "Beginner",
+    "author": {
+      "@type": "Organization",
+      "name": "Comet Robotics",
+      "url": "https://comet1885.org/"
+    }
+  }
+</script>
+
+<BaseLayout
+  title={`${entry.data.name} - Robots - Comet Robotics`}
+  description={entry.data.description || `${entry.data.name} robot page`}
+>
+  <PageHeader 
+    title={entry.data.name}
+    subtitle={entry.data.season || undefined}
+    backgroundImage="/uploads/header/robots-header.avif"
+  />
+
+  <div class="bg-white py-16">
+    <div class="container mx-auto px-4">
+      <!-- Robot Info - shown regardless -->
+      <div class="text-center mb-10 max-w-3xl mx-auto">
+        <h1 class="text-3xl font-bold mb-4">{entry.data.name}</h1>
+        
+        {entry.data.season && (
+          <p class="text-primary-600 text-lg mb-4">{entry.data.season} Season</p>
+        )}
+
+        {entry.data.description && (
+          <p class="text-gray-700 text-lg max-w-2xl mx-auto">{entry.data.description}</p>
+        )}
+      </div>
+
+      <!-- Interactive CAD Viewer (takes full width, no max-w constraint) -->
+      {cadViewData && (
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-center mb-2">CAD Design Viewer</h2>
+          <p class="text-center text-gray-500 mb-8 text-sm">
+            Hover over a subsystem label to highlight it on the image
+          </p>
+          <RobotCadViewer data={cadViewData} />
+        </div>
+      )}
+
+      <!-- Robot main photo (only if no CAD viewer) -->
+      {!cadViewData && (
+        <div class="max-w-4xl mx-auto mb-10 overflow-hidden rounded-lg bg-gray-100 p-8 flex items-center justify-center">
+          <img
+            src={entry.data.pic}
+            alt={entry.data.name}
+            class="max-w-full max-h-[400px] object-contain"
+          />
+        </div>
+      )}
+
+      <!-- Robot Content from Markdown -->
+      {Content && (
+        <article class="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-li:text-gray-700 prose-strong:text-gray-900 prose-a:text-primary-600 hover:prose-a:text-primary-700 mb-10 max-w-4xl mx-auto">
+          <Content />
+        </article>
+      )}
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap gap-4 justify-center mt-8 max-w-4xl mx-auto">
+        {entry.data.cad && (
+          <Button
+            href={entry.data.cad}
+            target="_blank"
+            variant="primary"
+          >
+            Explore CAD
+          </Button>
+        )}
+
+        <Button href="/robots" variant="outline">
+          Back to All Robots
+        </Button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
