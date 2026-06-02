@@ -129,6 +129,7 @@ const rightSubsystems = data.subsystems
     display: grid;
     place-items: center;
     padding: 0;
+    z-index: 1;
   }
   .cad-image {
     grid-area: 1 / 1;
@@ -138,6 +139,12 @@ const rightSubsystems = data.subsystems
     object-fit: contain;
     opacity: 0;
     transition: opacity 0.3s ease;
+  }
+  .cad-image[data-key="full"] {
+    z-index: 2;
+  }
+  .cad-image:not([data-key="full"]) {
+    z-index: 1;
   }
   .cad-image.active {
     opacity: 1;
