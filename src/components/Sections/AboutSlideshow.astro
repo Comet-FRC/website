@@ -1,26 +1,26 @@
 ---
-import fs from "node:fs";
-import path from "node:path";
+// Dynamically import all images from the slideshow folder at build time
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/about/slideshow/*.{jpg,jpeg,png,webp,avif,gif}',
+  { eager: true }
+);
 
-// Dynamically read all images from the slideshow folder at build time
-const slideshowDir = path.resolve(process.cwd(), "public/uploads/about/slideshow");
-const supportedExts = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"]);
-const images = fs
-  .readdirSync(slideshowDir)
-  .filter((file) => {
-    const ext = path.extname(file).toLowerCase();
-    // Include only supported extensions, exclude low-quality versions
-    return supportedExts.has(ext) && !file.includes("-low");
-  })
-  .sort()
-  .map((file) => {
-    const basename = path.basename(file, path.extname(file));
-    const ext = path.extname(file);
+// Filter out low-quality versions and sort by filename
+const images = Object.entries(imageModules)
+  .filter(([path]) => !path.includes('-low'))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, mod]) => {
+    const basename = path.split('/').pop()?.replace(/\.[^.]+$/, '') || '';
+    // Find the corresponding low-quality version
+    const lowPath = Object.keys(imageModules).find(
+      (p) => p.includes(`${basename}-low.`)
+    );
     return {
-      high: `/uploads/about/slideshow/${file}`,
-      low: `/uploads/about/slideshow/${basename}-low.webp`,
+      high: mod.default,
+      low: lowPath ? imageModules[lowPath].default : mod.default,
     };
   });
+
 const numImages = images.length;
 ---
 
@@ -37,14 +37,14 @@ const numImages = images.length;
       {images.map((img, i) => (
         <div class:list={["slideshow-slide", { active: i === 0 }]} data-index={i}>
           <img
-            src={i === 0 ? img.high : img.low}
+            src={i === 0 ? img.high.src : img.low.src}
             class="slideshow-image-base"
             alt={`Slideshow image ${i + 1}`}
             loading="eager"
             aria-hidden={i !== 0}
           />
           <img
-            src={img.high}
+            src={img.high.src}
             class="slideshow-image-overlay"
             alt=""
             loading="eager"

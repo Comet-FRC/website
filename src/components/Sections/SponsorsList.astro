@@ -1,5 +1,7 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { resolveImage } from "../../utils/imageResolver";
 const { showAll = true, limit = 6 } = Astro.props;
 
 const allSponsors = await getCollection("sponsors", ({ data }) =>
@@ -22,11 +24,20 @@ const activeSponsors = allSponsors
         <div class="bg-white rounded-lg shadow overflow-hidden flex flex-col h-full">
           {/* Sponsor Logo Container - FIXED HEIGHT for consistent spacing */}
           <div class="relative w-full h-32 p-4 flex items-center justify-center flex-shrink-0">
-            <img loading="lazy"
-              src={sponsor.data.logo}
-              alt={sponsor.data.name}
-              class="max-w-full max-h-full object-contain"
-            />
+            {resolveImage(sponsor.data.logo) ? (
+              <Image
+                src={resolveImage(sponsor.data.logo)!}
+                alt={sponsor.data.name}
+                loading="lazy"
+                class="max-w-full max-h-full object-contain"
+              />
+            ) : (
+              <img loading="lazy"
+                src={sponsor.data.logo}
+                alt={sponsor.data.name}
+                class="max-w-full max-h-full object-contain"
+              />
+            )}
           </div>
 
           {/* Main Content Area - This needs to contain ALL text and the links */}

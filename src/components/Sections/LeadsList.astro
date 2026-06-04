@@ -1,5 +1,7 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { resolveImage } from "../../utils/imageResolver";
 const { showAll = true, limit = 6 } = Astro.props;
 
 const allLeads = await getCollection("leads", ({ data }) =>
@@ -23,11 +25,20 @@ const leadsMembers = allLeads
         <div class="bg-white rounded-lg shadow overflow-hidden flex flex-col h-full">
           <!-- Foto (4:3) -->
           <div class="relative w-full pb-[100%]">
-            <img loading="lazy"
-              src={leads.data.image}
-              alt={leads.data.name}
-              class="absolute inset-0 w-full h-full object-cover object-center"
-            />
+            {resolveImage(leads.data.image) ? (
+              <Image
+                src={resolveImage(leads.data.image)!}
+                alt={leads.data.name}
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover object-center"
+              />
+            ) : (
+              <img loading="lazy"
+                src={leads.data.image}
+                alt={leads.data.name}
+                class="absolute inset-0 w-full h-full object-cover object-center"
+              />
+            )}
           </div>
           <div class="p-4 flex flex-col flex-1 justify-between">
             <div>

@@ -4,6 +4,8 @@ import PageHeader from "../components/Sections/PageHeader.astro";
 import Button from "../components/UI/Button.astro";
 import RobotList from "../components/Sections/RobotList.astro";
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { resolveImage } from "../utils/imageResolver";
 
 // Find the most recent official season robot (competition robots sorted by order)
 const allRobots = await getCollection("robots", ({ data }) =>
@@ -36,11 +38,19 @@ const latestRobot = allRobots
               <div class="grid grid-cols-1 md:grid-cols-2">
                 {/* Robot Image */}
                 <div class="bg-gray-100 p-8 flex items-center justify-center">
-                  <img
-                    src={latestRobot.data.pic}
-                    alt={latestRobot.data.name}
-                    class="max-w-full max-h-[300px] object-contain"
-                  />
+                  {resolveImage(latestRobot.data.pic) ? (
+                    <Image
+                      src={resolveImage(latestRobot.data.pic)!}
+                      alt={latestRobot.data.name}
+                      class="max-w-full max-h-[300px] object-contain"
+                    />
+                  ) : (
+                    <img
+                      src={latestRobot.data.pic}
+                      alt={latestRobot.data.name}
+                      class="max-w-full max-h-[300px] object-contain"
+                    />
+                  )}
                 </div>
 
                 {/* Robot Info */}
