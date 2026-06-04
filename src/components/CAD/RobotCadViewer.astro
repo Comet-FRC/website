@@ -1,4 +1,6 @@
 ---
+import { resolveImage } from "../../utils/imageResolver";
+
 export interface Subsystem {
   key: string;
   title: string;
@@ -15,6 +17,13 @@ export interface CadViewData {
 }
 
 const { data } = Astro.props as { data: CadViewData };
+
+// Resolve image paths
+const resolvedFullImage = resolveImage(data.fullImage);
+const resolvedSubsystemImages = data.subsystems.map((sub) => ({
+  ...sub,
+  resolved: resolveImage(sub.image),
+}));
 
 const svgW = 503;
 const svgH = 438;
@@ -52,14 +61,14 @@ const rightSubsystems = data.subsystems
           class="cad-image active"
           alt="Full robot assembly"
           data-key="full"
-          src={data.fullImage}
+          src={resolvedFullImage ? resolvedFullImage.src : data.fullImage}
         />
-        {data.subsystems.map((sub) => (
+        {resolvedSubsystemImages.map((sub) => (
           <img
             class="cad-image"
             alt={sub.title}
             data-key={sub.key}
-            src={sub.image}
+            src={sub.resolved ? sub.resolved.src : sub.image}
           />
         ))}
 

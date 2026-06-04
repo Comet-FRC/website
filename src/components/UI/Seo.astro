@@ -14,7 +14,7 @@ const {
   title,
   description,
   image = {
-    url: "/uploads/church-default.webp",
+    url: "/favicon.svg",
     alt: "Comet Robotics",
   },
   type = "website",
@@ -26,7 +26,7 @@ const canonicalURL = canonicalUrl || new URL(Astro.url.pathname, Astro.site);
 
 // Organization info for structured data
 const siteUrl = Astro.site?.toString() || "https://comet1885.org/";
-const logoUrl = new URL("/uploads/logo/comet_cat.svg", Astro.site).toString();
+const logoUrl = new URL("/favicon.svg", Astro.site).toString();
 const orgInfo = {
   name: "Comet Robotics",
   alternateName: "FRC Team 1885",

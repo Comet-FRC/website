@@ -2,7 +2,9 @@
 export const layout = "../layouts/BaseLayout.astro";
 
 import PageHeader from "../components/Sections/PageHeader.astro";
+import { Image } from "astro:assets";
 import { formatDate } from "../utils/dateUtils";
+import { resolveImage } from "../utils/imageResolver";
 
 export interface Props {
   title: string;
@@ -38,11 +40,20 @@ const formattedDate = date ? formatDate(date) : null;
 
     {image && (
       <div class="mb-8 overflow-hidden rounded-lg">
-        <img
-          src={image.url}
-          alt={image.alt}
-          class="object-cover w-full h-64 md:h-96"
-          loading="lazy" />
+        {resolveImage(image.url) ? (
+          <Image
+            src={resolveImage(image.url)!}
+            alt={image.alt}
+            class="object-cover w-full h-64 md:h-96"
+            loading="lazy"
+          />
+        ) : (
+          <img
+            src={image.url}
+            alt={image.alt}
+            class="object-cover w-full h-64 md:h-96"
+            loading="lazy" />
+        )}
       </div>
     )}
 

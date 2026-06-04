@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const slideshowDir = path.resolve(
   process.cwd(),
-  "public/uploads/about/slideshow"
+  "src/assets/about/slideshow"
 );
 
 // LQIP settings: good size, high quality for fast loading

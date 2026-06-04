@@ -1,16 +1,19 @@
 ---
 import Button from "../UI/Button.astro";
+import { Image } from "astro:assets";
+import heroDesktop from "../../assets/index/hero.webp";
+import heroDesktopJpg from "../../assets/index/hero.jpg";
+import heroMobile from "../../assets/index/hero-mobile.webp";
+import heroMobileJpg from "../../assets/index/hero-mobile.jpg";
 
 export interface Props {
   title?: string;
   subtitle?: string;
-  backgroundImage?: string;
 }
 
 const {
   title = "Comet Robotics",
   subtitle = "A FIRST® Robotics Team from Haymarket, Virginia",
-  backgroundImage = "/uploads/index/hero.jpg",
 } = Astro.props;
 ---
 
@@ -19,11 +22,11 @@ const {
 >
   <!-- Hero background image with WebP + responsive picture element -->
   <picture class="absolute inset-0 -z-10">
-    <source media="(min-width: 768px)" srcset="/uploads/index/hero.webp" type="image/webp">
-    <source media="(min-width: 768px)" srcset={backgroundImage} type="image/jpeg">
-    <source srcset="/uploads/index/hero-mobile.webp" type="image/webp">
-    <source srcset="/uploads/index/hero-mobile.jpg" type="image/jpeg">
-    <img src={backgroundImage} alt="" class="w-full h-full object-cover" loading="eager" decoding="async" fetchpriority="high">
+    <source media="(min-width: 768px)" srcset={heroDesktop.src} type="image/webp">
+    <source media="(min-width: 768px)" srcset={heroDesktopJpg.src} type="image/jpeg">
+    <source srcset={heroMobile.src} type="image/webp">
+    <source srcset={heroMobileJpg.src} type="image/jpeg">
+    <Image src={heroDesktop} alt="Comet Robotics hero image" class="w-full h-full object-cover" loading="eager" decoding="async" fetchpriority="high" />
   </picture>
   
   <!-- Dark overlay -->

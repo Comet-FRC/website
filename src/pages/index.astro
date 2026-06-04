@@ -4,11 +4,11 @@ import FrontPage from "../components/Sections/FrontPage.astro";
 import FeaturedRobot from "../components/Sections/FeaturedRobot.astro";
 import MinimalEvents from "../components/Sections/MinimalEvents.astro";
 import MinimalSponsors from "../components/Sections/MinimalSponsors.astro";
+import heroDesktop from "../assets/index/hero.webp";
 ---
 
-<!-- Preload the hero image (LCP element) — prefer WebP, fallback JPG -->
-<link rel="preload" as="image" href="/uploads/index/hero.webp" fetchpriority="high" type="image/webp">
-<link rel="preload" as="image" href="/uploads/index/hero.jpg" fetchpriority="high" type="image/jpeg">
+<!-- Preload the hero image (LCP element) — WebP for modern browsers -->
+<link rel="preload" as="image" href={heroDesktop.src} fetchpriority="high" type="image/webp">
 
 <BaseLayout>
   <FrontPage 

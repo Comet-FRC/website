@@ -74,12 +74,14 @@ function initMobileMenu() {
       if (!dropdown) return;
       dropdown.classList.remove('opacity-0', 'invisible');
       dropdown.classList.add('opacity-100', 'visible');
+      trigger.setAttribute('aria-expanded', 'true');
     }
 
     function closeDropdown() {
       if (!dropdown) return;
       dropdown.classList.remove('opacity-100', 'visible');
       dropdown.classList.add('opacity-0', 'invisible');
+      trigger.setAttribute('aria-expanded', 'false');
     }
     
     trigger.addEventListener('focus', openDropdown);
@@ -101,7 +103,7 @@ function initMobileMenu() {
   });
 
   // Keep dropdown open on item focus
-  document.querySelectorAll<HTMLElement>('.group .absolute a').forEach(link => {
+  document.querySelectorAll<HTMLElement>('.group .absolute a[role="menuitem"]').forEach(link => {
     const parent = link.closest('.group');
     const dropdown = parent && parent.querySelector<HTMLElement>('.group-hover\\:opacity-100');
     const trigger = parent && parent.querySelector<HTMLElement>('button[aria-haspopup="true"]');
@@ -111,6 +113,7 @@ function initMobileMenu() {
     link.addEventListener('focus', () => {
       dropdown.classList.remove('opacity-0', 'invisible');
       dropdown.classList.add('opacity-100', 'visible');
+      trigger.setAttribute('aria-expanded', 'true');
     });
     
     link.addEventListener('blur', () => {
@@ -118,6 +121,7 @@ function initMobileMenu() {
         if (!dropdown.contains(document.activeElement) && document.activeElement !== trigger) {
           dropdown.classList.remove('opacity-100', 'visible');
           dropdown.classList.add('opacity-0', 'invisible');
+          trigger.setAttribute('aria-expanded', 'false');
         }
       }, 150);
     });
@@ -126,6 +130,7 @@ function initMobileMenu() {
       if (e.key === 'Escape') {
         dropdown.classList.remove('opacity-100', 'visible');
         dropdown.classList.add('opacity-0', 'invisible');
+        trigger.setAttribute('aria-expanded', 'false');
         trigger.focus();
       }
     });

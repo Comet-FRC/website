@@ -21,13 +21,14 @@ const currentPath = Astro.url.pathname;
 ---
 
 <!-- Desktop Navigation -->
-<nav id="desktop-nav" class="hidden lg:flex items-center gap-1">
-  {navItems.map((item) => {
+<nav id="desktop-nav" class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+  {navItems.map((item, index) => {
     const isActive =
       currentPath === item.href ||
       (item.href !== "/" && currentPath.startsWith(item.href));
     const hasDropdown = item.dropdown && item.dropdown.length > 0;
     const isDropdownActive = hasDropdown && item.dropdown!.some(dd => currentPath === dd.href || currentPath.startsWith(dd.href));
+    const dropdownId = `desktop-dropdown-${index}`;
 
     return (
       <div class={`relative ${hasDropdown ? 'group' : ''}`}>
@@ -41,6 +42,7 @@ const currentPath = Astro.url.pathname;
               }`}
               aria-expanded="false"
               aria-haspopup="true"
+              aria-controls={dropdownId}
             >
               <span class="relative">
                 {item.text}
@@ -54,10 +56,16 @@ const currentPath = Astro.url.pathname;
             </button>
 
             <!-- Dropdown -->
-            <div class="absolute left-0 mt-1.5 w-48 bg-white/80 backdrop-blur-xl rounded-xl border border-dark-neutral/10 shadow-lg shadow-dark-neutral/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 -translate-y-1 group-hover:translate-y-0 z-50 overflow-hidden">
+            <div
+              id={dropdownId}
+              role="menu"
+              aria-label={`${item.text} submenu`}
+              class="absolute left-0 mt-1.5 w-48 bg-white/80 backdrop-blur-xl rounded-xl border border-dark-neutral/10 shadow-lg shadow-dark-neutral/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 -translate-y-1 group-hover:translate-y-0 z-50 overflow-hidden"
+            >
               <div class="py-1.5">
                 <a
                   href={item.href}
+                  role="menuitem"
                   class={`flex items-center px-3.5 py-2 text-sm font-medium transition-all duration-150 border-l-2 ${
                     currentPath === item.href
                       ? "text-primary border-l-primary bg-primary/5"
@@ -77,6 +85,7 @@ const currentPath = Astro.url.pathname;
                   return (
                     <a
                       href={dd.href}
+                      role="menuitem"
                       class={`flex items-center px-3.5 py-2 text-sm font-medium transition-all duration-150 border-l-2 ${
                         isDdActive
                           ? "text-primary border-l-primary bg-primary/5"
@@ -125,6 +134,7 @@ const currentPath = Astro.url.pathname;
   class="lg:hidden relative flex flex-col items-center justify-center h-9 w-9 rounded-lg text-dark-neutral hover:bg-dark-neutral/5 transition-all duration-200 focus:outline-none"
   aria-label="Toggle Menu"
   aria-expanded="false"
+  aria-controls="mobile-menu"
 >
   <span class="hamburger-box relative w-5 h-4">
     <span class="hamburger-line absolute top-0 left-0 w-full h-[2px] bg-dark-neutral rounded-full transition-all duration-300 origin-center"></span>
@@ -137,8 +147,9 @@ const currentPath = Astro.url.pathname;
 <div
   id="mobile-menu"
   class="fixed inset-0 z-50 lg:hidden pointer-events-none overflow-x-clip"
-  role="menu"
-  aria-labelledby="mobile-menu-button"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobile navigation"
 >
   <!-- Menu Panel -->
   <div id="mobile-panel" class="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white translate-x-full transition-transform duration-300 ease-out shadow-2xl">
@@ -157,7 +168,7 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <!-- Navigation Links -->
-    <nav class="px-5 py-6 space-y-1.5 overflow-y-auto max-h-[calc(100vh-4rem)] bg-white">
+    <nav class="px-5 py-6 space-y-1.5 overflow-y-auto max-h-[calc(100vh-4rem)] bg-white" aria-label="Mobile navigation menu">
       {
         navItems.map((item) => {
           const isActive = currentPath === item.href || 
@@ -174,7 +185,6 @@ const currentPath = Astro.url.pathname;
                     ? "bg-primary/10 text-primary"
                     : "text-dark-neutral hover:bg-dark-neutral/10"
                 }`}
-                role="menuitem"
                 aria-current={isActive ? "page" : undefined}
               >
                 <span>{item.text}</span>
@@ -196,7 +206,6 @@ const currentPath = Astro.url.pathname;
                             ? "bg-primary/10 text-primary"
                             : "text-dark-neutral/80 hover:bg-dark-neutral/10 hover:text-dark-neutral"
                         }`}
-                        role="menuitem"
                         aria-current={isDdActive ? "page" : undefined}
                       >
                         {dd.text}
