@@ -42,7 +42,11 @@ const latestRobot = allRobots
                     <Image
                       src={resolveImage(latestRobot.data.pic)!}
                       alt={latestRobot.data.name}
+                      widths={[400, 600, 800, 1000, 1200]}
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       class="max-w-full max-h-[300px] object-contain"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <img

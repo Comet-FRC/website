@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 // Dynamically import all images from the slideshow folder at build time
 const imageModules = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/about/slideshow/*.{jpg,jpeg,png,webp,avif,gif}',
@@ -9,19 +11,13 @@ const imageModules = import.meta.glob<{ default: ImageMetadata }>(
 const images = Object.entries(imageModules)
   .filter(([path]) => !path.includes('-low'))
   .sort(([a], [b]) => a.localeCompare(b))
-  .map(([path, mod]) => {
-    const basename = path.split('/').pop()?.replace(/\.[^.]+$/, '') || '';
-    // Find the corresponding low-quality version
-    const lowPath = Object.keys(imageModules).find(
-      (p) => p.includes(`${basename}-low.`)
-    );
-    return {
-      high: mod.default,
-      low: lowPath ? imageModules[lowPath].default : mod.default,
-    };
-  });
+  .map(([path, mod]) => mod.default);
 
 const numImages = images.length;
+
+// Responsive image configuration
+const IMAGE_WIDTHS = [640, 768, 1024, 1280, 1536, 1920];
+const IMAGE_SIZES = "(max-width: 768px) 90vw, 75vw";
 ---
 
 <div
@@ -36,19 +32,16 @@ const numImages = images.length;
     <div class="slideshow-image-container">
       {images.map((img, i) => (
         <div class:list={["slideshow-slide", { active: i === 0 }]} data-index={i}>
-          <img
-            src={i === 0 ? img.high.src : img.low.src}
-            class="slideshow-image-base"
+          <Image
+            src={img}
             alt={`Slideshow image ${i + 1}`}
-            loading="eager"
+            widths={IMAGE_WIDTHS}
+            sizes={IMAGE_SIZES}
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchpriority={i === 0 ? "high" : "low"}
+            decoding="async"
+            class="slideshow-image"
             aria-hidden={i !== 0}
-          />
-          <img
-            src={img.high.src}
-            class="slideshow-image-overlay"
-            alt=""
-            loading="eager"
-            aria-hidden="true"
           />
         </div>
       ))}
@@ -81,51 +74,9 @@ const numImages = images.length;
 
     // --- State ---
     let currentIndex = 0;
-    let ticking = false;
     let accumulatedDelta = 0;
     let resetTimer: ReturnType<typeof setTimeout> | null = null;
-    let pauseTimer: ReturnType<typeof setTimeout> | null = null;
     const deltaPerImage = window.innerHeight; // 100vh per image
-    const PAUSE_DELAY = 300; // ms to wait before loading high-quality image
-
-    // Track which overlays have loaded high-quality
-    const highQualityLoaded = new Set<number>();
-
-    function loadHighQualityOverlay(index: number) {
-      // If already loaded, skip
-      if (highQualityLoaded.has(index)) return;
-
-      const slide = slides[index];
-      const overlay = slide.querySelector('.slideshow-image-overlay') as HTMLImageElement;
-      if (!overlay) return;
-
-      // The overlay already has the high-quality src loaded (eager)
-      // Just add the 'loaded' class to fade it in
-      highQualityLoaded.add(index);
-      overlay.classList.add('loaded');
-    }
-
-    function revertToLowQuality(index: number) {
-      // If high-quality was loaded, fade out the overlay
-      if (highQualityLoaded.has(index)) {
-        const slide = slides[index];
-        const overlay = slide.querySelector('.slideshow-image-overlay') as HTMLImageElement;
-        if (overlay) {
-          overlay.classList.remove('loaded');
-        }
-        highQualityLoaded.delete(index);
-      }
-    }
-
-    function onImagePause() {
-      // Load high-quality overlay after pause
-      loadHighQualityOverlay(currentIndex);
-    }
-
-    function resetPauseTimer() {
-      if (pauseTimer) clearTimeout(pauseTimer);
-      pauseTimer = setTimeout(onImagePause, PAUSE_DELAY);
-    }
 
     function updateIndex() {
       if (scrollRange <= 0) return;
@@ -133,7 +84,7 @@ const numImages = images.length;
       const scrollY = window.scrollY;
       const offset = scrollY - wrapperTop;
       const progress = Math.max(0, Math.min(1, offset / scrollRange));
-      
+
       // Apply 0.95 scroll buffer - restrict interpolation to 0-0.95 range
       // This leaves a 5% "unpinning buffer" at the end for smoother exit
       const adjustedProgress = Math.min(progress / 0.95, 1);
@@ -146,18 +97,12 @@ const numImages = images.length;
       // Only update DOM if index changed
       if (newIndex === currentIndex) return;
 
-      // Revert previous image overlay to hidden before switching
-      revertToLowQuality(currentIndex);
-
       // Switch slides
       slides[currentIndex].classList.remove('active');
       slides[currentIndex].setAttribute('aria-hidden', 'true');
       slides[newIndex].classList.add('active');
       slides[newIndex].setAttribute('aria-hidden', 'false');
       currentIndex = newIndex;
-
-      // Start pause timer to load high-quality overlay
-      resetPauseTimer();
     }
 
     function onScroll() {
@@ -182,9 +127,6 @@ const numImages = images.length;
 
       // Update if index changed
       if (newIndex !== currentIndex) {
-        // Revert previous image overlay to hidden before switching
-        revertToLowQuality(currentIndex);
-
         slides[currentIndex].classList.remove('active');
         slides[currentIndex].setAttribute('aria-hidden', 'true');
         slides[newIndex].classList.add('active');
@@ -194,9 +136,6 @@ const numImages = images.length;
         // Update body class
         const isActive = scrollY >= wrapperTop && scrollY < wrapperTop + wrapperHeight - window.innerHeight;
         document.body.classList.toggle('slideshow-active', isActive);
-
-        // Start pause timer to load high-quality overlay
-        resetPauseTimer();
       }
 
       // Reset accumulator after scrolling stops
@@ -221,9 +160,6 @@ const numImages = images.length;
     window.addEventListener('wheel', onWheel, { passive: true });
     window.addEventListener('resize', onResize, { passive: true });
     updateIndex();
-
-    // Load high-quality overlay for initial image immediately on page load
-    loadHighQualityOverlay(0);
   }
 
   document.addEventListener('astro:page-load', initSlideshow);
@@ -276,23 +212,12 @@ const numImages = images.length;
     pointer-events: auto;
   }
 
-  .slideshow-image-base,
-  .slideshow-image-overlay {
+  .slideshow-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .slideshow-image-overlay {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 2;
-  }
-
-  .slideshow-image-overlay.loaded {
-    opacity: 1;
   }
 </style>

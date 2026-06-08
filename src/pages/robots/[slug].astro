@@ -92,7 +92,11 @@ const robotName = entry.data.name;
             <Image
               src={resolveImage(entry.data.pic)!}
               alt={entry.data.name}
+              widths={[600, 800, 1000, 1200, 1600]}
+              sizes="(max-width: 768px) 90vw, 80vw"
               class="max-w-full max-h-[400px] object-contain"
+              loading="lazy"
+              decoding="async"
             />
           ) : (
             <img

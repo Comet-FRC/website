@@ -5,7 +5,13 @@ import AboutTabs from "../components/Sections/AboutTabs.astro";
 import AboutSlideshow from "../components/Sections/AboutSlideshow.astro";
 import { Image } from "astro:assets";
 import AboutImage from "../assets/about/about.avif";
+
+// Import first slideshow image for preload
+import firstSlideshowImage from "../assets/about/slideshow/55181368697_79893e966f_o.webp";
 ---
+
+<!-- Preload first slideshow image (LCP candidate for about page) -->
+<link rel="preload" as="image" href={firstSlideshowImage.src} fetchpriority="high" type="image/webp">
 
 <BaseLayout
   title="About Us - Comet Robotics"
@@ -79,6 +85,9 @@ import AboutImage from "../assets/about/about.avif";
             loading="lazy"
             src={AboutImage}
             alt="Working in the pits" 
+            widths={[600, 800, 1000, 1200, 1600]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            decoding="async"
             class="rounded-lg shadow-lg object-cover w-full h-full"
           />
         </div>

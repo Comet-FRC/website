@@ -42,9 +42,10 @@ const { name, pic, season, seasonYear, description } = latestRobot.data;
             <Image
               src={resolveImage(pic)!}
               alt={name}
-              width={600}
-              height={600}
+              widths={[400, 600, 800, 1000, 1200]}
+              sizes="(max-width: 768px) 100vw, 50vw"
               loading="lazy"
+              decoding="async"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (

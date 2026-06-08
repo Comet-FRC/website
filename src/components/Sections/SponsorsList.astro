@@ -28,7 +28,10 @@ const activeSponsors = allSponsors
               <Image
                 src={resolveImage(sponsor.data.logo)!}
                 alt={sponsor.data.name}
+                widths={[100, 200, 300, 400]}
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 loading="lazy"
+                decoding="async"
                 class="max-w-full max-h-full object-contain"
               />
             ) : (

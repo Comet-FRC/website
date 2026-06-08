@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "prebuild": "node scripts/generate-lqip.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "stop": "node server.stop.js"

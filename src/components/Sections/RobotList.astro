@@ -36,7 +36,10 @@ const offseasonRobots = allRobots
               <Image
                 src={resolveImage(robot.data.pic)!}
                 alt={robot.data.name}
+                widths={[300, 400, 600, 800, 1000]}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 loading="lazy"
+                decoding="async"
                 class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-[0.35]"
               />
             ) : (
@@ -79,7 +82,10 @@ const offseasonRobots = allRobots
                   <Image
                     src={resolveImage(robot.data.pic)!}
                     alt={robot.data.name}
+                    widths={[300, 400, 600, 800, 1000]}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     loading="lazy"
+                    decoding="async"
                     class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-[0.35]"
                   />
                 ) : (

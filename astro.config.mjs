@@ -12,6 +12,15 @@ export default defineConfig({
     tailwind(),
     sitemap(),
   ],
+  image: {
+    // Quality settings for optimized output
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: 268402705, // ~16384x16384
+      }
+    },
+  },
   markdown: {
     shikiConfig: {
       theme: 'github-light',
