@@ -77,6 +77,7 @@ const IMAGE_SIZES = "(max-width: 768px) 90vw, 75vw";
     let accumulatedDelta = 0;
     let resetTimer: ReturnType<typeof setTimeout> | null = null;
     const deltaPerImage = window.innerHeight; // 100vh per image
+    const DEADZONE = 0.04; // 4% hysteresis deadzone around slide boundaries to prevent flickering
 
     function updateIndex() {
       if (scrollRange <= 0) return;
@@ -88,7 +89,19 @@ const IMAGE_SIZES = "(max-width: 768px) 90vw, 75vw";
       // Apply 0.95 scroll buffer - restrict interpolation to 0-0.95 range
       // This leaves a 5% "unpinning buffer" at the end for smoother exit
       const adjustedProgress = Math.min(progress / 0.95, 1);
-      const newIndex = Math.min(Math.floor(adjustedProgress * numImages), numImages - 1);
+      const continuousPos = adjustedProgress * numImages;
+      const candidateIndex = Math.min(Math.floor(continuousPos), numImages - 1);
+
+      // Apply deadzone hysteresis at transition boundaries to prevent flickering
+      // When near a boundary, stick to the current slide until we've scrolled past the deadzone
+      let newIndex = candidateIndex;
+      if (candidateIndex !== currentIndex) {
+        const boundary = candidateIndex > currentIndex ? candidateIndex : currentIndex;
+        const distanceFromBoundary = Math.abs(continuousPos - boundary);
+        if (distanceFromBoundary < DEADZONE) {
+          newIndex = currentIndex; // Stay on current slide - we're in the deadzone
+        }
+      }
 
       // Toggle slideshow-active class on body for navbar styling
       const isActive = scrollY >= wrapperTop && scrollY < wrapperTop + wrapperHeight - window.innerHeight;
