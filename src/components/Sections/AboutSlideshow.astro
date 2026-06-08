@@ -31,7 +31,8 @@ const numImages = images.length;
           <Picture
             src={img}
             widths={[640, 1024, 1920]}
-            formats={["avif", "webp"]}
+            formats={["avif"]}
+            fallbackFormat="webp"
             sizes="(max-width: 640px) 100vw, 75vw"
             loading="eager"
             decoding="sync"
