@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import { resolveImage } from "../../utils/imageResolver";
 
 const allRobots = await getCollection("robots", ({ data }) =>
@@ -33,9 +33,13 @@ const offseasonRobots = allRobots
         >
           <div class="relative w-full h-full overflow-hidden">
             {resolveImage(robot.data.pic) ? (
-              <Image
+              <Picture
                 src={resolveImage(robot.data.pic)!}
                 alt={robot.data.name}
+                widths={[300, 400, 600]}
+                formats={["avif"]}
+                fallbackFormat="webp"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 loading="lazy"
                 class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-[0.35]"
               />
@@ -76,9 +80,13 @@ const offseasonRobots = allRobots
             >
               <div class="relative w-full h-full overflow-hidden">
                 {resolveImage(robot.data.pic) ? (
-                  <Image
+                  <Picture
                     src={resolveImage(robot.data.pic)!}
                     alt={robot.data.name}
+                    widths={[300, 400, 600]}
+                    formats={["avif"]}
+                    fallbackFormat="webp"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     loading="lazy"
                     class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-[0.35]"
                   />
