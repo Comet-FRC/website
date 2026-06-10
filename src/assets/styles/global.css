@@ -1,3 +1,103 @@
+/* ─── Local Font Faces ─── */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/PlayfairDisplay-latin.woff2') format('woff2');
+}
+
+/* Fallback override: Georgia → Playfair Display metrics
+   Playfair: ascent=108.2%, descent=25.1%, x-height=51.4%, cap-height=70.8%
+   Georgia (est): ascent=80%, descent=20%, x-height=45.8%, cap-height=66.7% */
+@font-face {
+  font-family: 'Georgia Fallback';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Georgia');
+  size-adjust: 112.2%;
+  ascent-override: 96.4%;
+  descent-override: 22.4%;
+  line-gap-override: 0%;
+}
+
+/* Bold Georgia fallback */
+@font-face {
+  font-family: 'Georgia Fallback';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Georgia');
+  size-adjust: 112.2%;
+  ascent-override: 96.4%;
+  descent-override: 22.4%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/SourceSansPro-Light-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/SourceSansPro-Regular-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/SourceSansPro-SemiBold-latin.woff2') format('woff2');
+}
+
+/* Fallback override: system-ui → Source Sans Pro metrics
+   Source Sans: ascent=98.4%, descent=27.3%, x-height=48.6%, cap-height=66%
+   system-ui (est): ascent=77%, descent=23%, x-height=52.5%, cap-height=53% */
+@font-face {
+  font-family: 'system-ui Fallback';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Segoe UI'), local('system-ui'), local('Helvetica Neue'), local('Arial');
+  size-adjust: 92.6%;
+  ascent-override: 106.3%;
+  descent-override: 29.5%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'system-ui Fallback';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Segoe UI'), local('system-ui'), local('Helvetica Neue'), local('Arial');
+  size-adjust: 92.6%;
+  ascent-override: 106.3%;
+  descent-override: 29.5%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'system-ui Fallback';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Segoe UI'), local('system-ui'), local('Helvetica Neue'), local('Arial');
+  size-adjust: 92.6%;
+  ascent-override: 106.3%;
+  descent-override: 29.5%;
+  line-gap-override: 0%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
