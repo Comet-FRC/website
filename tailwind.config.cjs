@@ -61,8 +61,20 @@ module.exports = {
         },
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['"Source Sans Pro"', 'system-ui', 'sans-serif'],
+        serif: [
+          '"Playfair Display"',
+          '"Playfair Fallback"',
+          '"Playfair Android Fallback"',
+          'Georgia',
+          'serif',
+        ],
+        sans: [
+          '"Source Sans Pro"',
+          '"Source Sans Apple Fallback"',
+          '"Source Sans Fallback"',
+          '"Source Sans Android Fallback"',
+          'sans-serif',
+        ],
       },
     },
   },
