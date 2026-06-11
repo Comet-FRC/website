@@ -6,6 +6,75 @@
 @import '@fontsource/source-sans-pro/latin-400.css';
 @import '@fontsource/source-sans-pro/latin-600.css';
 
+/* ─── Fallback metric overrides for Source Sans Pro ─── */
+
+/* Windows: Arial */
+@font-face {
+  font-family: 'Source Sans Fallback';
+  font-style: normal;
+  font-weight: 300 400 600;
+  font-display: swap;
+  src: local('Arial');
+  size-adjust: 93.6%;
+  ascent-override: 105.1%;
+  descent-override: 29.2%;
+  line-gap-override: 0%;
+}
+
+/* Apple / iOS: Helvetica Neue */
+@font-face {
+  font-family: 'Source Sans Apple Fallback';
+  font-style: normal;
+  font-weight: 300 400 600;
+  font-display: swap;
+  src: local('Helvetica Neue'), local('SF Pro Text');
+  size-adjust: 94.0%;
+  ascent-override: 104.7%;
+  descent-override: 29.0%;
+  line-gap-override: 0%;
+}
+
+/* Android: Roboto */
+@font-face {
+  font-family: 'Source Sans Android Fallback';
+  font-style: normal;
+  font-weight: 300 400 600;
+  font-display: swap;
+  src: local('Roboto');
+  size-adjust: 92.0%;
+  ascent-override: 106.9%;
+  descent-override: 29.7%;
+  line-gap-override: 0%;
+}
+
+/* ─── Fallback metric overrides for Playfair Display ─── */
+
+/* Windows / Apple: Georgia */
+@font-face {
+  font-family: 'Playfair Fallback';
+  font-style: normal;
+  font-weight: 400 600 700;
+  font-display: swap;
+  src: local('Georgia');
+  size-adjust: 112.2%;
+  ascent-override: 96.4%;
+  descent-override: 22.4%;
+  line-gap-override: 0%;
+}
+
+/* Android: Noto Serif */
+@font-face {
+  font-family: 'Playfair Android Fallback';
+  font-style: normal;
+  font-weight: 400 600 700;
+  font-display: swap;
+  src: local('Noto Serif');
+  size-adjust: 109.8%;
+  ascent-override: 98.5%;
+  descent-override: 22.9%;
+  line-gap-override: 0%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
